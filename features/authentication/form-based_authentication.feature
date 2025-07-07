@@ -2,7 +2,7 @@ Feature: Form-based authentication
 
   In order to learn how to use Serenity/JS with Cucumber and Playwright
   As a Curious Developer
-  I'd like to see an example
+  I would like to see an example
 
   Background:
     Given Alice starts with the "Form Authentication" example
