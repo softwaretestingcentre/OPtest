@@ -4,7 +4,6 @@ import path from 'path';
 import * as playwright from 'playwright';
 
 import { Actors } from '../../test';
-import { JuiceShop } from '../../test/juiceshop';
 
 const timeouts = {
     cucumber: {
@@ -28,7 +27,7 @@ BeforeAll(async () => {
     // Launch the browser once before all the tests
     // Serenity/JS will take care of managing Playwright browser context and browser tabs.
     browser = await playwright.chromium.launch({
-        headless: true,
+        headless: false,
     });
 
     // Configure Serenity/JS
@@ -60,9 +59,6 @@ BeforeAll(async () => {
 
         cueTimeout: timeouts.serenity.cueTimeout,
     });
-    await actorCalled("Haxxor").attemptsTo(
-        JuiceShop.open()
-    );
 });
 
 AfterAll(async () => {

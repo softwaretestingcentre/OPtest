@@ -24,15 +24,8 @@ When('{pronoun} log(s) in using {string} and {string}', async (actor: Actor, use
     )
 );
 
-/**
- * If you need to use a RegExp instead of Cucumber Expressions like {actor} and {pronoun}
- * you can use actorCalled(name) and actorInTheSpotlight() instead
- *
- *  see: https://serenity-js.org/modules/core/function/index.html#static-function-actorCalled
- *  see: https://serenity-js.org/modules/core/function/index.html#static-function-actorInTheSpotlight
- */
-Then(/.* should see that authentication has (succeeded|failed)/, async (expectedOutcome: string) =>
-    actorInTheSpotlight().attemptsTo(
+Then('{pronoun} should see that authentication has {}', async (actor: Actor, expectedOutcome: string) =>
+    actor.attemptsTo(
         VerifyAuthentication[expectedOutcome](),
     )
 );
