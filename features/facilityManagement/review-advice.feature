@@ -8,8 +8,8 @@ The advice includes some elements of:
 - Incentives
 The FM can accept the advice or view more detailed analysis
 
-  Background:
-    Given Felicity has logged into Octaipipe
+  # Background:
+  #   Given Felicity has logged into ACE
 
   Scenario: Facility Manager views advice
     When Felicity views the Explainer
