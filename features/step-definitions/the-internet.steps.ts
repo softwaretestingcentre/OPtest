@@ -1,5 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { Actor, actorInTheSpotlight } from '@serenity-js/core';
+import { Actor } from '@serenity-js/core';
 import { Navigate } from '@serenity-js/web';
 
 import { Authenticate, VerifyAuthentication } from '../../test/authentication';
@@ -29,4 +29,6 @@ Then('{pronoun} should see that authentication has {}', async (actor: Actor, exp
         VerifyAuthentication[expectedOutcome](),
     )
 );
+
+
 
