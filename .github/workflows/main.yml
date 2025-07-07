@@ -44,6 +44,6 @@ jobs:
 
       - name: Publish Results
         run:
-          echo "[Test Results](https://softwaretestingcentre.github.io/serenity-js-cucumber-playwright-template/)" >> $GITHUB_STEP_SUMMARY
+          echo "[Test Results](https://softwaretestingcentre.github.io/OPtest/)" >> $GITHUB_STEP_SUMMARY
 
           
