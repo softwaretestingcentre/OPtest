@@ -4,6 +4,8 @@ import { Authenticate } from "../../test/authentication";
 import { Navigate } from "@serenity-js/web";
 import { Ensure, equals } from "@serenity-js/assertions";
 import { PickExample } from "../../test/examples";
+import { User } from "../../test/ace-ui/User";
+import { Data } from "../../test/ace-ui/Data";
 
 
 
@@ -12,25 +14,25 @@ import { PickExample } from "../../test/examples";
 
 
 
-
-Given('{actor} has logged into ACE', async (actor: Actor) => 
+Given('{actor} has opened their portal', async (actor: Actor) => 
     actor.attemptsTo(
-        Navigate.to('/'),
-        PickExample.called("Form Authentication"),
-        Authenticate.using("tomsmith", "SuperSecretPassword!"),
+        User.login()
     )
 )
 
-When('{actor} views their portal', async (actor: Actor) => 
-      actor.attemptsTo(
-          Navigate.to('/'),
-      )
+When('{pronoun} check their KPIs', async (actor: Actor) => 
+    actor.attemptsTo(
+        Navigate.to('/tables')
+    )
 )
 
-Then('{pronoun} sees KPIs based on recent data', async (actor: Actor, data: DataTable) => 
+Then('{pronoun} see(s) that the KPI data is current', async (actor: Actor, data: DataTable) => 
     actor.attemptsTo(
         Ensure.that(
-            data.hashes()[0]["Expected Value"], equals('1.3')
+            data.hashes()[0]["Expected Value"], 
+            equals(
+                Data.fromTable(data.hashes()[0]["KPI"], 0)
+            )
         )
     )
 )
