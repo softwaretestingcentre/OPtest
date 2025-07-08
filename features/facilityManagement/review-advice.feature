@@ -21,10 +21,13 @@ The FM can accept the advice or view more detailed analysis
       | Prediction     | IT Load for this zone is predicted to decline |
       | Recommendation | Adjusting the SAT set point                   |
       | Incentive      | Cost Savings                                  |
+      | Accept         | Click to Accept                               |
+      | Further        | For a more detailed analysis                  |
 
   Scenario Outline: Facility Manager accepts advice for various zones
     When Felicity accepts the advice about "<Zone>"
     Then "<Set Point>" is set to <Recommended Value>
+
     Examples:
       | Zone | Set Point | Recommended Value |
       |    1 | SAT       |              0.85 |
