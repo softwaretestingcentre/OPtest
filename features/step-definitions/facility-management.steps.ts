@@ -1,11 +1,10 @@
 import { DataTable, Given, Then, When } from "@cucumber/cucumber";
 import { Actor } from "@serenity-js/core";
-import { Authenticate } from "../../test/authentication";
 import { Navigate } from "@serenity-js/web";
 import { Ensure, equals } from "@serenity-js/assertions";
-import { PickExample } from "../../test/examples";
 import { User } from "../../test/ace-ui/User";
 import { Data } from "../../test/ace-ui/Data";
+import { Explainer } from "../../test/ace-ui/Explainer";
 
 
 
@@ -34,5 +33,17 @@ Then('{pronoun} see(s) that the KPI data is current', async (actor: Actor, data:
                 Data.fromTable(data.hashes()[0]["KPI"], 0)
             )
         )
+    )
+)
+
+When('{actor} views the Explainer', async (actor: Actor) => 
+    actor.attemptsTo(
+        Explainer.getAdvice()
+    )
+)
+
+Then('{actor} sees that the advice about {} includes {}', async (actor: Actor, area: string, advice: string) => 
+    actor.attemptsTo(
+        Explainer.checkAdviceContains(advice.toLocaleUpperCase())
     )
 )

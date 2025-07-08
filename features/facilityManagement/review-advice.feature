@@ -8,19 +8,23 @@ The advice includes some elements of:
 - Incentives
 The FM can accept the advice or view more detailed analysis
 
-  # Background:
-  #   Given Felicity has logged into ACE
+  Background:
+    Given Felicity has opened their portal
 
-  Scenario: Facility Manager views advice
+  Scenario Outline: Facility Manager views advice
     When Felicity views the Explainer
-    Then She sees up to date advice
-      | Status                            | Prediction           | Recommendation           | Incentive    |
-      | Zone 1 temperatures are below SLA | IT Load is declining | Adjust the SAT set point | Cost Savings |
+    Then She sees that the advice about <Area> includes <Advice>
+
+    Examples:
+      | Area           | Advice                                        |
+      | Status         | Zone 1 temperatures are well below SLA        |
+      | Prediction     | IT Load for this zone is predicted to decline |
+      | Recommendation | Adjusting the SAT set point                   |
+      | Incentive      | Cost Savings                                  |
 
   Scenario Outline: Facility Manager accepts advice for various zones
     When Felicity accepts the advice about "<Zone>"
     Then "<Set Point>" is set to <Recommended Value>
-
     Examples:
       | Zone | Set Point | Recommended Value |
       |    1 | SAT       |              0.85 |
