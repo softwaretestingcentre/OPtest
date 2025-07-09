@@ -12,7 +12,7 @@ When('{actor} generates recommendations for {string}', async (actor: Actor, site
     actor.attemptsTo(LLM_Explainer.getAdvice({"name": siteName}))    
 )
 
-Then('{actor} sees that the advice for {string} is for {string} to be {string}', async (actor: Actor, zone: string, setPoint: string, recommendation: string) => 
+Then('{actor} sees that the advice for Zone {string} is for {string} to be {string}', async (actor: Actor, zone: string, setPoint: string, recommendation: string) => 
     actor.attemptsTo(LLM_Explainer.compareAdvice(zone, setPoint, recommendation))    
 )
 

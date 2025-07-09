@@ -19,7 +19,7 @@ The advisor is an LLM agent, therefore:
   Scenario Outline: Explainer recommendations are consistent after the base model is updated
     Given Des updates the base model from "1.3" to "1.4"
     When Des generates recommendations for "Site 1"
-    Then Des sees that the advice for "<Zone>" is for "<Set Point>" to be "<Recommended Value>"
+    Then Des sees that the advice for Zone "<Zone>" is for "<Set Point>" to be "<Recommended Value>"
 
     Examples:
       | Zone | Set Point | Recommended Value |
