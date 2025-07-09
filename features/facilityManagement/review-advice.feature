@@ -13,16 +13,9 @@ The FM can accept the advice or view more detailed analysis
 
   Scenario Outline: Facility Manager views advice
     When Felicity views the Explainer
-    Then She sees that the advice about <Area> includes <Advice>
-
-    Examples:
-      | Area           | Advice                                        |
-      | Status         | Zone 1 temperatures are well below SLA        |
-      | Prediction     | IT Load for this zone is predicted to decline |
-      | Recommendation | Adjusting the SAT set point                   |
-      | Incentive      | Cost Savings                                  |
-      | Accept         | Click to Accept                               |
-      | Further        | For a more detailed analysis                  |
+    Then Felicity sees that the advice includes:
+      | Salutation | Status                                 | Prediction                                    | Recommendation              | Incentive | Accept          | Further                    |
+      | Hi Chris   | Zone 1 temperatures are well below SLA | IT Load for this zone is predicted to decline | Adjusting the SAT set point | Savings   | Click to Accept | For more detailed analysis |
 
   Scenario Outline: Facility Manager accepts advice for various zones
     When Felicity accepts the advice about "<Zone>"

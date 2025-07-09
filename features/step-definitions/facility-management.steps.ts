@@ -42,8 +42,8 @@ When('{actor} views the Explainer', async (actor: Actor) =>
     )
 )
 
-Then('{actor} sees that the advice about {} includes {}', async (actor: Actor, area: string, advice: string) => 
+Then('{actor} sees that the advice includes:', async (actor: Actor, advicePoints: DataTable) => 
     actor.attemptsTo(
-        Explainer.checkAdviceContains(advice.toLocaleUpperCase())
+        Explainer.checkAdviceContainsAllSalientPoints(advicePoints)
     )
 )

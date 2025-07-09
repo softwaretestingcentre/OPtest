@@ -12,4 +12,4 @@ Feature: Site Management
     When they check their KPIs
     Then they see that the KPI data is current
       | KPI | Expected Value |
-      | Due | $50.00         |
+      | PUE |           1.33 |
