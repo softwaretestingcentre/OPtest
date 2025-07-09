@@ -1,6 +1,14 @@
-import { When } from "@cucumber/cucumber";
+import { Then, When } from "@cucumber/cucumber";
 import { LLM_Explainer } from "../../test/ace-api/LLM_Explainer";
+import { Actor } from "@serenity-js/core";
 
-When('{actor} generates recommendations', async (actor: Actor) => 
-    actor.attemptsTo(LLM_Explainer.getAdvice({"name": "site_1"}));
+When('{actor} generates recommendations for {string}', async (actor: Actor, siteName: string) => 
+    actor.attemptsTo(LLM_Explainer.getAdvice({"name": siteName}))
 )
+
+Then('{actor} sees that the advice for {string} is for {string} to be {string}', async (actor: Actor, zone: string, setPoint: string, recommendation: string) => 
+    actor.attemptsTo(LLM_Explainer.compareAdvice(zone, setPoint, recommendation))
+)
+
+
+
