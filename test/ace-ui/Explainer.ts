@@ -10,12 +10,6 @@ export const Explainer = {
       notes().set('current_advice', sampleAdvice),
     ),
 
-  checkAdviceContains: (phrase: string) =>
-    Task.where(`#actor checks that advice matches the phrase`,
-      Ensure.that(notes().get('current_advice'), includes(phrase))
-    ),
-
-
   checkAdviceContainsAllSalientPoints: (dataPoints: DataTable) =>
     Task.where(`#actor checks that the advice covers all salient points`,
       List.of(dataPoints.rows()[0]).forEach(({ actor, item }) => actor.attemptsTo(
