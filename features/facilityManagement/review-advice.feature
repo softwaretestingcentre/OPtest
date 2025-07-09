@@ -26,7 +26,7 @@ The FM can accept the advice or view more detailed analysis
 
   Scenario Outline: Facility Manager accepts advice for various zones
     When Felicity accepts the advice about "<Zone>"
-    Then "<Set Point>" is set to <Recommended Value>
+    Then She sees that "<Set Point>" is set to <Recommended Value>
 
     Examples:
       | Zone | Set Point | Recommended Value |
