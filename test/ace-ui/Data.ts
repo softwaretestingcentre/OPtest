@@ -1,4 +1,6 @@
-import { Question, Task } from "@serenity-js/core";
+import { DataTable } from "@cucumber/cucumber";
+import { Ensure, equals } from "@serenity-js/assertions";
+import { List, Question, Task } from "@serenity-js/core";
 import { By, Text, PageElements, PageElement } from "@serenity-js/web";
 
 export const Data = {
@@ -24,6 +26,25 @@ export const Data = {
             // TODO
         ),
 
+    compareToTable: (expectedData: DataTable, metric: string) =>
+        Task.where(`#actor compares data to expectations`,
+            List.of(expectedData.hashes()).forEach(({actor, item}) => 
+                actor.attemptsTo(
+                    Ensure.that(
+                        item["Expected Value"], 
+                        equals(
+                            Data.fromTable(item[metric], 0)
+                        )
+                    )
+                )
+            )
+        ),
+
+    SLAzone: (zone: string) =>
+        Question.about(`Which SLA boundary is ${zone} in`, async actor => {
+            return await actor.answer(Psychrometric.SLAzone()[zone]);
+        })
+
 }
 
 const Table = {
@@ -46,6 +67,12 @@ const Table = {
     exportButton: () =>
         PageElement.located(By.css('button[aria-label="Export"]')).describedAs('table filter'),
 
+}
 
+const Psychrometric = {
+
+    SLAzone: () => {
+        return {"Current": "Comfortable", "Projected": "Comfortable"}
+    }
 
 }

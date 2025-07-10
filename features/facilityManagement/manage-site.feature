@@ -13,3 +13,4 @@ Feature: Site Management
     Then they see that the KPI data is current
       | KPI | Expected Value |
       | PUE |           1.33 |
+      | WUE |           1.56 |

@@ -5,7 +5,7 @@ import { LastResponse, PostRequest, Send } from "@serenity-js/rest";
 export const LLM_Explainer = {
     getAdvice: (siteData: object) => 
         Task.where(`#actor requests advice for site`,
-            Send.a(PostRequest.to('http://localhost:3000/advice').with(
+            Send.a(PostRequest.to('/advice').with(
                 siteData
             )),
             Ensure.that(LastResponse.status(), equals(200)),
