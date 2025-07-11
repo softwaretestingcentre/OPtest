@@ -72,6 +72,7 @@ const Table = {
 const Psychrometric = {
 
     SLAzone: () => {
+        // TODO: enhance by locating points in regions
         return {"Current": "Comfortable", "Projected": "Comfortable"}
     }
 

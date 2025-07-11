@@ -6,11 +6,11 @@ import { Data } from "./Data";
 
 export const Explainer = {
   adviceSection: (sectionName: string) =>
-    PageElement.located(By.id(sectionName)).describedAs("advice section"),
+    PageElement.located(By.id(sectionName)).describedAs(`${sectionName} advice section`),
 
   getAdvice: (sectionName: string) =>
     Task.where(
-      `#actor views advice`,
+      `#actor views advice from ${sectionName}`,
       Navigate.to("/explainer"),
       notes().set(
         "current_advice",
@@ -19,6 +19,7 @@ export const Explainer = {
     ),
 
   checkAdviceContainsAllSalientPoints: (dataPoints: DataTable) =>
+    // TODO: enhance by measuring semantic similarity - complete, incomplete, contradictory
     Task.where(
       `#actor checks that the advice covers all salient points`,
       List.of(dataPoints.hashes()).forEach(({ actor, item }) =>

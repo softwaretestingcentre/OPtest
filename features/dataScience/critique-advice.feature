@@ -4,6 +4,7 @@ The advisor is an LLM agent, therefore:
 - The output may differ between runs
 - The output may differ as the base model is updated
 - The advisor should indicate its level of confidence
+# Reference site restored to known state
 
   Scenario Outline: Explainer recommendations are consistent between runs
     Given There are archive results for "<Site>"
@@ -17,7 +18,9 @@ The advisor is an LLM agent, therefore:
       | Amazin Web Services Atlantia |
 
   Scenario Outline: Explainer recommendations are consistent after the base model is updated
-    Given Des updates the base model from "1.3" to "1.4"
+    Given Des updates the base model
+    | Old | New |
+    | 1.3 | 1.4 |
     When Des generates recommendations for "Site 1"
     Then Des sees that the advice for Zone "<Zone>" is for "<Set Point>" to be "<Recommended Value>"
 

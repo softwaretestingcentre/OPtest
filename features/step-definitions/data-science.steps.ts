@@ -1,10 +1,10 @@
-import { Given, Then, When } from "@cucumber/cucumber";
+import { DataTable, Given, Then, When } from "@cucumber/cucumber";
 import { LLM_Explainer } from "../../test/ace-api/LLM_Explainer";
 import { Actor } from "@serenity-js/core";
 
-Given('{actor} updates the base model from {string} to {string}', async (actor: Actor, oldVersion: string, newVersion: string) => 
+Given('{actor} updates the base model', async (actor: Actor, versions: DataTable) => 
     actor.attemptsTo(
-        LLM_Explainer.updateBaseModel(oldVersion, newVersion)
+        LLM_Explainer.updateBaseModel(versions.hashes()[0]["Old"], versions.hashes()[0]["New"])
     )
 )
 

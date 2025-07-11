@@ -13,6 +13,7 @@ export const LLM_Explainer = {
 
     compareAdvice: (zone: string, setPoint: string, recommendation: string) => {
         const advice = LastResponse.body<adviceText>().advice;
+        // TODO: enhance by measuring semantic similarity
         return Task.where(`#actor checks that advice matches expectations`, 
             Ensure.that(advice, includes(`Zone ${zone}`)),
             Ensure.that(advice, includes(setPoint)),
