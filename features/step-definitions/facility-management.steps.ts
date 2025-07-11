@@ -20,7 +20,7 @@ Given('{actor} has opened their portal', async (actor: Actor) =>
 
 When('{pronoun} check their KPIs', async (actor: Actor) => 
     actor.attemptsTo(
-        Navigate.to('/tables')
+        Navigate.to('/tables.html')
     )
 )
 
@@ -44,7 +44,7 @@ Then('{actor} sees that the advice includes:', async (actor: Actor, advicePoints
 
 When('{actor} views the SLA Boundaries', async (actor: Actor) => 
     actor.attemptsTo(
-        Navigate.to('/explainer')
+        Navigate.to('/explainer.html')
     )
 )
 

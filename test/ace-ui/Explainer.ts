@@ -11,7 +11,7 @@ export const Explainer = {
   getAdvice: (sectionName: string) =>
     Task.where(
       `#actor views advice from ${sectionName}`,
-      Navigate.to("/explainer"),
+      Navigate.to("/explainer.html"),
       notes().set(
         "current_advice",
         Text.of(Explainer.adviceSection(sectionName)).toLocaleUpperCase()
