@@ -28,7 +28,9 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           install-command: npm ci
-      - run: npm start
+     
+      - run: npm start & npx wait-on http://127.0.0.1:3000
+      
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - run: npm test
