@@ -37,7 +37,7 @@ BeforeAll(async () => {
         actors: new Actors(
             browser,
             {
-                baseURL: 'http://localhost:3000/',
+                baseURL: 'http://127.0.0.1:3000/',
             },
             {
                 defaultNavigationTimeout: timeouts.playwright.defaultNavigationTimeout.inMilliseconds(),
