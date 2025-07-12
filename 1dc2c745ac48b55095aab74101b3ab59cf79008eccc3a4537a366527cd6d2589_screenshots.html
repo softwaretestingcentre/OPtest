@@ -183,7 +183,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:02</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:28</span>
     <br style="clear:left"/>
 </div>
 
@@ -246,9 +246,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon fa-2x' title='COMPROMISED'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon fa-2x' title='FAILURE'></i></a></span>
                             <span class="test-case-title">
-                                <span class="compromised-color">Explainer recommendations are consistent after the base model is updated
+                                <span class="failing-color">Explainer recommendations are consistent after the base model is updated
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -274,7 +274,7 @@
         <div class="table">
             <div class="row">
                 <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
-                    <span class="error-message error-message-title">Test compromised error: The API call has failed: POST http://localhost:3000/advice</span>
+                    <span class="error-message error-message-title">Assertion error: Expected ((the body of the last response)).advice to include '1.75'Expectation: includes('1.75')Expected string: 1.75Received string: The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.    at /home/runner/work/OPtest/OPtest/features/step-definitions/data-science.steps.ts:16:36</span>
                 </div>
                 <div class="col-sm-2">
                     <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall"
@@ -290,20 +290,13 @@
         <div class="collapse multi-collapse" id="stacktraceModal-overall">
             <div class="card">
                 <div class="card-header">
-                    <h4>TestCompromisedError </h4>
+                    <h4>AssertionError </h4>
                 </div>
                 <div class="card-body">
                     <div>
-                        <pre>.CallAnApi.request()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/rest/src/screenplay/abilities/CallAnApi.ts:433)<br />.processTicksAndRejections()(node:internal/process/task_queues:105)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:340)<br />.(async /home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:246)<br />.Function.AxiosError.from()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/core/AxiosError.js:92)<br />.RedirectableRequest.handleRequestError()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/adapters/http.js:620)<br />.RedirectableRequest.emit()(node:events:530)<br />.RedirectableRequest.emit()(node:domain:489)<br />.ClientRequest.eventHandlers.<computed>()(/home/runner/work/OPtest/OPtest/node_modules/follow-redirects/index.js:38)<br />.ClientRequest.emit()(node:events:518)<br />.ClientRequest.emit()(node:domain:489)<br />.emitErrorEvent()(node:_http_client:104)<br />.Socket.socketErrorListener()(node:_http_client:518)<br />.Socket.emit()(node:events:518)<br />.Axios.request()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/core/Axios.js:45)<br />.processTicksAndRejections()(node:internal/process/task_queues:105)<br />.async CallAnApi.request()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/rest/src/screenplay/abilities/CallAnApi.ts:416)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:340)<br /></pre>
+                        <pre>.(/home/runner/work/OPtest/OPtest/features/step-definitions/data-science.steps.ts:16)<br />.ErrorFactory.create()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/errors/ErrorFactory.ts:35)<br />.Stage.createError()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/stage/Stage.ts:328)<br />.RaiseErrors.create()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/errors/RaiseErrors.ts:59)<br />.Ensure.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/assertions/src/Ensure.ts:137)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br /></pre>
                     </div>
 
-                    <h4>
-                        Caused by: AxiosError
-                    </h4>
-                    <div>
-                            <pre></pre>
-                        <pre>.Function.AxiosError.from()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/core/AxiosError.js :92)<br />.RedirectableRequest.handleRequestError()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/adapters/http.js :620)<br />.RedirectableRequest.emit()(node:events :530)<br />.RedirectableRequest.emit()(node:domain :489)<br />.ClientRequest.eventHandlers.<computed>()(/home/runner/work/OPtest/OPtest/node_modules/follow-redirects/index.js :38)<br />.ClientRequest.emit()(node:events :518)<br />.ClientRequest.emit()(node:domain :489)<br />.emitErrorEvent()(node:_http_client :104)<br />.Socket.socketErrorListener()(node:_http_client :518)<br />.Socket.emit()(node:events :518)<br />.Axios.request()(/home/runner/work/OPtest/OPtest/node_modules/axios/lib/core/Axios.js :45)<br />.processTicksAndRejections()(node:internal/process/task_queues :105)<br />.async CallAnApi.request()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/rest/src/screenplay/abilities/CallAnApi.ts :416)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts :60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts :60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts :55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts :86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts :53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :340)<br /></pre>
-                    </div>
                 </div>
             </div>
         </div>
@@ -336,6 +329,24 @@
                     <img src="photo-linux-chromium-138.0.7204.23-des-sends-a-post-request-to-advic-5c9469c475.png" title=" Des sends a POST request to &amp;apos;/advice&amp;apos;" width="0" />
                 </div>
                 <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-status-of-the-5c9469c475.png" title=" Des ensures that the status of the last response does equal 200" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Then Des sees that the advice for Zone &amp;quot;1&amp;quot; is for &amp;quot;SAT&amp;quot; to be &amp;quot;0.85&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des checks that advice matches expectations" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des ensures that &amp;quot;The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.&amp;quot; does include &amp;quot;Zone 1&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des ensures that &amp;quot;The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.&amp;quot; does include &amp;quot;SAT&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des ensures that &amp;quot;The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.&amp;quot; does include &amp;quot;0.85&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
                     <img src="photo-linux-chromium-138.0.7204.23-des-logs-updating-base-model-5c9469c475.png" title=" Explainer recommendations are consistent after the base model is updated #2 - Zone: 2, Set Point: PAT, Recommended Value: 1.75" width="0" />
                 </div>
                 <div class="swiper-slide">
@@ -356,7 +367,25 @@
                     <img src="photo-linux-chromium-138.0.7204.23-des-sends-a-post-request-to-advic-5c9469c475.png" title=" Des requests advice for site" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-des-sends-a-post-request-to-advic-5c9469c475.png" title=" Des sends a POST request to &apos;/advice&apos;: <span class='compromised-color'>COMPROMISED</span>" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-des-sends-a-post-request-to-advic-5c9469c475.png" title=" Des sends a POST request to &amp;apos;/advice&amp;apos;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-status-of-the-5c9469c475.png" title=" Des ensures that the status of the last response does equal 200" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Then Des sees that the advice for Zone &amp;quot;2&amp;quot; is for &amp;quot;PAT&amp;quot; to be &amp;quot;1.75&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des checks that advice matches expectations" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des ensures that &amp;quot;The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.&amp;quot; does include &amp;quot;Zone 2&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-sat-set-point-5c9469c475.png" title=" Des ensures that &amp;quot;The SAT set point in Zone 1 should be set to 0.85. In Zone 2, the PAT set point can be below 1.74.&amp;quot; does include &amp;quot;PAT&amp;quot;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo-linux-chromium-138.0.7204.23-des-ensures-that-the-body-of-the-5c9469c475.png" title=" Des ensures that &lt;&lt;the body of the last response&gt;&gt;.advice does include &quot;1.75&quot;: <span class='failing-color'>FAILURE</span>" width="0" />
                 </div>
         </div>
         <div class="swiper-button-prev"></div>

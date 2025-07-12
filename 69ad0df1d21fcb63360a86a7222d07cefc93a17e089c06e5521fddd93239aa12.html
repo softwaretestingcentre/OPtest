@@ -105,17 +105,21 @@
 
 
 
+
     <script class="code" type="text/javascript">$(document).ready(function () {
 
-
             $("#scenario-results").DataTable({
-                "order": [[0, "asc",], [3, "asc",]],
+                "order": [[0, "asc",], [1, "asc",], [2, "asc",]],
                 "language": {
                     searchPlaceholder: "Filter",
                     search: ""
                 },
                 columnDefs: [
-                    {type: 'time-elapsed-dhms', targets: 4}
+                    {
+                        targets: 4,
+                        visible: false
+                    },
+                    {type: 'time-elapsed-dhms', targets: 6}
                 ]
             })
             $("#manual-scenario-results").DataTable({
@@ -124,17 +128,47 @@
                     searchPlaceholder: "Filter",
                     search: ""
                 },
+                columnDefs: [
+                    {
+                        targets: 4,
+                        visible: false
+                    },
+                ]
             })
 
-        // Results table
-        $('#test-results-table').DataTable({
-            "order": [[0, "asc",], [3, "asc",]],
-            "pageLength": 100,
-            "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]]
-        });
+            // Results table
+            $('#test-results-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]]
+            });
 
-    })
-    ;
+            $('#evidence-table').DataTable({
+                searching: false,
+                paging: false,
+                info: false
+            });
+
+            $(".feature-coverage-table").DataTable({
+                searching: true,
+                paging: false,
+                info: false,
+                language: {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+            });
+
+            $(".feature-coverage-table-with-pagination").DataTable({
+                searching: true,
+                order: [[0, "asc",]],
+                pageLength: 10,
+                language: {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+            });
+        });
     </script>
 </head>
 
@@ -153,10 +187,13 @@
 
 <div class="middlecontent">
 
+
     <div id="contenttop">
         <div class="middlebg">
         <span class="breadcrumbs"><a href="index.html">Home</a>
-                > Feature 
+                > <span class="truncate-60">
+                Tests With Error: Assertion Error
+            </span>
         </span>
         </div>
         <div class="rightbg"></div>
@@ -179,7 +216,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:02:58</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:28:18</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -188,22 +225,17 @@
         <div class="middlb">
             <div class="table">
 
-                <h2>Test Results: All Tests</h2>
+                <h2>Tests With Error: Assertion Error</h2>
                 <table class='overview'>
                     <tr>
                         <td width="375px" valign="top">
                             <div class="test-count-summary">
-                                <div>
-
-                                    5 tests
+                                <div class="test-count-title">
+                                    1 test
 
                                      |
-                                        <a href="4c351d90ecbab844ad64cca9a2536053f415253a9d3ce533dd09f51a69cfaa21.csv" title="Download CSV"> <i class="bi bi-cloud-arrow-down" title="Download CSV"></i></a>
-
-                                    <p class="report-info"><i class="bi bi-info-circle"></i> Note that results include
-                                        data-driven scenarios containing tests ,
-                                        which may also contain results other than tests .</p>
-
+                                        <a href="results.csv" title="Download CSV"> <i class="bi bi-cloud-arrow-down"
+                                                                                        title="Download CSV"></i></a>
 
 
                                 </div>
@@ -212,7 +244,8 @@
                             <div>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a data-toggle="tab" href="#summary"><i class="bi bi-house-door"></i> Summary</a>
+                                        <a data-toggle="tab" href="#summary"><i class="bi bi-house-door"></i>
+                                            Summary</a>
                                     </li>
                                     <li>
                                         <a data-toggle="tab" href="#tests"><i class="bi bi-speedometer"></i> Test
@@ -220,12 +253,48 @@
                                     </li>
                                 </ul>
 
+
                                 <div class="card border">
                                     <div class="tab-content" id="pills-tabContent">
                                         <div id="summary" class="tab-pane fade in active">
                                             <div class="container-fluid">
+                                                <div class="dashboard-charts row">
+                                                    <div class="col-lg-4 col-md-6 col-sm-9">
+                                                        <!-- PIE CHART -->
+                                                        <h4><i class="bi bi-pie-chart"></i> Overview</h4>
+                                                            <div class="chart-container">
+                                                                <canvas id="resultChart" height="200px"></canvas>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-9">
+                                                        <h4><i class="bi bi-check-square"></i> Test Outcomes</h4>
+                                                        <!-- Severity bar chart -->
+                                                        <div class="chart-container">
+                                                            <canvas id="severityChart" height="200px"></canvas>
+                                                        </div>
+                                                    </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-9">
+                                                            <h4><i class="bi bi-graph-up"></i> Test Performance</h4>
+
+                                                            <!-- Duration bar chart -->
+                                                            <div class="chart-container">
+                                                                <canvas id="durationChart" height="200px"></canvas>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
                                                 <div class="row">
-                                                    <div class="col-sm-4">
+                                                        <div class="col-lg-8 col-md-8 col-sm-9">
+                                                            <!-- High level coverage bar chart -->
+                                                            <div class="chart-container">
+                                                                <h3><i class="bi bi-reception-3"></i> Functional
+                                                                    Coverage Overview</h3>
+                                                                <h4>Features</h4>
+                                                                <canvas id="coverageChart"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6">
     <div>
         <h3><i class="bi bi-speedometer2"></i> Key Statistics</h3>
         <div>
@@ -235,127 +304,68 @@
                     <td>
                         <i class="bi bi-card-checklist"></i> Number of Scenarios
                     </td>
-                    <td>4</td>
+                    <td>1</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-caret-right"></i> Total Number of Test Cases
                     </td>
-                    <td>5</td>
+                    <td>1</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-flag-fill"></i> Tests Started
                     </td>
-                    <td>Jul 12, 2025 09:02:49</td>
+                    <td>Jul 12, 2025 09:28:06</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-stop-circle"></i> Tests
                         Finished
                     </td>
-                    <td>Jul 12, 2025 09:02:49</td>
+                    <td></td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-stopwatch"></i> Total
                         Duration
                     </td>
-                    <td>860ms</td>
+                    <td>0ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-trophy"></i> Fastest Test
                     </td>
-                    <td>153ms</td>
+                    <td>942ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-skip-start"></i> Slowest
                         Test
                     </td>
-                    <td>191ms</td>
+                    <td>942ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-stopwatch"></i> Average
                         Execution Time
                     </td>
-                    <td>170ms</td>
+                    <td>942ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-stopwatch-fill"></i> Total
                         Execution Time
                     </td>
-                    <td>856ms</td>
+                    <td>942ms</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <h4><i class="bi bi-check-square"></i> Test Outcomes</h4>
-                                                        <!-- Severity bar chart -->
-                                                        <div class="chart-container" style="position: relative; width:30vw">
-                                                            <canvas id="severityChart" width="300" height="300"></canvas>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-4">
-                                                        <h4><i class="bi bi-graph-up"></i> Test Performance</h4>
-
-                                                        <!-- Duration bar chart -->
-                                                        <div class="chart-container" style="position: relative; width:30vw">
-                                                            <canvas id="durationChart" width="300" height="300"></canvas>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <!-- High level coverage bar chart -->
-                                                            <div class="chart-container" style="position: relative; width:60vw">
-                                                                <h3><i class="bi bi-reception-3"></i> Functional Coverage Overview</h3>
-                                                                <h4>Features</h4>
-                                                                <canvas id="coverageChart"></canvas>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <h3>Tags</h3>
-
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                            <h5 class="card-title">Capability</h5>
-                                                                        <div>
-                                                                                <a href="ab30363ac570d803cd7624448c0dd734d214c01bd4aee9aa8a9986aec0b8aa28.html">
-                                                                                    <span class="badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                                                                        <i class="bi bi-tag"></i> Facility Management&nbsp;&nbsp;&nbsp;5
-                                                                                    </span>
-                                                                                </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                            <h5 class="card-title">Feature</h5>
-                                                                        <div>
-                                                                                <a href="927ac9f597a5c44486a2688e2a586e961010b3c186b43c0ca8b1920ea078ef00.html">
-                                                                                    <span class="badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                                                                        <i class="bi bi-tag"></i> Facility Management/Review Octaipipe Advice&nbsp;&nbsp;&nbsp;5
-                                                                                    </span>
-                                                                                </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-
                                             <div class="container-fluid">
                                                     <div class="row">
                                                         <div class="col-sm-11">
@@ -364,12 +374,12 @@
 
                                                                     <h4>Features</h4>
 
-                                                                    <table class="table feature-coverage-table" id="Feature">
+                                                                    <table class="table feature-coverage-table" id="Feature" style="width:100%">
                                                                         <thead>
                                                                         <tr>
                                                                             <th>Feature</th>
-                                                                            <th style="width:1em;">Test&nbsp;Cases</th>
                                                                             <th style="width:1em;">Scenarios</th>
+                                                                            <th style="width:1em;">Test&nbsp;Cases</th>
                                                                             <th style="width:1em;">%&nbsp;Pass</th>
                                                                             <th style="width:1em;">Result</th>
                                                                             <th>Coverage</th>
@@ -378,21 +388,21 @@
                                                                         <tbody>
                                                                                 <tr>
                                                                                     <td>
-                                                                                            <a href="#" > Review Octaipipe advice</a>
+                                                                                            <a href="#"> Review Octaipipe advice</a>
                                                                                     </td>
-                                                                                    <td>4</td>
-                                                                                    <td>5</td>
+                                                                                    <td>1</td>
+                                                                                    <td>1</td>
                                                                                     <td>0%</td>
                                                                                     <td>
-                                                                                            <a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a>
+                                                                                            <a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a>
                                                                                     </td>
                                                                                     <td>
                                                                                         <div class="progress">
                                                                                                 <div class="progress-bar"
                                                                                                      role="progressbar"
-                                                                                                     style="width: 100%; background-color: #fe6eec"
-                                                                                                     aria-valuenow="5"
-                                                                                                     title="100% compromised"
+                                                                                                     style="width: 100%; background-color: #fd938e"
+                                                                                                     aria-valuenow="1"
+                                                                                                     title="100% failure"
                                                                                                      aria-valuemin="0"
                                                                                                      aria-valuemax="100">
                                                                                                 </div>
@@ -415,11 +425,11 @@
                                                             <table class="table" style="width:40vw;">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td class="compromised-color top-list-title">
-                                                                            <a href="142614a83adc8d7053a748cbf318fd25c0377f15ba08e18c48137f13915a5f0b.html"><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> Test compromised error</a>
+                                                                        <td class="failure-color top-list-title">
+                                                                            <a href="69ad0df1d21fcb63360a86a7222d07cefc93a17e089c06e5521fddd93239aa12.html"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a> Assertion error</a>
                                                                         </td>
                                                                         <td><span
-                                                                                    class="badge failure-badge">3</span>
+                                                                                    class="badge failure-badge">1</span>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -434,7 +444,7 @@
                                                                             <a href="#">Review Octaipipe advice</a>
                                                                         </td>
                                                                         <td>
-                                                                            <span class="badge failure-badge">80%</span>
+                                                                            <span class="badge failure-badge">100%</span>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -451,8 +461,8 @@
                                 <h5 class="card-title">Capability</h5>
                             <div>
                                     <a href="ab30363ac570d803cd7624448c0dd734d214c01bd4aee9aa8a9986aec0b8aa28.html">
-                                    <span class="tag-badge badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                        <i class="bi bi-tag-fill"></i> Facility Management&nbsp;&nbsp;&nbsp;5
+                                    <span class="tag-badge badge" style="background-color:#fd938e; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Facility Management&nbsp;&nbsp;&nbsp;1
                                     </span>
                                     </a>
                             </div>
@@ -463,8 +473,8 @@
                                 <h5 class="card-title">Feature</h5>
                             <div>
                                     <a href="927ac9f597a5c44486a2688e2a586e961010b3c186b43c0ca8b1920ea078ef00.html">
-                                    <span class="tag-badge badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                        <i class="bi bi-tag-fill"></i> Facility Management/Review Octaipipe Advice&nbsp;&nbsp;&nbsp;5
+                                    <span class="tag-badge badge" style="background-color:#fd938e; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Facility Management/Review Octaipipe Advice&nbsp;&nbsp;&nbsp;1
                                     </span>
                                     </a>
                             </div>
@@ -474,90 +484,108 @@
         </div>
                                             </div>
                                         </div>
-                                        <div id="tests" class="tab-pane fade in">
+                                        <div id="tests" class="tab-pane fade">
                                             <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <h3><i class="bi bi-gear"></i> Automated Tests</h3>
+    <div>
+        <h3><i class="bi bi-speedometer2"></i> Key Statistics</h3>
+        <div>
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-card-checklist"></i> Number of Scenarios
+                    </td>
+                    <td>1</td>
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Total
+                        Duration
+                    </td>
+                    <td>0ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-caret-right"></i> Total Number of Test Cases
+                    </td>
+                    <td>1</td>
+                    <td>
+                        <i class="bi bi-trophy"></i> Fastest Test
+                    </td>
+                    <td>942ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-person"></i> Number of Manual Test Cases
+                    </td>
+                    <td>0</td>
+                    <td>
+                        <i class="bi bi-skip-start"></i> Slowest
+                        Test
+                    </td>
+                    <td>942ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-flag-fill"></i> Tests Started
+                    </td>
+                    <td>Jul 12, 2025 09:28:06</td>
+                    <td>
+                        <i class="bi bi-stopwatch"></i> Average
+                        Execution Time
+                    </td>
+                    <td>942ms</td>
+                </tr>
+                <tr scope="row">
+                    <td>
+                        <i class="bi bi-stop-circle"></i> Tests
+                        Finished
+                    </td>
+                    <td></td>
+                    <td>
+                        <i class="bi bi-stopwatch-fill"></i> Total
+                        Execution Time
+                    </td>
+                    <td>942ms</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                                            <table class="scenario-result-table table" id="scenario-results">
-                                                <thead>
-                                                <tr>
-                                                    <th>feature</th>
-                                                    <th class="test-name-column">Scenario</th>
-                                                    <th>Steps</th>
-                                                    <th>Started</th>
-                                                    <th>Total Duration</th>
-                                                    <th>Result</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                        <tr class="scenario-result COMPROMISED">
-                                                            <td>
-                                                                    <a href="#">Review Octaipipe advice</a>
-                                                            </td>
-                                                            <td><a href="0d73d19353eaf60c52526dd041f15089f2de5350ace013843d85c541432400aa.html">Facility Manager reviews TimeMachine advice</a>
-                                                            </td>
-                                                            <td>3</td>
-                                                            <td>09:02:49</td>
-                                                            <td>162ms</td>
-                                                            <td><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> <span style="display:none">COMPROMISED</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="scenario-result COMPROMISED">
-                                                            <td>
-                                                                    <a href="#">Review Octaipipe advice</a>
-                                                            </td>
-                                                            <td><a href="85e165e9dc35f23af3d060cb3ccff19a50dbdee27c191c2c7613b09e007236c3.html">Facility Manager reviews AgentRecommendation advice</a>
-                                                            </td>
-                                                            <td>3</td>
-                                                            <td>09:02:49</td>
-                                                            <td>153ms</td>
-                                                            <td><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> <span style="display:none">COMPROMISED</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="scenario-result COMPROMISED">
-                                                            <td>
-                                                                    <a href="#">Review Octaipipe advice</a>
-                                                            </td>
-                                                            <td><a href="9d4f49a8d7508c2fe51617a097c5e6ce198713b39d5b3867a18ef575af3cc4f1.html">Facility Manager reviews SLA Boundaries</a>
-                                                            </td>
-                                                            <td>3</td>
-                                                            <td>09:02:49</td>
-                                                            <td>160ms</td>
-                                                            <td><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> <span style="display:none">COMPROMISED</span>
-                                                            </td>
-                                                        </tr>
-                                                            <tr class="scenario-result COMPROMISED">
-                                                                <td>
-                                                                        <a href="#">Review Octaipipe advice</a>
-                                                                </td>
-                                                                <td>
-                                                                    <i class="bi bi-table" title="Data Driven Scenario"></i>
-                                                                    <a href="670a1f7acfac98d5a5f6847c20b91e0fc6c9b5cac14de1e9e4c4c5954334c54f.html">Facility Manager accepts advice for various zones #1 - Zone: 1, Set Point: SAT, Recommended Value: 0.85</a>
-                                                                </td>
-                                                                <td>3</td>
-                                                                <td>09:02:49</td>
-                                                                <td>188ms</td>
-                                                                <td><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> <span style="display:none">COMPROMISED</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="scenario-result COMPROMISED">
-                                                                <td>
-                                                                        <a href="#">Review Octaipipe advice</a>
-                                                                </td>
-                                                                <td>
-                                                                    <i class="bi bi-table" title="Data Driven Scenario"></i>
-                                                                    <a href="670a1f7acfac98d5a5f6847c20b91e0fc6c9b5cac14de1e9e4c4c5954334c54f.html">Facility Manager accepts advice for various zones #2 - Zone: 2, Set Point: PAT, Recommended Value: 1.75</a>
-                                                                </td>
-                                                                <td>3</td>
-                                                                <td>09:02:49</td>
-                                                                <td>191ms</td>
-                                                                <td><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon ' title='COMPROMISED'></i></a> <span style="display:none">COMPROMISED</span>
-                                                                </td>
-                                                            </tr>
-                                                </tbody>
-                                            </table>
+                                                        <h3><i class="bi bi-gear"></i> Automated Scenarios</h3>
+
+                                                            <table class="scenario-result-table table" id="scenario-results" style="width:100%">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>feature</th>
+                                                                    <th class="test-name-column">Scenario</th>
+                                                                    <th>Context</th>
+                                                                    <th>Steps</th>
+                                                                    <th>Started</th>
+                                                                    <th>Total Duration</th>
+                                                                    <th>Result</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="scenario-result FAILURE">
+                                                                        <td>
+                                                                                <a href="#">Review Octaipipe advice</a>
+                                                                        </td>
+                                                                        <td data-order="Facility Manager reviews TimeMachine advice">
+                                                                                    <a href="0d73d19353eaf60c52526dd041f15089f2de5350ace013843d85c541432400aa.html">Facility Manager reviews TimeMachine advice</a>
+                                                                        </td>
+                                                                        <td><span style="display:none"></span>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td data-order="1752312486">09:28:06</td>
+                                                                        <td>942ms</td>
+                                                                        <td><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a> <span
+                                                                                    style="display:none">FAILURE</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
 
                                                     </div>
                                                 </div>
@@ -566,7 +594,7 @@
                                                     <div class="col-sm-12">
                                                         <h3><i class="bi bi-hand-index-thumb"></i> Manual Tests</h3>
 
-                                                No manual tests were recorded
+                                                            No manual tests were recorded
 
                                                     </div>
                                                 </div>
@@ -580,8 +608,8 @@
                                 <h5 class="card-title">Capability</h5>
                             <div>
                                     <a href="ab30363ac570d803cd7624448c0dd734d214c01bd4aee9aa8a9986aec0b8aa28.html">
-                                    <span class="tag-badge badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                        <i class="bi bi-tag-fill"></i> Facility Management&nbsp;&nbsp;&nbsp;5
+                                    <span class="tag-badge badge" style="background-color:#fd938e; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Facility Management&nbsp;&nbsp;&nbsp;1
                                     </span>
                                     </a>
                             </div>
@@ -592,8 +620,8 @@
                                 <h5 class="card-title">Feature</h5>
                             <div>
                                     <a href="927ac9f597a5c44486a2688e2a586e961010b3c186b43c0ca8b1920ea078ef00.html">
-                                    <span class="tag-badge badge" style="background-color:#fe6eec; margin:1em;padding:4px;">
-                                        <i class="bi bi-tag-fill"></i> Facility Management/Review Octaipipe Advice&nbsp;&nbsp;&nbsp;5
+                                    <span class="tag-badge badge" style="background-color:#fd938e; margin:1em;padding:4px;">
+                                        <i class="bi bi-tag-fill"></i> Facility Management/Review Octaipipe Advice&nbsp;&nbsp;&nbsp;1
                                     </span>
                                     </a>
                             </div>
@@ -603,11 +631,11 @@
         </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </td>
-
                     </tr>
                 </table>
             </div>
@@ -633,21 +661,21 @@
 
         // Options define for display value on top of bars
         const outcomeDetailsReports = [
-            { title: 'Passing Test Cases', link: "bd2f18d2b3a4c1ef88144ffff0813d2a0d1c27d4a6c124ac7e4fe2fd8fc96c95.html" },
-            { title: 'Pending Test Cases', link: "81b03d7ffc709562b79a5981aa417adc57666f6eb0e3511a279521b37a0fde73.html" },
-            { title: 'Ignored Test Cases', link: "368e925fdc01d5cf6130b8ff7db8913188b557269e61f45656a55d6677db34e8.html" },
-            { title: 'Skipped Test Cases', link: "e54f3d74f9e39a1f72f719024056592b99bdcce6aa8a5b5a0dc34bc7a480a86f.html" },
-            { title: 'Aborted Test Cases',  link: "9e6787e66ad649328f19ce45352ac03c4abec42bf7bb198887be267ba2b7b424.html"},
-            { title: 'Failed Test Cases', link: "1f7e9a88d67b82d5e08226deef5b2b0bc440caaff3295742f8546a2703337aff.html"  },
-            { title: 'Broken Test Cases', link: "ad85cfbe57f1ad318f5bb9cee6b1acfbdf7b16388bc5bb06ba87bcbfc1bc0612.html"    },
-            { title: 'Compromised Test Cases',  link: "168abcb11d003f0125ebb2b0aa3f26ef4ad9e65dd11fcb174ab6562689ab2bca.html" },
+            { title: 'Passing Test Cases', link: "01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html" },
+            { title: 'Pending Test Cases', link: "bde4fca42ca8baa0fe2eac76a241c84327dfe4ca903a1daa7cae83a1035d4745.html" },
+            { title: 'Ignored Test Cases', link: "c1b352893c3d69e59317fd825f20a75f987a859afe98fb4434f47dce70c48fd4.html" },
+            { title: 'Skipped Test Cases', link: "7409dbb9985b960343780b303d8028480bd55e9aebd855c90eff0a000e21ccc8.html" },
+            { title: 'Aborted Test Cases',  link: "91152e032be7fe762aa6823d6424278e2c72efeb7622a5e63c7bf5980b4fd8a0.html"},
+            { title: 'Failed Test Cases', link: "da5b0c51b332adf0ef993a9f086d6a1b51a3d800248ec6ae281212092f35bd37.html"  },
+            { title: 'Broken Test Cases', link: "c8a926210aeff57f8aa7ea799262d4b730915a909cd5ecd6a705b1fa13bc7aa8.html"    },
+            { title: 'Compromised Test Cases',  link: "02dd8f8ada4c10b8ebb5c1f309605a6f7c147adc21bcf5c55829855ba045ff03.html" },
         ]
         const outcomeData = {
             labels: ['Passing Test Cases', 'Pending Test Cases', 'Ignored Test Cases', 'Skipped Test Cases', 'Aborted Test Cases', 'Failed Test Cases', 'Broken Test Cases', 'Compromised Test Cases','Undefined Test Cases'],
             datasets: [{
                 label: 'Test Results',
                 fill: false,
-                data: [{meta: 'Passing tests', value: 0}, {meta: 'Pending tests', value: 0}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 0}, {meta: 'Compromised tests', value: 5}],
+                data: [0,0,0,0,0,1,0,0],
                 backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
                 borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
                 borderWidth: 1,
@@ -729,21 +757,21 @@
         // Options define for display value on top of bars
 
         const severityDetailsReports = [
-            { title: 'Passing Scenarios', link: "bd2f18d2b3a4c1ef88144ffff0813d2a0d1c27d4a6c124ac7e4fe2fd8fc96c95.html" },
-            { title: 'Pending Scenarios', link: "81b03d7ffc709562b79a5981aa417adc57666f6eb0e3511a279521b37a0fde73.html" },
-            { title: 'Ignored Scenarios', link: "368e925fdc01d5cf6130b8ff7db8913188b557269e61f45656a55d6677db34e8.html" },
-            { title: 'Skipped Scenarios', link: "e54f3d74f9e39a1f72f719024056592b99bdcce6aa8a5b5a0dc34bc7a480a86f.html" },
-            { title: 'Aborted Scenarios',  link: "9e6787e66ad649328f19ce45352ac03c4abec42bf7bb198887be267ba2b7b424.html"},
-            { title: 'Failed Scenarios', link: "1f7e9a88d67b82d5e08226deef5b2b0bc440caaff3295742f8546a2703337aff.html"  },
-            { title: 'Broken Scenarios', link: "ad85cfbe57f1ad318f5bb9cee6b1acfbdf7b16388bc5bb06ba87bcbfc1bc0612.html"    },
-            { title: 'Compromised Scenarios',  link: "168abcb11d003f0125ebb2b0aa3f26ef4ad9e65dd11fcb174ab6562689ab2bca.html" },
+            { title: 'Passing Scenarios', link: "01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html" },
+            { title: 'Pending Scenarios', link: "bde4fca42ca8baa0fe2eac76a241c84327dfe4ca903a1daa7cae83a1035d4745.html" },
+            { title: 'Ignored Scenarios', link: "c1b352893c3d69e59317fd825f20a75f987a859afe98fb4434f47dce70c48fd4.html" },
+            { title: 'Skipped Scenarios', link: "7409dbb9985b960343780b303d8028480bd55e9aebd855c90eff0a000e21ccc8.html" },
+            { title: 'Aborted Scenarios',  link: "91152e032be7fe762aa6823d6424278e2c72efeb7622a5e63c7bf5980b4fd8a0.html"},
+            { title: 'Failed Scenarios', link: "da5b0c51b332adf0ef993a9f086d6a1b51a3d800248ec6ae281212092f35bd37.html"  },
+            { title: 'Broken Scenarios', link: "c8a926210aeff57f8aa7ea799262d4b730915a909cd5ecd6a705b1fa13bc7aa8.html"    },
+            { title: 'Compromised Scenarios',  link: "02dd8f8ada4c10b8ebb5c1f309605a6f7c147adc21bcf5c55829855ba045ff03.html" },
         ]
         const severityData = {
             labels: ['Passing', 'Pending', 'Ignored', 'Skipped', 'Aborted', 'Failed', 'Broken', 'Compromised'],
             datasets: [
                 {
                     label: 'Automated',
-                    data: [0,0,0,0,0,0,0,5],
+                    data: [0,0,0,0,0,1,0,0],
                     backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
                     borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
                     borderWidth: 1
@@ -807,14 +835,14 @@
 
         // Options define for display value on top of bars
         const durationDetailsReports = [
-                {title: "Under 1 second", link: "3047618d27f2ae0f0e623639c6427b577871e944154549921d4b10bd0637ece3.html"},
-                {title: "1 to 10 seconds", link: "442afa91782001710685af96b4cc468109a0bcb423ca02e2e5f022496ac945d2.html"},
-                {title: "10 to 30 seconds", link: "529c1605c83d38569a7b229a6a90fa894cf5b782469c4064459802fec7a38a7b.html"},
-                {title: "30 to 60 seconds", link: "b2d325a0e69bc6557b7c4750b72bd6c2acbc977d2d01632013670502316ee689.html"},
-                {title: "1 to 2 minutes", link: "a375ff9ac5a749759bc5e6b3278e7a260c9fd3d67fab37338abcbc3a65d2449f.html"},
-                {title: "2 to 5 minutes", link: "a4e8ef55c7dd32db1ce0988a640cb72caa57e03ffa38768e3f12f558dc4ed1bd.html"},
-                {title: "5 to 10 minutes", link: "285618a3d99cded4af8ce9d963fa7b3d87122608e395d18ec292f092f1191d7b.html"},
-                {title: "10 minutes or over", link: "7e5a682e2f7b78c97e33325aa0aa789898c02523f9656cf2f74d5930c10a934c.html"},
+                {title: "Under 1 second", link: "2a5b6a7be0f08df02d8ab0b4d4c68648c2695c6c7ef0658c71de4d42b1415b18.html"},
+                {title: "1 to 10 seconds", link: "6c5512236937b92cd7a296b24edb966c2bd94be46b8910f8b129a42d6150eb25.html"},
+                {title: "10 to 30 seconds", link: "34658a1663fcf042bd7acb3325affbe4e647c8acd84d0228be2f52e1381e61b9.html"},
+                {title: "30 to 60 seconds", link: "5698da923f295f46ce5ab64ced2311fc60caa4e36b32112606d3adcfdce3f60b.html"},
+                {title: "1 to 2 minutes", link: "c68fd6639ab29c4b0ac02a78bc39f4e22557bcaa40ef14c903ac0e584626edfe.html"},
+                {title: "2 to 5 minutes", link: "3ce388ea8511800032930896a3e5ba2c4f80e46f1a10b143b67009baf212c6a0.html"},
+                {title: "5 to 10 minutes", link: "376e1536bb68812a880e84ca7a0c6d104d541788793f22a36b4462a6a9aaa344.html"},
+                {title: "10 minutes or over", link: "24bba6f5cf4f06c7d46bf8990b86c4fbc1ce4ce201644ddf42661c84031e1c90.html"},
         ]
         // The Severity bar chart
         const durationChartCtx = document.getElementById('durationChart');
@@ -826,7 +854,7 @@
             datasets: [{
                 label: 'Number of tests per duration',
                 fill: false,
-                data: ['5','0','0','0','0','0','0','0'],
+                data: ['1','0','0','0','0','0','0','0'],
                 backgroundColor: 'rgba(83, 146, 255,0.5)',
                 borderColor: 'rgba(83, 146, 255, 1)',
             }]
@@ -890,7 +918,7 @@
         const coverageReports = [
             {
                 title: 'Review Octaipipe advice',
-                result: 'COMPROMISED',
+                result: 'FAILURE',
                 link: "#"
             },
         ]
@@ -926,7 +954,7 @@
                 },
                 {
                     label: ['Failed Tests'],
-                    data: [0],
+                    data: [1],
                     backgroundColor: [ 'rgba(255, 22, 49, 0.5)' ]
                 },
                 {
@@ -936,7 +964,7 @@
                 },
                 {
                     label: ['Compromised Tests'],
-                    data: [5],
+                    data: [0],
                     backgroundColor: [ 'rgba(255, 104, 255, 0.5)' ]
                 },
             ]

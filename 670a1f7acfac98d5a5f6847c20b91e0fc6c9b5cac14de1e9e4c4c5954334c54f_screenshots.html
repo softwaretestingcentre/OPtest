@@ -183,7 +183,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:02</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 12-07-2025 09:28</span>
     <br style="clear:left"/>
 </div>
 
@@ -249,9 +249,9 @@ The FM can accept the advice or view more detailed analysis</li>
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-slash-circle-fill compromised-icon fa-2x' title='COMPROMISED'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon fa-2x' title='PENDING'></i></a></span>
                             <span class="test-case-title">
-                                <span class="compromised-color">Facility Manager accepts advice for various zones
+                                <span class="pending-color">Facility Manager accepts advice for various zones
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -272,72 +272,32 @@ The FM can accept the advice or view more detailed analysis</li>
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
-            <div class="screenshotFailure panel panel-danger">
-    <div style="display:block">
-        <div class="table">
-            <div class="row">
-                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
-                    <span class="error-message error-message-title">Test compromised error: Couldn't navigate to /home.html; page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/home.html</span>
-                </div>
-                <div class="col-sm-2">
-                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall"
-                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
-                </div>
-             </div>
-        </div>
-    <div>
-
-    <!-- Details Section -->
-    <div class="row stacktrace-details">
-      <div class="col">
-        <div class="collapse multi-collapse" id="stacktraceModal-overall">
-            <div class="card">
-                <div class="card-header">
-                    <h4>TestCompromisedError </h4>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <pre>.(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/interactions/Navigate.ts:181)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:340)<br />.(async /home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:246)<br />.async TestCaseRunner.aroundTestStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:173)<br />.PlaywrightPage.navigateTo()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/playwright/src/screenplay/models/PlaywrightPage.ts:84)<br />.NavigateToUrl.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/interactions/Navigate.ts:180)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:340)<br />.(async /home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:246)<br />.async TestCaseRunner.aroundTestStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:173)<br />.async TestCaseRunner.runAttempt()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:224)<br />.async TestCaseRunner.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:191)<br />.async Worker.runTestCase()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/worker.ts:60)<br />.async InProcessAdapter.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/serial/adapter.ts:33)<br />.async Coordinator.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/coordinator.ts:36)<br />.async runCucumber()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/api/run_cucumber.ts:157)<br />.async Cli.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/index.ts:79)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/run.ts:32)<br /></pre>
-                    </div>
-
-                    <h4>
-                        Caused by: Error
-                    </h4>
-                    <div>
-                            <pre>page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/home.html<br>Call log:<br>  - navigating to &quot;http://localhost:3000/home.html&quot;, waiting until &quot;load&quot;</pre>
-                        <pre>.PlaywrightPage.navigateTo()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/playwright/src/screenplay/models/PlaywrightPage.ts :84)<br />.NavigateToUrl.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/interactions/Navigate.ts :180)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts :60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts :60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts :55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts :86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts :53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :340)<br />.(async /home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :246)<br />.async TestCaseRunner.aroundTestStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :173)<br />.async TestCaseRunner.runAttempt()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :224)<br />.async TestCaseRunner.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts :191)<br />.async Worker.runTestCase()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/worker.ts :60)<br />.async InProcessAdapter.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/serial/adapter.ts :33)<br />.async Coordinator.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/coordinator.ts :36)<br />.async runCucumber()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/api/run_cucumber.ts :157)<br />.async Cli.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/index.ts :79)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/run.ts :32)<br /></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-            </div>
     <!-- Swiper Carousel -->
     <div class="swiper">
         <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Facility Manager accepts advice for various zones #1 - Zone: 1, Set Point: SAT, Recommended Value: 0.85" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Facility Manager accepts advice for various zones #1 - Zone: 1, Set Point: SAT, Recommended Value: 0.85" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Given Felicity has opened their portal" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Given Felicity has opened their portal" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Felicity logs in" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity logs in" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Felicity navigates to &amp;quot;/home.html&amp;quot;" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity navigates to &amp;quot;/home.html&amp;quot;" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Facility Manager accepts advice for various zones #2 - Zone: 2, Set Point: PAT, Recommended Value: 1.75" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Facility Manager accepts advice for various zones #2 - Zone: 2, Set Point: PAT, Recommended Value: 1.75" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Given Felicity has opened their portal" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Given Felicity has opened their portal" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Felicity logs in" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity logs in" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-5c9469c475.png" title=" Felicity navigates to &quot;/home.html&quot;: <span class='compromised-color'>COMPROMISED</span>" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity navigates to &quot;/home.html&quot;: <span class='pending-color'>PENDING</span>" width="0" />
                 </div>
         </div>
         <div class="swiper-button-prev"></div>
