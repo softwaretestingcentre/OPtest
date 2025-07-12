@@ -28,6 +28,7 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           install-command: npm ci
+      - run: npm start
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - run: npm test
@@ -43,6 +44,7 @@ jobs:
           clean: true
 
       - name: Publish Results
+        if: success() || failure()
         run:
           echo "[Test Results](https://softwaretestingcentre.github.io/OPtest/)" >> $GITHUB_STEP_SUMMARY
 
