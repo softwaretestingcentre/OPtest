@@ -43,7 +43,6 @@ These rely on `step-definitions` which in turn call helper classes either in the
 
 These helper classes will then perform the low-level UI or API interactions that drive the app to meet the expected behaviour.
 
-
 Following the Screenplay pattern, we have 3 Actors working in different business areas:
 
 | Actor | Works In |
@@ -51,3 +50,7 @@ Following the Screenplay pattern, we have 3 Actors working in different business
 | Felicity | Facility Management |
 | Des | Data Science |
 | Como | Commercial |
+
+### Test Execution
+
+Any change to the repo will trigger all the tests to run as a Github Action and publish a [SerenityBDD report](https://softwaretestingcentre.github.io/OPtest/) on the `gh-pages` branch
