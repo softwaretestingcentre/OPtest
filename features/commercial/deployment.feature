@@ -1,4 +1,4 @@
-Feature: Commercial can deploy to customer sites
+Feature: Deployment
 The OctaiPipe platform (http://app.ace.octaipipe.ai) is used by the
 commercial team to manage deployments on customer sites.
 

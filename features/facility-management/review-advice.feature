@@ -1,4 +1,4 @@
-Feature: Review Octaipipe advice
+Feature: Review advice
 Octaipipe provides advice to Facility Managers to help them with site Management
 The advice should read as natural language, summarizing the site evaluation
 The advice includes some elements of:

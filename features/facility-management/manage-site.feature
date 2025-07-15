@@ -1,4 +1,4 @@
-Feature: Site Management
+Feature: Manage Site
   As a Facility Manager, I want to:
     View my site performance
     View my site projections

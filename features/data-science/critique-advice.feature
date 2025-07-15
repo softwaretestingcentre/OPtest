@@ -1,4 +1,4 @@
-Feature: Critique Octaipipe advice
+Feature: Critique advice
 The advisor is an LLM agent, therefore:
 - The output may not be deterministic
 - The output may differ between runs
