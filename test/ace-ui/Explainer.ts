@@ -1,17 +1,24 @@
 import { DataTable } from "@cucumber/cucumber";
 import { Ensure, equals, includes } from "@serenity-js/assertions";
 import { List, notes, Task } from "@serenity-js/core";
-import { By, Text, Navigate, PageElement } from "@serenity-js/web";
+import { By, Text, Navigate, PageElement, Click, Page } from "@serenity-js/web";
 import { Data } from "./Data";
 
 export const Explainer = {
+
+  chooseAdvice: (sectionName: string) =>
+    Task.where(`#actor chooses advice section ${sectionName}`,
+      Navigate.to("/explainer.html"),
+      Click.on(PageElement.located(By.css(`[data-tab="${sectionName}"]`)).describedAs(`${sectionName} tab`))
+    ),
+
   adviceSection: (sectionName: string) =>
     PageElement.located(By.id(sectionName)).describedAs(`${sectionName} advice section`),
 
   getAdvice: (sectionName: string) =>
     Task.where(
       `#actor views advice from ${sectionName}`,
-      Navigate.to("/explainer.html"),
+      Explainer.chooseAdvice(sectionName),
       notes().set(
         "current_advice",
         Text.of(Explainer.adviceSection(sectionName)).toLocaleUpperCase()
