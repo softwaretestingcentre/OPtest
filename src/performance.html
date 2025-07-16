@@ -13,23 +13,80 @@
     <p>Current KPIs as Barchart</p>
   </header>
   <main>
-    <canvas id="kpiChart" width="400" height="300"></canvas>
+    <canvas id="kpiTimeChart" width="600" height="350"></canvas>
     <p style="margin-top:2rem;"><a href="site-manager.html">&larr; Back to Site Manager</a></p>
     <script>
-      const ctx = document.getElementById('kpiChart').getContext('2d');
+      // Helper to randomize values within ±20% of base
+      function randomize(base) {
+        const min = base * 0.8;
+        const max = base * 1.2;
+        return +(Math.random() * (max - min) + min).toFixed(2);
+      }
+
+      // Generate last 6 months labels
+      const months = [];
+      const now = new Date();
+      for (let i = 6; i >= 1; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        months.push(d.toLocaleString('default', { month: 'short', year: '2-digit' }));
+      }
+      months.push(now.toLocaleString('default', { month: 'short', year: '2-digit' }));
+
+      // Current values
+      const currentPUE = 1.33;
+      const currentWUE = 1.56;
+
+      // Generate random values for previous months
+      const pueValues = [];
+      const wueValues = [];
+      for (let i = 0; i < 6; i++) {
+        pueValues.push(randomize(currentPUE));
+        wueValues.push(randomize(currentWUE));
+      }
+      pueValues.push(currentPUE);
+      wueValues.push(currentWUE);
+
+      const ctx = document.getElementById('kpiTimeChart').getContext('2d');
       new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-          labels: ['PUE', 'WUE'],
-          datasets: [{
-            label: 'Expected Value',
-            data: [1.33, 1.56],
-            backgroundColor: ['#3498db', '#2ecc71'],
-          }]
+          labels: months,
+          datasets: [
+            {
+              label: 'PUE',
+              data: pueValues,
+              borderColor: '#2ecc71',
+              backgroundColor: 'rgba(46,204,113,0.1)',
+              fill: true,
+              tension: 0.3,
+            },
+            {
+              label: 'WUE',
+              data: wueValues,
+              borderColor: '#3498db',
+              backgroundColor: 'rgba(52,152,219,0.1)',
+              fill: true,
+              tension: 0.3,
+            }
+          ]
         },
         options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: {
+              display: true,
+              text: 'Current KPIs Over Time'
+            }
+          },
           scales: {
-            y: { beginAtZero: true }
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Value' }
+            },
+            x: {
+              title: { display: true, text: 'Month' }
+            }
           }
         }
       });
