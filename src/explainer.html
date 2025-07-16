@@ -28,13 +28,24 @@
     <section id="TimeMachine" class="tab-content active">
       <h2>Time Machine Advice</h2>
       <div class="advice-text">
-        <p>Hi Chris. Zone 1 temperatures are well below SLA. IT Load for this zone is predicted to decline. Adjusting the SAT set point is recommended to achieve savings. Click to Accept. For more detailed analysis, see below.</p>
+        <p>
+          Hi Chris.<br>
+          Zone 1 temperatures are well below SLA.<br>
+          IT Load for this zone is predicted to decline.<br>
+          Adjusting the SAT set point is recommended to achieve savings.<br>
+          Click to Accept.<br>
+          For more detailed analysis, see below.
+        </p>
       </div>
     </section>
     <section id="AgentRecommendation" class="tab-content">
       <h2>Agent Recommendation Advice</h2>
       <div class="advice-text">
-        <p>The supply air temperature should be changed from 22°C to 23°C. Each 0.5°C rise in supply air setpoint can cut chiller energy by 2-3%, considering moderate IT load and approximately 2°C of safe margin. This recommendation follows ISO50001 and aims to avoid unnecessarily low supply temperatures.</p>
+        <p>
+          The supply air temperature should be changed from 22°C to 23°C.<br>
+          Each 0.5°C rise in supply air setpoint can cut chiller energy by 2-3%, considering moderate IT load and approximately 2°C of safe margin.<br>
+          This recommendation follows ISO50001 and aims to avoid unnecessarily low supply temperatures.
+        </p>
       </div>
     </section>
     <section id="SLABoundaries" class="tab-content">
@@ -42,7 +53,7 @@
       <canvas id="slaChart" width="700" height="400" style="margin-bottom:1rem;"></canvas>
       <div id="slaPoints" style="margin-bottom:1rem;"></div>
     </section>
-    <p style="margin-top:2rem;"><a href="review-advice.html">&larr; Back to Review Advice</a></p>
+    <p style="margin-top:2rem;"><a href="landing.html">&larr; Back to Portal</a></p>
   </main>
   <script>
     const tabBtns = document.querySelectorAll('.tab-btn');
@@ -174,4 +185,5 @@ Remove the clause values from each explainer page and combine the expectation va
 Add a sample psychrometric chart for London to the SLA Boundaries tab
 Change the font in the explainer tab texts to one with serifs
 Add wet bulb temperatures to the psychrometric chart
+On the explainers page, separate sentences with line breaks
   -->
