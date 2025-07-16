@@ -183,7 +183,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 15-07-2025 13:59</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 16-07-2025 14:41</span>
     <br style="clear:left"/>
 </div>
 
@@ -236,7 +236,7 @@ The FM can accept the advice or view more detailed analysis</li>
                             </p>
                             <p class="tag">
                                 <span class="badge tag-badge" style="background:default;"
-                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;" href="2a5b6a7be0f08df02d8ab0b4d4c68648c2695c6c7ef0658c71de4d42b1415b18.html">Under 1 Second
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;" href="6c5512236937b92cd7a296b24edb966c2bd94be46b8910f8b129a42d6150eb25.html">1 To 10 Seconds
                                         (Duration)
                                 </a>
                                 </span>
@@ -249,9 +249,9 @@ The FM can accept the advice or view more detailed analysis</li>
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon fa-2x' title='ERROR'></i></a></span>
                             <span class="test-case-title">
-                                <span class="success-color">Facility Manager reviews AgentRecommendation advice
+                                <span class="error-color">Facility Manager reviews AgentRecommendation advice
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -268,68 +268,62 @@ The FM can accept the advice or view more detailed analysis</li>
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">Timeout error: locator.innerText: Timeout 5000ms exceeded.</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-overall">
+            <div class="card">
+                <div class="card-header">
+                    <h4>TimeoutError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>.PlaywrightPageElement.text()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/playwright/src/screenplay/models/PlaywrightPageElement.ts:108)<br />.async MetaQuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async QuestionStatement.body()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:403)<br />.async QuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async QuestionStatement.body()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:433)<br />.async QuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async ChainableNoteSetter.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/notes/NotepadAdapter.ts:315)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/step_runner.ts:53)<br />.async TestCaseRunner.invokeStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:140)<br />.async TestCaseRunner.runStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:340)<br />.(async /home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:246)<br />.async TestCaseRunner.aroundTestStep()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:173)<br />.async TestCaseRunner.runAttempt()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:224)<br />.async TestCaseRunner.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/test_case_runner.ts:191)<br />.async Worker.runTestCase()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/worker.ts:60)<br />.async InProcessAdapter.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/serial/adapter.ts:33)<br />.async Coordinator.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/runtime/coordinator.ts:36)<br />.async runCucumber()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/api/run_cucumber.ts:157)<br />.async Cli.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/index.ts:79)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/cli/run.ts:32)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
     <!-- Swiper Carousel -->
     <div class="swiper">
         <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Given Felicity has opened their portal" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-60833b47b4.png" title=" Given Felicity has opened their portal" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity logs in" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-60833b47b4.png" title=" Felicity logs in" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-home.html-d5f53cff7c.png" title=" Felicity navigates to &amp;quot;/home.html&amp;quot;" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-60833b47b4.png" title=" Felicity navigates to &amp;quot;/landing.html&amp;quot;" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-a99699e6de.png" title=" When Felicity views the &amp;quot;AgentRecommendation&amp;quot; Explainer" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-c8765decf9.png" title=" When Felicity views the &amp;quot;AgentRecommendation&amp;quot; Explainer" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-a99699e6de.png" title=" Felicity views advice from AgentRecommendation" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-c8765decf9.png" title=" Felicity views advice from AgentRecommendation" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-a99699e6de.png" title=" Felicity navigates to &amp;quot;/explainer.html&amp;quot;" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-explainer.h-c8765decf9.png" title=" Felicity navigates to &amp;quot;/explainer.html&amp;quot;" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-takes-notes-current-adv-a99699e6de.png" title=" Felicity takes notes:
-- current_advice: &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Then Felicity sees that the advice includes:
-| Clause     | Expectation                                                           |
-| Metric     | supply air temperature                                                |
-| Change     | from 22&deg;C to 23&deg;C                                                     |
-| Impact     | each 0.5&deg;C rise in supply air setpoint can cut chiller energy by 2-3% |
-| Constraint | moderate IT load                                                      |
-| Margin     | approximately 2&deg;C of safe margin                                      |
-| Standard   | ISO50001                                                              |
-| Objective  | avoiding unnecessarily low supply temperatures                        |" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity checks that the advice covers all salient points" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity iterates over [ {&amp;quot;Clause&amp;quot;:&amp;quot;Metric&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;supply air temperature&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Change&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;from 22&deg;C to 23&deg;C&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Impact&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;each 0.5&deg;C rise in supply air setpoint can cut chiller energy by 2-3%&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Constraint&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;moderate IT load&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Margin&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;approximately 2&deg;C of safe margin&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Standard&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;ISO50001&amp;quot;}, {&amp;quot;Clause&amp;quot;:&amp;quot;Objective&amp;quot;,&amp;quot;Expectation&amp;quot;:&amp;quot;avoiding unnecessarily low supply temperatures&amp;quot;} ]" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;SUPPLY AIR TEMPERATURE&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;FROM 22&deg;C TO 23&deg;C&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;MODERATE IT LOAD&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;APPROXIMATELY 2&deg;C OF SAFE MARGIN&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &amp;quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22&deg;C TO 23&deg;C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5&deg;C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2&deg;C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23&deg;C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&amp;quot; does include &amp;quot;ISO50001&amp;quot;" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-a-modest-inc-a99699e6de.png" title=" Felicity ensures that &quot;A MODEST INCREASE IN SUPPLY AIR TEMPERATURE, FROM 22°C TO 23°C, IS RECOMMENDED. HISTORICAL DATA FOR THIS SITE SUGGESTS EACH 0.5°C RISE IN SUPPLY AIR SETPOINT CAN CUT CHILLER ENERGY BY 2-3%, GIVEN MODERATE IT LOAD LEVELS. THIS CHANGE PROVIDES APPROXIMATELY 2°C OF SAFE MARGIN IF THE SETPOINT IS RAISED TO 23°C. RAISING THE SUPPLY AIR TEMPERATURE ALIGNS WITH ISO50001 AIMS FOR MONTHLY ENERGY REDUCTIONS AND ADHERES TO THE EU CODE OF CONDUCT PRINCIPLE OF AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES.&quot; does include &quot;AVOIDING UNNECESSARILY LOW SUPPLY TEMPERATURES&quot;: <span class='success-color'>SUCCESS</span>" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-takes-notes-current-advic-c8765decf9.png" title=" Felicity takes notes: current_advice: <span class='error-color'>ERROR</span>" width="0" />
                 </div>
         </div>
         <div class="swiper-button-prev"></div>
