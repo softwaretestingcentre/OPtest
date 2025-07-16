@@ -56,7 +56,7 @@
         setTimeout(drawSLAChart, 0);
       }
     }
-    // Draw a sample psychrometric chart for London
+    // Draw a sample psychrometric chart for London with wet bulb lines
     function drawSLAChart() {
       const canvas = document.getElementById('slaChart');
       if (!canvas) return;
@@ -71,6 +71,19 @@
         const W = 622 * Pw / (1013 - Pw); // humidity ratio (g/kg)
         return W;
       }
+      // Wet bulb calculation (approximate, for charting)
+      function humidityRatioFromWetBulb(Tdb, Twb) {
+        // Tdb, Twb in °C
+        // Assume RH at wet bulb is 100%
+        const Pws_wb = 6.112 * Math.exp((17.67 * Twb) / (Twb + 243.5));
+        const Pw_wb = Pws_wb;
+        const W_wb = 622 * Pw_wb / (1013 - Pw_wb);
+        // Now, for each Tdb, estimate RH at Tdb for this W
+        const Pws_db = 6.112 * Math.exp((17.67 * Tdb) / (Tdb + 243.5));
+        const Pw_db = W_wb * 1013 / (622 + W_wb);
+        const RH = Math.min(Pw_db / Pws_db, 1.0);
+        return humidityRatio(Tdb, RH);
+      }
       const temps = Array.from({length: 31}, (_, i) => i + 5); // 5°C to 35°C
       const rhLevels = [0.3, 0.5, 0.7, 1.0];
       const rhColors = ['#3498db', '#27ae60', '#f1c40f', '#e74c3c'];
@@ -84,6 +97,22 @@
         pointRadius: 0,
         tension: 0.3
       }));
+      // Add wet bulb lines (10°C, 15°C, 20°C)
+      const wbTemps = [10, 15, 20];
+      const wbColors = ['#6c3483', '#1abc9c', '#e67e22'];
+      wbTemps.forEach((twb, idx) => {
+        datasets.push({
+          label: `Wet Bulb ${twb}°C`,
+          data: temps.filter(T => T >= twb).map(T => ({x: T, y: humidityRatioFromWetBulb(T, twb)})),
+          borderColor: wbColors[idx],
+          backgroundColor: 'transparent',
+          showLine: true,
+          fill: false,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          tension: 0.3
+        });
+      });
       // London summer sample point: 22°C, 8.5 g/kg
       datasets.push({
         label: 'London Summer',
@@ -138,3 +167,11 @@
   </script>
 </body>
 </html>
+<!-- 
+Create pages to implement the UI for the "Review advice" feature
+consolidate the explainer pages into one explainer page with tabs
+Remove the clause values from each explainer page and combine the expectation values into full sentences
+Add a sample psychrometric chart for London to the SLA Boundaries tab
+Change the font in the explainer tab texts to one with serifs
+Add wet bulb temperatures to the psychrometric chart
+  -->
