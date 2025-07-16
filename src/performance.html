@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Performance - Current KPIs</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Site Performance</h1>
+    <p>Current KPIs as Barchart</p>
+  </header>
+  <main>
+    <canvas id="kpiChart" width="400" height="300"></canvas>
+    <p style="margin-top:2rem;"><a href="site-manager.html">&larr; Back to Site Manager</a></p>
+    <script>
+      const ctx = document.getElementById('kpiChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['PUE', 'WUE'],
+          datasets: [{
+            label: 'Expected Value',
+            data: [1.33, 1.56],
+            backgroundColor: ['#3498db', '#2ecc71'],
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    </script>
+  </main>
+</body>
+</html>

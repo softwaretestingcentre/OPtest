@@ -10,7 +10,7 @@
     "test:report": "serenity-bdd run --features ./features",
     "lint": "eslint --ext ts --config .eslintrc.js .",
     "lint:fix": "npm run lint -- --fix",
-    "start": "node app/app.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",

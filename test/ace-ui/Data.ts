@@ -5,10 +5,10 @@ import { By, Text, PageElements, PageElement } from "@serenity-js/web";
 
 export const Data = {
 
-    fromTable: (column: string, row: number) =>
-        Question.about(`data in table at ${column} (row ${row})`, async actor => {
-            let colIndex = (await actor.answer(Table.columnNames())).indexOf(column);
-            return (await actor.answer(Table.values()))[colIndex];
+    fromTable: (metric: string) =>
+        Question.about(`data in table for ${metric}`, async actor => {
+            let rowIndex = (await actor.answer(Table.rowNames())).indexOf(metric);
+            return (await actor.answer(Table.values()))[rowIndex * 2 + 1];
         }),
     
     filter: (filterValue: string) =>
@@ -33,7 +33,7 @@ export const Data = {
                     Ensure.that(
                         item["Expected Value"], 
                         equals(
-                            Data.fromTable(item[metric], 0)
+                            Data.fromTable(item[metric])
                         )
                     )
                 )
@@ -50,13 +50,19 @@ export const Data = {
 const Table = {
 
     columnHeaders: () =>
-        PageElements.located(By.css('table#table1 th>span')).describedAs('column headers'),
+        PageElements.located(By.css('table th')).describedAs('column headers'),
 
     columnNames: () =>
         Table.columnHeaders().eachMappedTo(Text),
 
+    rows: () =>
+        PageElements.located(By.css('table tr td:nth-child(1)')).describedAs('table rows'),
+
+    rowNames: () =>
+        Table.rows().eachMappedTo(Text),
+
     cells: () =>
-        PageElements.located(By.css('table#table1 td')).describedAs('table cells'),
+        PageElements.located(By.css('table td')).describedAs('table cells'),
 
     values: () =>
         Table.cells().eachMappedTo(Text),

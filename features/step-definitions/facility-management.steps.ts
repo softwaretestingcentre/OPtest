@@ -20,7 +20,7 @@ Given('{actor} has opened their portal', async (actor: Actor) =>
 
 When('{pronoun} check their KPIs', async (actor: Actor) => 
     actor.attemptsTo(
-        Navigate.to('/tables.html')
+        Navigate.to('/site-manager.html')
     )
 )
 

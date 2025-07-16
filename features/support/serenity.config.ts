@@ -1,5 +1,5 @@
 import { AfterAll, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
-import { actorCalled, configure, Duration } from '@serenity-js/core';
+import { configure, Duration } from '@serenity-js/core';
 import path from 'path';
 import * as playwright from 'playwright';
 

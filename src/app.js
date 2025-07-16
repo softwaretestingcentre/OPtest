@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
-app.use(express.static(__dirname + '../src/'));
+app.use(express.static(__dirname + '/'));
 
 
 app.post("/advice", (request, response) => {
