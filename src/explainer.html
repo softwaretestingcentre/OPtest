@@ -100,8 +100,8 @@
         <div style="flex:1; min-width:340px;">
           <div style="margin-bottom:1rem; font-weight:bold;">SLA Boundaries</div>
           <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem;">
-            <label><input type="radio" name="slaMode" value="current" checked> CURRENT</label>
-            <label><input type="radio" name="slaMode" value="projected"> PROJECTED</label>
+            <div><span>◯</span> CURRENT</div>
+            <div><span>⬤</span> PROJECTED</div>
           </div>
           <canvas id="envSLAChart" width="320" height="260" style="background:#fff; border:1px solid #eee;"></canvas>
           <div style="margin-top:1rem;">
@@ -124,34 +124,33 @@
               </div>
               <span style="font-size:0.95rem;">HIGH</span>
             </div>
-            <div style="text-align:right; font-weight:bold; color:#e67e22; margin-top:0.5rem;">23.1°C</div>
           </div>
           <div style="font-weight:bold; margin-bottom:0.5rem;">Current and projected states</div>
           <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
             <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">ZONE AIR SUPPLY</th><th>CURRENT</th><th>PROJECTED</th></tr>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">ZONE AIR SUPPLY</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
             </thead>
             <tbody>
-              <tr><td>DRY BULB TEMP</td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
-              <tr><td>WET BULB TEMP</td><td>11.0°C</td><td>11.8°C</td></tr>
-              <tr><td>DEW POINT TEMP</td><td>14.1°C</td><td>14.4°C</td></tr>
-              <tr><td>RELATIVE HUMIDITY</td><td>50%</td><td>52%</td></tr>
+              <tr><td>DRY BULB TEMP</td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
+              <tr><td>WET BULB TEMP</td><td style="text-align:right;">11.0°C</td><td style="font-weight:bold; text-align:right;">11.8°C</td></tr>
+              <tr><td>DEW POINT TEMP</td><td style="text-align:right;">14.1°C</td><td style="font-weight:bold; text-align:right;">14.4°C</td></tr>
+              <tr><td>RELATIVE HUMIDITY</td><td style="text-align:right;">50%</td><td style="font-weight:bold; text-align:right;">52%</td></tr>
             </tbody>
           </table>
           <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
             <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">RETURN AIR TEMP</th><th>CURRENT</th><th>PROJECTED</th></tr>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">RETURN AIR TEMP</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
             </thead>
             <tbody>
-              <tr><td></td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
+              <tr><td></td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
             </tbody>
           </table>
           <table style="width:100%; border-collapse:collapse; font-size:0.97rem;">
             <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">OUTDOOR TEMP</th><th>CURRENT</th><th>PROJECTED</th></tr>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">OUTDOOR TEMP</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
             </thead>
             <tbody>
-              <tr><td></td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
+              <tr><td></td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
             </tbody>
           </table>
         </div>

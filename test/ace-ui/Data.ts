@@ -49,22 +49,20 @@ export const Data = {
 
 const Table = {
 
-    kpi_table: 'table#site-kpis',
-
     columnHeaders: () =>
-        PageElements.located(By.css(`${Table.kpi_table} th`)).describedAs('column headers'),
+        PageElements.located(By.css(`table th`)).describedAs('column headers'),
 
     columnNames: () =>
         Table.columnHeaders().eachMappedTo(Text),
 
     rows: () =>
-        PageElements.located(By.css(`${Table.kpi_table} tr td:nth-child(1)`)).describedAs('table rows'),
+        PageElements.located(By.css(`table tr td:nth-child(1)`)).describedAs('table rows'),
 
     rowNames: () =>
         Table.rows().eachMappedTo(Text),
 
     cells: () =>
-        PageElements.located(By.css(`${Table.kpi_table} td`)).describedAs('table cells'),
+        PageElements.located(By.css(`table td`)).describedAs('table cells'),
 
     values: () =>
         Table.cells().eachMappedTo(Text),
