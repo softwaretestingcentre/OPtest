@@ -183,7 +183,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 16-07-2025 17:55</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 24-07-2025 12:39</span>
     <br style="clear:left"/>
 </div>
 
@@ -245,9 +245,9 @@ View Cooling SLAs
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon fa-2x' title='FAILURE'></i></a></span>
                             <span class="test-case-title">
-                                <span class="success-color">Facility Manager sees current KPIs
+                                <span class="failing-color">Facility Manager sees current KPIs
                                     <span class="related-issue-title"></span>
                                 </span>
                             </span>
@@ -264,17 +264,50 @@ View Cooling SLAs
 
     <div id="beforetable"></div>
     <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">Assertion error: Expected '1.33' to equal data in table for PUEExpectation: equals(undefined)Expected undefinedReceived string:    1.33    at /home/runner/work/OPtest/OPtestode_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60:13</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-overall"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-overall">
+            <div class="card">
+                <div class="card-header">
+                    <h4>AssertionError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>.(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.ErrorFactory.create()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/errors/ErrorFactory.ts:35)<br />.Stage.createError()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/stage/Stage.ts:328)<br />.RaiseErrors.create()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/errors/RaiseErrors.ts:59)<br />.Ensure.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/assertions/src/Ensure.ts:137)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async ForEachLoop.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/questions/List.ts:391)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br />.async wrapPromiseWithTimeout()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/time.ts:55)<br />.async Object.run()(/home/runner/work/OPtest/OPtest/node_modules/@cucumber/cucumber/src/user_code_runner.ts:86)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
     <!-- Swiper Carousel -->
     <div class="swiper">
         <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-dd15ad3069.png" title=" Given Felicity has opened their portal" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-9421bc4e7f.png" title=" Given Felicity has opened their portal" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-dd15ad3069.png" title=" Felicity logs in" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-9421bc4e7f.png" title=" Felicity logs in" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-dd15ad3069.png" title=" Felicity navigates to &amp;quot;/landing.html&amp;quot;" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-landing.htm-9421bc4e7f.png" title=" Felicity navigates to &amp;quot;/landing.html&amp;quot;" width="0" />
                 </div>
                 <div class="swiper-slide">
                     <img src="photo-linux-chromium-138.0.7204.23-felicity-navigates-to-site-manage-d21ca4782c.png" title=" When they check their KPIs" width="0" />
@@ -295,10 +328,7 @@ View Cooling SLAs
                     <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-1.33-does-e-d21ca4782c.png" title=" Felicity iterates over [ {&amp;quot;KPI&amp;quot;:&amp;quot;PUE&amp;quot;,&amp;quot;Expected Value&amp;quot;:&amp;quot;1.33&amp;quot;}, {&amp;quot;KPI&amp;quot;:&amp;quot;WUE&amp;quot;,&amp;quot;Expected Value&amp;quot;:&amp;quot;1.56&amp;quot;} ]" width="0" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-1.33-does-e-d21ca4782c.png" title=" Felicity ensures that &amp;quot;1.33&amp;quot; does equal data in table for PUE" width="0" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-1.56-does-e-d21ca4782c.png" title=" Felicity ensures that &quot;1.56&quot; does equal data in table for WUE: <span class='success-color'>SUCCESS</span>" width="0" />
+                    <img src="photo-linux-chromium-138.0.7204.23-felicity-ensures-that-1.33-does-e-d21ca4782c.png" title=" Felicity ensures that &quot;1.33&quot; does equal data in table for PUE: <span class='failing-color'>FAILURE</span>" width="0" />
                 </div>
         </div>
         <div class="swiper-button-prev"></div>
