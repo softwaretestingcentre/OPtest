@@ -13,7 +13,7 @@ export const Explainer = {
     ),
 
   adviceSection: (sectionName: string) =>
-    PageElement.located(By.id(sectionName)).describedAs(`${sectionName} advice section`),
+    PageElement.located(By.css(`section[id="${sectionName}"]`)).describedAs(`${sectionName} advice section`),
 
   getAdvice: (sectionName: string) =>
     Task.where(

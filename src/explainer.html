@@ -23,35 +23,139 @@
     <div class="tabs">
       <button class="tab-btn active" data-tab="TimeMachine">Time Machine</button>
       <button class="tab-btn" data-tab="AgentRecommendation">Agent Recommendation</button>
-      <button class="tab-btn" data-tab="SLABoundaries">SLA Boundaries</button>
+      <button class="tab-btn" data-tab="EnvironmentSLA">Environment SLA</button>
     </div>
     <section id="TimeMachine" class="tab-content active">
       <h2>Time Machine Advice</h2>
-      <div class="advice-text">
-        <p>
-          Hi Chris.<br>
-          Zone 1 temperatures are well below SLA.<br>
-          IT Load for this zone is predicted to decline.<br>
-          Adjusting the SAT set point is recommended to achieve savings.<br>
-          Click to Accept.<br>
-          For more detailed analysis, see below.
-        </p>
+      <div style="display:flex; gap:2rem; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:2; min-width:340px;">
+          <canvas id="timeChart" width="420" height="220" style="background:#fff; border:1px solid #eee; border-radius:8px;"></canvas>
+        </div>
+        <div style="flex:1; min-width:260px;">
+          <div style="background:rgba(255,255,255,0.95); box-shadow:0 2px 16px rgba(44,62,80,0.12); border-radius:12px; padding:1.2rem 1.3rem; position:relative; top:-20px;">
+            <div class="advice-text">
+              <p>
+                Hi Chris.<br>
+                Zone 1 temperatures are well below SLA.<br>
+                IT Load for this zone is predicted to decline.<br>
+                Adjusting the SAT set point is recommended to achieve savings.<br>
+                Click to Accept.<br>
+                For more detailed analysis, see below.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section id="AgentRecommendation" class="tab-content">
-      <h2>Agent Recommendation Advice</h2>
-      <div class="advice-text">
-        <p>
-          The supply air temperature should be changed from 22°C to 23°C.<br>
-          Each 0.5°C rise in supply air setpoint can cut chiller energy by 2-3%, considering moderate IT load and approximately 2°C of safe margin.<br>
-          This recommendation follows ISO50001 and aims to avoid unnecessarily low supply temperatures.
-        </p>
+      <h2>Agent Recommendation</h2>
+      <div style="max-width:520px; margin:auto; background:#fff; border-radius:14px; box-shadow:0 2px 16px rgba(44,62,80,0.10); padding:2rem 2.2rem;">
+        <div style="font-weight:bold; font-size:1.08rem; margin-bottom:1.2rem;">Set point changes</div>
+        <div style="display:grid; grid-template-columns:1.2fr 0.3fr 1.2fr 0.7fr 1.2fr; gap:0.7rem; align-items:center; margin-bottom:1.2rem;">
+          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:1;">Supply air temperature</div>
+          <div style="grid-column:2; grid-row:1;"></div>
+          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:1; justify-self:end;">22.0°C</div>
+          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:1;">&#8594;</div>
+          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:1; justify-self:end;">23.0°C</div>
+
+          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:2;">Air flow rate</div>
+          <div style="grid-column:2; grid-row:2;"></div>
+          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:2; justify-self:end;">45 m³/min</div>
+          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:2;">&#8594;</div>
+          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:2; justify-self:end;">45 m³/min</div>
+
+          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:3;">Cooled water temperature</div>
+          <div style="grid-column:2; grid-row:3;"></div>
+          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:3; justify-self:end;">11.0°C</div>
+          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:3;">&#8594;</div>
+          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:3; justify-self:end;">11.0°C</div>
+        </div>
+        </div>
+        <div style="margin-bottom:1.3rem; font-size:1.04rem; color:#222;">
+          <span style="font-weight:bold; color:#222;">A modest increase</span> in supply air temperature, from <b>22°C</b> to <b>23°C</b>, is recommended. Historical data for this site suggests each <b>0.5°C</b> rise in supply air setpoint can cut chiller energy by <b>2–3%</b>, given moderate IT load levels. This change provides approximately <b>2°C</b> of safe margin if the setpoint is raised to 23°C. Raising the supply air temperature aligns with <b>ISO50001</b> aims for monthly energy reductions and adheres to the <b>EU Code of Conduct</b> principle of avoiding unnecessarily low supply temperatures.
+        </div>
+        <div style="font-weight:bold; font-size:1.08rem; margin-bottom:0.7rem;">Impact Summary</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; align-items:center; margin-bottom:1.1rem;">
+          <div style="color:#222; font-size:0.97rem;">ENERGY SAVINGS</div>
+          <div style="color:#27ae60; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">5% NEXT WEEK</div>
+          <div style="color:#222; font-size:0.97rem;">SAVINGS POTENTIAL</div>
+          <div style="color:#e67e22; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">HIGH</div>
+          <div style="color:#222; font-size:0.97rem;">SLA RISK</div>
+          <div style="color:#f1c40f; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">MEDIUM</div>
+          <div style="color:#222; font-size:0.97rem;">CONFIDENCE</div>
+          <div style="color:#27ae60; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">HIGH</div>
+        </div>
+        <div style="margin-bottom:1.2rem;">
+          <button style="width:100%; background:#f7f9fa; color:#222; border:none; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer; margin-bottom:0.7rem;">SEE OUR LOGIC</button>
+        </div>
+        <div style="display:flex; gap:1.2rem;">
+          <button style="flex:1; background:#fff; color:#222; border:1.5px solid #222; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer;">REJECT</button>
+          <button style="flex:1; background:#222; color:#fff; border:none; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer;">ACCEPT</button>
+        </div>
       </div>
     </section>
-    <section id="SLABoundaries" class="tab-content">
-      <h2>Sample Psychrometric Chart (London)</h2>
-      <canvas id="slaChart" width="700" height="400" style="margin-bottom:1rem;"></canvas>
-      <div id="slaPoints" style="margin-bottom:1rem;"></div>
+    <section id="EnvironmentSLA" class="tab-content">
+      <h2>Environment SLA</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:2rem;">
+        <div style="flex:1; min-width:340px;">
+          <div style="margin-bottom:1rem; font-weight:bold;">SLA Boundaries</div>
+          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem;">
+            <label><input type="radio" name="slaMode" value="current" checked> CURRENT</label>
+            <label><input type="radio" name="slaMode" value="projected"> PROJECTED</label>
+          </div>
+          <canvas id="envSLAChart" width="320" height="260" style="background:#fff; border:1px solid #eee;"></canvas>
+          <div style="margin-top:1rem;">
+            <div style="font-weight:bold; margin-bottom:0.5rem;">Proximity to SLA</div>
+            <div style="display:flex; gap:1.5rem; font-size:0.95rem;">
+              <span style="color:#27ae60;"><b>&#9679;</b> Comfortable</span>
+              <span style="color:#f1c40f;"><b>&#9679;</b> Allowable</span>
+              <span style="color:#e67e22;"><b>&#9679;</b> Close</span>
+              <span style="color:#e74c3c;"><b>&#9679;</b> Alarm</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:340px;">
+          <div style="font-weight:bold; margin-bottom:1rem;">Savings potential</div>
+          <div style="margin-bottom:1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:0.95rem;">LOW</span>
+              <div style="flex:1; height:6px; background:#f1c40f; position:relative; border-radius:3px;">
+                <div id="savingsPointer" style="position:absolute; left:70%; top:-6px; width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-bottom:10px solid #e67e22;"></div>
+              </div>
+              <span style="font-size:0.95rem;">HIGH</span>
+            </div>
+            <div style="text-align:right; font-weight:bold; color:#e67e22; margin-top:0.5rem;">23.1°C</div>
+          </div>
+          <div style="font-weight:bold; margin-bottom:0.5rem;">Current and projected states</div>
+          <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
+            <thead>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">ZONE AIR SUPPLY</th><th>CURRENT</th><th>PROJECTED</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>DRY BULB TEMP</td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
+              <tr><td>WET BULB TEMP</td><td>11.0°C</td><td>11.8°C</td></tr>
+              <tr><td>DEW POINT TEMP</td><td>14.1°C</td><td>14.4°C</td></tr>
+              <tr><td>RELATIVE HUMIDITY</td><td>50%</td><td>52%</td></tr>
+            </tbody>
+          </table>
+          <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
+            <thead>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">RETURN AIR TEMP</th><th>CURRENT</th><th>PROJECTED</th></tr>
+            </thead>
+            <tbody>
+              <tr><td></td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
+            </tbody>
+          </table>
+          <table style="width:100%; border-collapse:collapse; font-size:0.97rem;">
+            <thead>
+              <tr style="background:#f7f9fa;"><th style="text-align:left;">OUTDOOR TEMP</th><th>CURRENT</th><th>PROJECTED</th></tr>
+            </thead>
+            <tbody>
+              <tr><td></td><td>22.3°C</td><td style="font-weight:bold; color:#e67e22;">23.1°C</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <p style="margin-top:2rem;"><a href="landing.html">&larr; Back to Portal</a></p>
   </main>
@@ -63,106 +167,124 @@
       tabContents.forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.add('active');
-      if (btn.dataset.tab === 'SLABoundaries') {
-        setTimeout(drawSLAChart, 0);
+      if (btn.dataset.tab === 'TimeMachine') {
+        setTimeout(drawTimeChart, 0);
+      }
+      if (btn.dataset.tab === 'EnvironmentSLA') {
+        setTimeout(drawEnvSLAChart, 0);
       }
     }
-    // Draw a sample psychrometric chart for London with wet bulb lines
-    function drawSLAChart() {
-      const canvas = document.getElementById('slaChart');
+    // Draw the Time Machine energy consumption chart
+    function drawTimeChart() {
+      const canvas = document.getElementById('timeChart');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      // x: Dry-bulb temp (°C), y: Humidity ratio (g/kg)
-      // Sample RH curves: 30%, 50%, 70%, 100%
-      function humidityRatio(T, RH) {
-        // T in °C, RH in fraction
-        // Approximate formula for humidity ratio (g/kg)
-        const Pws = 6.112 * Math.exp((17.67 * T) / (T + 243.5)); // saturation vapor pressure (hPa)
-        const Pw = RH * Pws; // vapor pressure (hPa)
-        const W = 622 * Pw / (1013 - Pw); // humidity ratio (g/kg)
-        return W;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Axes
+      ctx.strokeStyle = '#222'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(40,180); ctx.lineTo(40,40); ctx.lineTo(400,40); ctx.stroke();
+      // Y axis labels
+      ctx.font = 'bold 13px Arial'; ctx.fillStyle = '#222';
+      ctx.fillText('kWh', 10, 30);
+      ctx.font = '12px Arial';
+      ctx.fillText('120', 10, 60);
+      ctx.fillText('80', 15, 120);
+      ctx.fillText('40', 15, 170);
+      // X axis labels (last 8 months, more granular line)
+      const months = [];
+      const now = new Date();
+      for (let i = 7; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        months.push(d.toLocaleString('default', { month: 'short' }));
       }
-      // Wet bulb calculation (approximate, for charting)
-      function humidityRatioFromWetBulb(Tdb, Twb) {
-        // Tdb, Twb in °C
-        // Assume RH at wet bulb is 100%
-        const Pws_wb = 6.112 * Math.exp((17.67 * Twb) / (Twb + 243.5));
-        const Pw_wb = Pws_wb;
-        const W_wb = 622 * Pw_wb / (1013 - Pw_wb);
-        // Now, for each Tdb, estimate RH at Tdb for this W
-        const Pws_db = 6.112 * Math.exp((17.67 * Tdb) / (Tdb + 243.5));
-        const Pw_db = W_wb * 1013 / (622 + W_wb);
-        const RH = Math.min(Pw_db / Pws_db, 1.0);
-        return humidityRatio(Tdb, RH);
+      const xStart = 40, xEnd = 370;
+      const xPositions = [];
+      for (let i = 0; i < months.length; i++) {
+        xPositions.push(xStart + (xEnd - xStart) * i / (months.length - 1));
+        ctx.fillText(months[i], xPositions[i], 200);
       }
-      const temps = Array.from({length: 31}, (_, i) => i + 5); // 5°C to 35°C
-      const rhLevels = [0.3, 0.5, 0.7, 1.0];
-      const rhColors = ['#3498db', '#27ae60', '#f1c40f', '#e74c3c'];
-      const datasets = rhLevels.map((rh, idx) => ({
-        label: `${Math.round(rh*100)}% RH`,
-        data: temps.map(T => ({x: T, y: humidityRatio(T, rh)})),
-        borderColor: rhColors[idx],
-        backgroundColor: 'transparent',
-        showLine: true,
-        fill: false,
-        pointRadius: 0,
-        tension: 0.3
-      }));
-      // Add wet bulb lines (10°C, 15°C, 20°C)
-      const wbTemps = [10, 15, 20];
-      const wbColors = ['#6c3483', '#1abc9c', '#e67e22'];
-      wbTemps.forEach((twb, idx) => {
-        datasets.push({
-          label: `Wet Bulb ${twb}°C`,
-          data: temps.filter(T => T >= twb).map(T => ({x: T, y: humidityRatioFromWetBulb(T, twb)})),
-          borderColor: wbColors[idx],
-          backgroundColor: 'transparent',
-          showLine: true,
-          fill: false,
-          borderDash: [6, 4],
-          pointRadius: 0,
-          tension: 0.3
-        });
-      });
-      // London summer sample point: 22°C, 8.5 g/kg
-      datasets.push({
-        label: 'London Summer',
-        data: [{x: 22, y: 8.5}],
-        backgroundColor: '#8e44ad',
-        borderColor: '#8e44ad',
-        pointRadius: 8,
-        pointStyle: 'circle',
-        type: 'scatter',
-        showLine: false,
-        fill: false
-      });
-      if (window.slaChartInstance) window.slaChartInstance.destroy();
-      window.slaChartInstance = new Chart(ctx, {
-        type: 'scatter',
-        data: { datasets },
-        options: {
-          plugins: {
-            legend: { display: true, position: 'top' },
-            title: { display: true, text: 'Sample Psychrometric Chart (London)' }
-          },
-          scales: {
-            x: {
-              title: { display: true, text: 'Dry-bulb Temperature (°C)' },
-              min: 5,
-              max: 35,
-              grid: { display: true }
-            },
-            y: {
-              title: { display: true, text: 'Humidity Ratio (g/kg)' },
-              min: 0,
-              max: 20,
-              grid: { display: true }
-            }
-          }
-        }
-      });
-      document.getElementById('slaPoints').innerHTML =
-        `<span style=\"color:#8e44ad;font-weight:bold;\">London Summer</span> at (<b>22°C, 8.5 g/kg</b>)`;
+      // More granular and random values, smooth decline to 120 until April, then sudden drop to 100
+      // Assume months: [Aug, Sep, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May]
+      // 40 points, 5 per month
+      const values = [];
+      for (let i = 0; i < 32; i++) { // Aug-Mar
+        // Smooth decline with more random noise
+        const base = 135 - (15 * i / 31); // 135 to 120
+        const noise = Math.random() * 8 - 4; // -4 to +4
+        values.push(Math.round(base + noise));
+      }
+      // April to July (16 points, 4 per month)
+      for (let i = 0; i < 16; i++) {
+        // Random value between 95 and 105
+        const val = 95 + Math.random() * 10;
+        values.push(Math.round(val));
+      }
+      // Y mapping: 135 -> 50, 95 -> 180
+      function mapY(val) {
+        return 50 + (180 - 50) * (135 - val) / (135 - 95);
+      }
+      // Interpolate x positions for 40 points
+      const xGranular = [];
+      for (let i = 0; i < values.length; i++) {
+        xGranular.push(xStart + (xEnd - xStart) * i / (values.length - 1));
+      }
+      // Draw smooth line
+      ctx.beginPath();
+      ctx.moveTo(xGranular[0], mapY(values[0]));
+      for (let i = 1; i < values.length; i++) {
+        ctx.lineTo(xGranular[i], mapY(values[i]));
+      }
+      ctx.strokeStyle = '#e67e22'; ctx.lineWidth = 3; ctx.stroke();
+      // Area under curve
+      ctx.save();
+      ctx.globalAlpha = 0.18;
+      ctx.beginPath();
+      ctx.moveTo(xGranular[0], mapY(values[0]));
+      for (let i = 1; i < values.length; i++) {
+        ctx.lineTo(xGranular[i], mapY(values[i]));
+      }
+      ctx.lineTo(xGranular[xGranular.length - 1], 180); ctx.lineTo(xGranular[0], 180); ctx.closePath();
+      ctx.fillStyle = '#e67e22'; ctx.fill();
+      ctx.restore();
+      // Title
+      ctx.font = 'bold 15px Arial'; ctx.fillStyle = '#222';
+      ctx.fillText('Energy Consumption', 120, 28);
+    }
+    // Draw the Environment SLA chart (static placeholder)
+    function drawEnvSLAChart() {
+      const canvas = document.getElementById('envSLAChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Draw colored SLA zones
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(40,220); ctx.lineTo(60,60); ctx.lineTo(280,40); ctx.lineTo(300,180); ctx.lineTo(200,240); ctx.closePath();
+      ctx.fillStyle = '#ffe5e5'; ctx.fill();
+      ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 3; ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(60,200); ctx.lineTo(80,80); ctx.lineTo(260,60); ctx.lineTo(280,160); ctx.lineTo(180,220); ctx.closePath();
+      ctx.fillStyle = '#fff7e5'; ctx.fill();
+      ctx.strokeStyle = '#e67e22'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(80,180); ctx.lineTo(100,100); ctx.lineTo(240,80); ctx.lineTo(260,140); ctx.lineTo(160,200); ctx.closePath();
+      ctx.fillStyle = '#f7ffe5'; ctx.fill();
+      ctx.strokeStyle = '#27ae60'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.restore();
+      // Draw current/projected points
+      ctx.beginPath(); ctx.arc(170,120,8,0,2*Math.PI); ctx.fillStyle='#fff'; ctx.fill(); ctx.strokeStyle='#222'; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(190,110,8,0,2*Math.PI); ctx.fillStyle='#222'; ctx.fill(); ctx.strokeStyle='#222'; ctx.lineWidth=2; ctx.stroke();
+      // Axis labels
+      ctx.font = 'bold 13px Arial'; ctx.fillStyle = '#222';
+      ctx.fillText('HUMIDITY', 140, 30);
+      ctx.fillText('DRY BULB', 140, 250);
+      ctx.save(); ctx.translate(20,140); ctx.rotate(-Math.PI/2); ctx.fillText('WET BULB', 0, 0); ctx.restore();
+      ctx.save(); ctx.translate(320,140); ctx.rotate(-Math.PI/2); ctx.fillText('DEW POINT', 0, 0); ctx.restore();
+      ctx.font = 'bold 12px Arial'; ctx.fillStyle = '#e74c3c'; ctx.fillText('A1', 300, 60);
     }
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => showTab(btn));
@@ -171,8 +293,11 @@
     // Draw chart on initial load if SLA tab is active
     window.addEventListener('DOMContentLoaded', () => {
       const activeBtn = document.querySelector('.tab-btn.active');
-      if (activeBtn && activeBtn.dataset.tab === 'SLABoundaries') {
-        setTimeout(drawSLAChart, 0);
+      if (activeBtn && activeBtn.dataset.tab === 'TimeMachine') {
+        setTimeout(drawTimeChart, 0);
+      }
+      if (activeBtn && activeBtn.dataset.tab === 'EnvironmentSLA') {
+        setTimeout(drawEnvSLAChart, 0);
       }
     });
   </script>
