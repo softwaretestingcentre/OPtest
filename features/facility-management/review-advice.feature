@@ -39,9 +39,9 @@ The FM can accept the advice or view more detailed analysis
   Scenario: Facility Manager reviews SLA Boundaries
     When Felicity views the SLA Boundaries
     Then Felicity sees that the SLA Zones match:
-      | Zone      | Expectation |
+      | Metric    | Zone        |
       | Current   | Comfortable |
-      | Projected | Comfortable |
+      | Projected | Allowable   |
 
   Scenario Outline: Facility Manager accepts advice for various zones
     When Felicity accepts the advice about "<Zone>"

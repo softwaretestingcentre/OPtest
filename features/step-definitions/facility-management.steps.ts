@@ -36,11 +36,10 @@ Then(
 );
 
 When("{actor} views the SLA Boundaries", async (actor: Actor) =>
-  actor.attemptsTo(Explainer.fetchSLAData())
+  actor.attemptsTo(Data.fetchSLAData())
 );
 
-Then(
-  "{actor} sees that the SLA Zones match:",
+Then("{actor} sees that the SLA Zones match:",
   async (actor: Actor, zoneData: DataTable) =>
     actor.attemptsTo(Explainer.checkSLAZonesMatch(zoneData))
 );

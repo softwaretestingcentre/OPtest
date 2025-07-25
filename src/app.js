@@ -16,13 +16,13 @@ app.use(express.static(__dirname + '/'));
 app.get('/api/sla-vertices', (req, res) => {
   // Example polygon and point data (can be replaced with dynamic data)
   const polygons = [
-    { name: 'outer', vertices: [ {x:40,y:220}, {x:60,y:60}, {x:280,y:40}, {x:300,y:180}, {x:200,y:240} ] },
-    { name: 'middle', vertices: [ {x:60,y:200}, {x:80,y:80}, {x:260,y:60}, {x:280,y:160}, {x:180,y:220} ] },
-    { name: 'inner', vertices: [ {x:80,y:180}, {x:100,y:100}, {x:240,y:80}, {x:260,y:140}, {x:160,y:200} ] }
+    { name: 'Close', vertices: [ {x:40,y:220}, {x:60,y:60}, {x:280,y:40}, {x:300,y:180}, {x:200,y:240} ] },
+    { name: 'Allowable', vertices: [ {x:60,y:200}, {x:80,y:80}, {x:260,y:60}, {x:280,y:160}, {x:180,y:220} ] },
+    { name: 'Comfortable', vertices: [ {x:80,y:180}, {x:100,y:100}, {x:240,y:80}, {x:260,y:140}, {x:160,y:200} ] }
   ];
   const points = {
-    current: { x: 170, y: 120 },
-    projected: { x: 190, y: 110 }
+    Current: { x: 170, y: 120 },
+    Projected: { x: 190, y: 70 }
   };
   res.json({ polygons, points });
 });

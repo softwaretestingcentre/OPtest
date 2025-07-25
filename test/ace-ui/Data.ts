@@ -1,7 +1,8 @@
 import { DataTable } from "@cucumber/cucumber";
 import { Ensure, equals } from "@serenity-js/assertions";
-import { List, Question, Task } from "@serenity-js/core";
-import { By, Text, PageElements, PageElement } from "@serenity-js/web";
+import { Check, List, Question, Task } from "@serenity-js/core";
+import { GetRequest, LastResponse, Send } from "@serenity-js/rest";
+import { By, Text, PageElements } from "@serenity-js/web";
 
 export const Data = {
 
@@ -39,11 +40,45 @@ export const Data = {
                 )
             )
         ),
+  
+    fetchSLAData: () =>
+        Task.where(`#actor fetches SLA data`,
+            Send.a(GetRequest.to('/api/sla-vertices')),
+            Ensure.that(LastResponse.status(), equals(200)),
+        ),
+    
+    metricIsInZone: (metric: string, zone: string) => {
+        const SLAzoneData = List.of(LastResponse.body<SLAdata>().polygons);
+        
+        return Task.where(`#actor checks that ${metric} is in ${zone} zone`,
+            SLAzoneData.forEach(async ({actor, item}) => {
+                const metricPoint = await actor.answer(LastResponse.body<SLAdata>().points[metric]);
+                actor.attemptsTo(
+                    Check.whether(item.name, equals(zone))
+                    .andIfSo(
+                        Ensure.that(Data.pointInPolygon(metricPoint, item.vertices), 
+                        equals(true))
+                    )
+                )
+            })
+        )            
+    },
 
-    SLAzone: (zone: string) =>
-        Question.about(`Which SLA boundary is ${zone} in`, async actor => {
-            return await actor.answer(Psychrometric.SLAzone()[zone]);
-        })
+    // Returns true if (x, y) is inside the polygon defined by vertices
+    pointInPolygon: (point: {x: number, y: number}, vertices: Array<{x: number, y: number}>): boolean => {
+      const x = point.x, y = point.y;
+      let inside = false;
+      for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
+        const xi = vertices[i].x, yi = vertices[i].y;
+        const xj = vertices[j].x, yj = vertices[j].y;
+        const intersect =
+          ((yi > y) !== (yj > y)) &&
+          (x < ((xj - xi) * (y - yi)) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
 
 }
 
@@ -77,4 +112,17 @@ const Psychrometric = {
         return {"Current": "Comfortable", "Projected": "Comfortable"}
     }
 
+}
+
+interface Polygon {
+    name: string;
+    vertices: Array<{ x: number, y: number }>;
+}
+
+interface SLAdata {
+    polygons: Array<Polygon>;
+    points: {
+        Current: { x: number, y: number },
+        Projected: { x: number, y: number }
+    }
 }
