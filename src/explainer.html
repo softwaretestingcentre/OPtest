@@ -250,33 +250,56 @@
       ctx.fillText('Energy Consumption', 120, 28);
     }
     // Draw the Environment SLA chart (static placeholder)
-    function drawEnvSLAChart() {
+    async function drawEnvSLAChart() {
       const canvas = document.getElementById('envSLAChart');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Draw colored SLA zones
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(40,220); ctx.lineTo(60,60); ctx.lineTo(280,40); ctx.lineTo(300,180); ctx.lineTo(200,240); ctx.closePath();
-      ctx.fillStyle = '#ffe5e5'; ctx.fill();
-      ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 3; ctx.stroke();
-      ctx.restore();
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(60,200); ctx.lineTo(80,80); ctx.lineTo(260,60); ctx.lineTo(280,160); ctx.lineTo(180,220); ctx.closePath();
-      ctx.fillStyle = '#fff7e5'; ctx.fill();
-      ctx.strokeStyle = '#e67e22'; ctx.lineWidth = 2; ctx.stroke();
-      ctx.restore();
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(80,180); ctx.lineTo(100,100); ctx.lineTo(240,80); ctx.lineTo(260,140); ctx.lineTo(160,200); ctx.closePath();
-      ctx.fillStyle = '#f7ffe5'; ctx.fill();
-      ctx.strokeStyle = '#27ae60'; ctx.lineWidth = 2; ctx.stroke();
-      ctx.restore();
-      // Draw current/projected points
-      ctx.beginPath(); ctx.arc(170,120,8,0,2*Math.PI); ctx.fillStyle='#fff'; ctx.fill(); ctx.strokeStyle='#222'; ctx.lineWidth=2; ctx.stroke();
-      ctx.beginPath(); ctx.arc(190,110,8,0,2*Math.PI); ctx.fillStyle='#222'; ctx.fill(); ctx.strokeStyle='#222'; ctx.lineWidth=2; ctx.stroke();
+      // Fetch polygon and point data from API
+      let polygons, points;
+      try {
+        const res = await fetch('http://localhost:3000/api/sla-vertices');
+        const data = await res.json();
+        polygons = data.polygons;
+        points = data.points;
+      } catch (e) {
+        // fallback to hardcoded if fetch fails
+        polygons = [
+          { name: 'outer', vertices: [ {x:40,y:220}, {x:60,y:60}, {x:280,y:40}, {x:300,y:180}, {x:200,y:240} ] },
+          { name: 'middle', vertices: [ {x:60,y:200}, {x:80,y:80}, {x:260,y:60}, {x:280,y:160}, {x:180,y:220} ] },
+          { name: 'inner', vertices: [ {x:80,y:180}, {x:100,y:100}, {x:240,y:80}, {x:260,y:140}, {x:160,y:200} ] }
+        ];
+        points = {
+          current: { x: 170, y: 120 },
+          projected: { x: 190, y: 110 }
+        };
+      }
+      // Fill colors for each polygon
+      const fillColors = ['#ffe5e5', '#fff7e5', '#f7ffe5'];
+      const strokeColors = ['#e74c3c', '#e67e22', '#27ae60'];
+      const strokeWidths = [3, 2, 2];
+      polygons.forEach((poly, idx) => {
+        ctx.save();
+        ctx.beginPath();
+        poly.vertices.forEach((v, i) => {
+          if (i === 0) ctx.moveTo(v.x, v.y);
+          else ctx.lineTo(v.x, v.y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = fillColors[idx] || '#fff';
+        ctx.fill();
+        ctx.strokeStyle = strokeColors[idx] || '#222';
+        ctx.lineWidth = strokeWidths[idx] || 1;
+        ctx.stroke();
+        ctx.restore();
+      });
+      // Draw current/projected points from API or fallback
+      if (points && points.current) {
+        ctx.beginPath(); ctx.arc(points.current.x, points.current.y, 8, 0, 2 * Math.PI); ctx.fillStyle = '#fff'; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.stroke();
+      }
+      if (points && points.projected) {
+        ctx.beginPath(); ctx.arc(points.projected.x, points.projected.y, 8, 0, 2 * Math.PI); ctx.fillStyle = '#222'; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.stroke();
+      }
       // Axis labels
       ctx.font = 'bold 13px Arial'; ctx.fillStyle = '#222';
       ctx.fillText('HUMIDITY', 140, 30);

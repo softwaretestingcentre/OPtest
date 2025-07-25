@@ -27,4 +27,4 @@ The advisor is an LLM agent, therefore:
     Examples:
       | Zone | Set Point | Recommended Value |
       |    1 | SAT       |              0.85 |
-      |    2 | PAT       |              1.75 |
+      |    2 | PAT       |              1.74 |

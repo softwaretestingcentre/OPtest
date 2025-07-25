@@ -5,51 +5,42 @@ import { User } from "../../test/ace-ui/User";
 import { Data } from "../../test/ace-ui/Data";
 import { Explainer } from "../../test/ace-ui/Explainer";
 
-
-
-
 // make sure step functions are async and do not wrap the actor clause in {}
 
+Given("{actor} has opened their portal", async (actor: Actor) =>
+  actor.attemptsTo(User.login())
+);
 
+When("{pronoun} check their KPIs", async (actor: Actor) =>
+  actor.attemptsTo(Navigate.to("/site-manager.html"))
+);
 
-Given('{actor} has opened their portal', async (actor: Actor) => 
+Then(
+  "{pronoun} see(s) that the KPI data is current",
+  async (actor: Actor, data: DataTable) =>
+    actor.attemptsTo(Data.compareToTable(data, "KPI"))
+);
+
+When(
+  "{actor} views the {string} Explainer",
+  async (actor: Actor, sectionName: string) =>
+    actor.attemptsTo(Explainer.getAdvice(sectionName))
+);
+
+Then(
+  "{actor} sees that the advice includes:",
+  async (actor: Actor, advicePoints: DataTable) =>
     actor.attemptsTo(
-        User.login()
+      Explainer.checkAdviceContainsAllSalientPoints(advicePoints)
     )
-)
+);
 
-When('{pronoun} check their KPIs', async (actor: Actor) => 
-    actor.attemptsTo(
-        Navigate.to('/site-manager.html')
-    )
-)
+When("{actor} views the SLA Boundaries", async (actor: Actor) =>
+  actor.attemptsTo(Explainer.fetchSLAData())
+);
 
-Then('{pronoun} see(s) that the KPI data is current', async (actor: Actor, data: DataTable) => 
-    actor.attemptsTo(
-        Data.compareToTable(data, 'KPI')
-    )
-)
-
-When('{actor} views the {string} Explainer', async (actor: Actor, sectionName: string) => 
-    actor.attemptsTo(
-        Explainer.getAdvice(sectionName)
-    )
-)
-
-Then('{actor} sees that the advice includes:', async (actor: Actor, advicePoints: DataTable) => 
-    actor.attemptsTo(
-        Explainer.checkAdviceContainsAllSalientPoints(advicePoints)
-    )
-)
-
-When('{actor} views the SLA Boundaries', async (actor: Actor) => 
-    actor.attemptsTo(
-        Navigate.to('/explainer.html')
-    )
-)
-
-Then('{actor} sees that the SLA Zones match:', async (actor: Actor, zoneData: DataTable) => 
-    actor.attemptsTo(
-        Explainer.checkSLAZonesMatch(zoneData)
-    )
-)
+Then(
+  "{actor} sees that the SLA Zones match:",
+  async (actor: Actor, zoneData: DataTable) =>
+    actor.attemptsTo(Explainer.checkSLAZonesMatch(zoneData))
+);

@@ -3,6 +3,7 @@ import { Ensure, equals, includes } from "@serenity-js/assertions";
 import { List, notes, Task } from "@serenity-js/core";
 import { By, Text, Navigate, PageElement, Click, Page } from "@serenity-js/web";
 import { Data } from "./Data";
+import { GetRequest, LastResponse, Send } from "@serenity-js/rest";
 
 export const Explainer = {
 
@@ -38,6 +39,14 @@ export const Explainer = {
         )
       )
     ),
+  
+  fetchSLAData: () =>
+    Task.where(
+      `#actor fetches SLA data`,
+      Send.a(GetRequest.to('/api/sla-vertices')),
+      Ensure.that(LastResponse.status(), equals(200)),
+    ),
+  
 
   checkSLAZonesMatch: (zoneData: DataTable) =>
     Task.where(
