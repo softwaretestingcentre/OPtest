@@ -1,6 +1,6 @@
 import { DataTable } from "@cucumber/cucumber";
 import { Ensure, equals } from "@serenity-js/assertions";
-import { Check, List, Question, Task } from "@serenity-js/core";
+import { List, Question, Task } from "@serenity-js/core";
 import { GetRequest, LastResponse, Send } from "@serenity-js/rest";
 import { By, Text, PageElements } from "@serenity-js/web";
 
@@ -47,23 +47,6 @@ export const Data = {
             Ensure.that(LastResponse.status(), equals(200)),
         ),
     
-    // metricIsInZone: (metric: string, zone: string) => {
-    //     const SLAzoneData = List.of(LastResponse.body<SLAdata>().polygons);
-        
-    //     return Task.where(`#actor checks that ${metric} is in ${zone} zone`,
-    //         SLAzoneData.forEach(async ({actor, item}) => {
-    //             const metricPoint = await actor.answer(LastResponse.body<SLAdata>().points[metric]);
-    //             actor.attemptsTo(
-    //                 Check.whether(item.name, equals(zone))
-    //                 .andIfSo(
-    //                     Ensure.that(Data.pointInPolygon(metricPoint, item.vertices), 
-    //                     equals(true))
-    //                 )
-    //             )
-    //         })
-    //     )            
-    // },
-
     isMetricInZone: (metric: string, zone: string) => 
         Question.about(`is ${metric} in ${zone} zone`, async actor => {
             const metricPoint = await actor.answer(LastResponse.body<SLAdata>().points[metric]);
@@ -71,18 +54,19 @@ export const Data = {
             return await actor.answer(Data.pointInPolygon(metricPoint, SLAzoneData.vertices));
         }),
 
-    // whichZoneIsMetricIn: (metric: string) => {
-    //     Question.about(`which zone is ${metric} in`, async actor => {
-    //         let foundZone = "Alarm";
-    //         Check.whether(actor.answer(Data.isMetricInZone(metric, "Comfortable")), equals(true))
-    //             .andIfSo(() => foundZone = "Comfortable")
-    //             .otherwise(() => Check.whether(Data.isMetricInZone(metric, "Allowable"))
-    //             .andIfSo(() => foundZone = "Allowable")
-    //             .otherwise(() => Check.whether(Data.isMetricInZone(metric, "Close"))
-    //             .andIfSo(() => foundZone = "Close")
-    //             .otherwise(() => foundZone = "Alarm")); 
-    //     });
-    // },
+    whichZoneIsMetricIn: (metric: string) => 
+        Question.about(`which zone is ${metric} in`, async actor => {
+            if (await actor.answer(Data.isMetricInZone(metric, "Comfortable"))) {
+                return "Comfortable";
+            }
+            if (await actor.answer(Data.isMetricInZone(metric, "Allowable"))) {
+                return "Allowable";
+            }
+            if (await actor.answer(Data.isMetricInZone(metric, "Close"))) {
+                return "Close";
+            }
+        })
+    ,
 
     // Returns true if (x, y) is inside the polygon defined by vertices
     pointInPolygon: (point: {x: number, y: number}, vertices: Array<{x: number, y: number}>): boolean => {

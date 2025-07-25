@@ -1,5 +1,5 @@
 import { DataTable } from "@cucumber/cucumber";
-import { Ensure, includes, isTrue } from "@serenity-js/assertions";
+import { Ensure, equals, includes } from "@serenity-js/assertions";
 import { List, notes, Task } from "@serenity-js/core";
 import { By, Text, Navigate, PageElement, Click } from "@serenity-js/web";
 import { Data } from "./Data";
@@ -46,10 +46,10 @@ export const Explainer = {
       List.of(zoneData.hashes()).forEach(async ({ actor, item }) =>
         actor.attemptsTo(
           Ensure.that(
-              Data.isMetricInZone(item["Metric"], item["Zone"]),
-              isTrue()
+              Data.whichZoneIsMetricIn(item["Metric"]),
+              equals(item["Zone"])
           )
+        )
       )
     )
-  ),
 };
