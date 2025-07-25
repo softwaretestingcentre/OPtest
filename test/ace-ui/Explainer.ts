@@ -1,7 +1,7 @@
 import { DataTable } from "@cucumber/cucumber";
-import { Ensure, includes } from "@serenity-js/assertions";
+import { Ensure, includes, isTrue } from "@serenity-js/assertions";
 import { List, notes, Task } from "@serenity-js/core";
-import { By, Text, Navigate, PageElement, Click, Page } from "@serenity-js/web";
+import { By, Text, Navigate, PageElement, Click } from "@serenity-js/web";
 import { Data } from "./Data";
 
 export const Explainer = {
@@ -43,10 +43,13 @@ export const Explainer = {
   checkSLAZonesMatch: (zoneData: DataTable) =>
     Task.where(
       `#actor checks all zones match expectations`,
-      List.of(zoneData.hashes()).forEach(({ actor, item }) =>
+      List.of(zoneData.hashes()).forEach(async ({ actor, item }) =>
         actor.attemptsTo(
-            Data.metricIsInZone(item["Metric"], item["Zone"])
-        )
+          Ensure.that(
+              Data.isMetricInZone(item["Metric"], item["Zone"]),
+              isTrue()
+          )
       )
-    ),
+    )
+  ),
 };
