@@ -17,11 +17,10 @@
       <h2>Current KPIs</h2>
       <table>
         <thead>
-          <tr><th>KPI</th><th>Expected Value</th></tr>
+          <tr><th>KPI</th><th>Current Value</th></tr>
         </thead>
-        <tbody>
-          <tr><td>PUE</td><td>1.33</td></tr>
-          <tr><td>WUE</td><td>1.56</td></tr>
+        <tbody id="kpi-table-body">
+          <tr><td colspan="2">Loading...</td></tr>
         </tbody>
       </table>
     </section>
@@ -38,4 +37,32 @@
     </section>
   </main>
 </body>
+<script>
+// Fetch KPI values from /api/kpis and populate the table
+async function loadKPIs() {
+  const tbody = document.getElementById('kpi-table-body');
+  try {
+    const res = await fetch('/api/kpis');
+    const data = await res.json();
+    if (Array.isArray(data.kpis)) {
+      tbody.innerHTML = '';
+      data.kpis.forEach(kpi => {
+        const tr = document.createElement('tr');
+        const tdName = document.createElement('td');
+        tdName.textContent = kpi.name;
+        const tdValue = document.createElement('td');
+        tdValue.textContent = kpi.value;
+        tr.appendChild(tdName);
+        tr.appendChild(tdValue);
+        tbody.appendChild(tr);
+      });
+    } else {
+      tbody.innerHTML = '<tr><td colspan="2">No KPI data</td></tr>';
+    }
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="2">Failed to load KPI data</td></tr>';
+  }
+}
+window.addEventListener('DOMContentLoaded', loadKPIs);
+</script>
 </html>

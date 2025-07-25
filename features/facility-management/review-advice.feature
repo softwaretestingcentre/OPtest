@@ -27,14 +27,14 @@ The FM can accept the advice or view more detailed analysis
   Scenario: Facility Manager reviews AgentRecommendation advice
     When Felicity views the "AgentRecommendation" Explainer
     Then Felicity sees that the advice includes:
-      | Clause     | Expectation                                                           |
-      | Metric     | supply air temperature                                                |
-      | Change     | from 22°C to 23°C                                                     |
+      | Clause     | Expectation                                                              |
+      | Metric     | supply air temperature                                                   |
+      | Change     | from 22°C to 23°C                                                        |
       | Impact     | each 0.5°C rise in supply air setpoint can cut chiller energy by 2 to 3% |
-      | Constraint | moderate IT load                                                      |
-      | Margin     | approximately 2°C of safe margin                                      |
-      | Standard   | ISO50001                                                              |
-      | Objective  | avoiding unnecessarily low supply temperatures                        |
+      | Constraint | moderate IT load                                                         |
+      | Margin     | approximately 2°C of safe margin                                         |
+      | Standard   | ISO50001                                                                 |
+      | Objective  | avoiding unnecessarily low supply temperatures                           |
 
   Scenario: Facility Manager reviews SLA Boundaries
     When Felicity views the SLA Boundaries

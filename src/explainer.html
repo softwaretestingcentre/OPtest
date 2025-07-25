@@ -306,7 +306,6 @@
       ctx.fillText('DRY BULB', 140, 250);
       ctx.save(); ctx.translate(20,140); ctx.rotate(-Math.PI/2); ctx.fillText('WET BULB', 0, 0); ctx.restore();
       ctx.save(); ctx.translate(320,140); ctx.rotate(-Math.PI/2); ctx.fillText('DEW POINT', 0, 0); ctx.restore();
-      ctx.font = 'bold 12px Arial'; ctx.fillStyle = '#e74c3c'; ctx.fillText('A1', 300, 60);
     }
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => showTab(btn));

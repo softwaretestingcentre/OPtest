@@ -1,7 +1,8 @@
+
 const express = require("express");
 const cors = require("cors");
 
-const app = express ();
+const app = express();
 
 app.use(express.json());
 app.use(cors());
@@ -11,6 +12,16 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 app.use(express.static(__dirname + '/'));
+
+// --- KPI Table API endpoint ---
+app.get('/api/kpis', (req, res) => {
+  // Example KPI values (can be replaced with dynamic data)
+  const kpis = [
+    { name: 'PUE', value: 1.33 },
+    { name: 'WUE', value: 1.56 }
+  ];
+  res.json({ kpis });
+});
 
 // --- SLA Vertices API endpoint (merged from sla-api-server.js) ---
 app.get('/api/sla-vertices', (req, res) => {
