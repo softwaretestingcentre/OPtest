@@ -30,7 +30,7 @@ The FM can accept the advice or view more detailed analysis
       | Clause     | Expectation                                                           |
       | Metric     | supply air temperature                                                |
       | Change     | from 22°C to 23°C                                                     |
-      | Impact     | each 0.5°C rise in supply air setpoint can cut chiller energy by 2-3% |
+      | Impact     | each 0.5°C rise in supply air setpoint can cut chiller energy by 2 to 3% |
       | Constraint | moderate IT load                                                      |
       | Margin     | approximately 2°C of safe margin                                      |
       | Standard   | ISO50001                                                              |
