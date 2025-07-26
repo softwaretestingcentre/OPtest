@@ -154,7 +154,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 10:28</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 12:28</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -201,9 +201,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon fa-2x' title='PENDING'></i></a></span>
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
                             <span class="test-case-title">
-                                <span class="pending-color">
+                                <span class="success-color">
                                     Octaipipe ACE is deployed to a new customer
                                         <span class="related-issue-title"></span>
                                 </span>
@@ -215,6 +215,54 @@
                 </table>
             </div>
 
+
+            <!-- CAST MEMBERS -->
+            <div>&nbsp;</div>
+            <div>
+                <h3 class="discreet-story-header">
+                    <i class="fs-2 bi bi-people large-icon"></i>
+                    <span class="story-header-title">
+                        <a class="btn btn-primary" data-toggle="collapse" href="#castDetails"
+                           role="button" aria-expanded="true" aria-controls="castDetails">Cast</a>
+                    </span>
+                </h3>
+            </div>
+            <div class="collapse multi-collapse" id="castDetails">
+                <table class="cast">
+                    <tr>
+                            <td width="100%">
+                                <h4>
+                                    <i class="fs-2 bi bi-person"></i>&nbsp;
+                                    <span>
+                                        <a data-toggle="collapse" href="#abilities-Como"
+                                           aria-expanded="false" aria-controls="abilities">Como</a>
+                                        
+                                    </span>
+                                </h4>
+                                <div class="collapse multi-collapse" id="abilities-Como">
+                                        <div>
+                                            <span class="cast-description">Como can:</span>
+                                            <ul>
+                                                    <li>PerformActivities</li>
+                                                    <li>AnswerQuestions</li>
+                                                    <li>RaiseErrors</li>
+                                                    <li>ScheduleWork { scheduler: { clock: { timeAdjustment: { milliseconds: 0 } }, interactionTimeout: { milliseconds: 5000 } } }</li>
+                                                    <li>BrowseTheWeb (BrowseTheWebWithPlaywright)</li>
+                                                    <li>CallAnApi { baseURL: "http://127.0.0.1:3000/", headers: { common: { Accept: "application/json, text/plain, */*" } }, timeout: 10000 }</li>
+                                                    <li>TakeNotes { notepad: {} }</li>
+                                            </ul>
+                                        </div>
+                                </div>
+                            </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </td>
+        </tr>
+        </table>
+    </div>
+    <!-- END CAST MEMBERS -->
 
 
 </div>
@@ -243,76 +291,160 @@
                 <td colspan="5"></td>
             </tr>
 
-                <tr class="test-PENDING">
+                <tr class="test-SUCCESS">
 
                     <td width="50" class="step-icon">
                         <a name="0"></a>
-                            <span style="margin-left: 20px;"
-                                  class="top-level-icon"><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block">
+                                <i class="bi bi-caret-right-square imgstepSection0 success-icon"
+                                   style="margin-left: 20px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block;">
+                                <span class="top-level-step">
+                                                Given Como sees that &quot;Acme&quot; has a &quot;valid&quot; licence
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="top-level-step">SUCCESS</span></td>
+                    <td width="100"><span class="top-level-step">015ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-0"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
                                 </span>
                     </td>
 
                     <td class="step-description-column">
                         <div class="step-description">
-                                <span class="top-level-step">
-                                                Given Acme has obtained a licence
+                                <span class="nested-group-step">
+                                                Como navigates to &quot;/deployment.html&quot;
                                         </span>
                             <span class="evidence">
                                 </span>
                         </div>
                     </td>
 
-                    <td width="130"><span class="top-level-step">PENDING</span></td>
-                    <td width="100"><span class="top-level-step">003ms</span></td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">223ms</span></td>
                 </tr>
-                <tr class="test-PENDING">
+
+                            </table>
+                        </td>
+                    </tr>
+                <tr class="test-ERROR">
 
                     <td width="50" class="step-icon">
                         <a name="1"></a>
-                            <span style="margin-left: 20px;"
-                                  class="top-level-icon"><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                               style="display:block">
+                                <i class="bi bi-caret-right-square imgstepSection1 error-icon"
+                                   style="margin-left: 20px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                               style="display:block;">
+                                <span class="top-level-step">
+                                                Then Como sees that &quot;Acme&quot; has the &quot;latest&quot; version of Ace installed
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="top-level-step">ERROR</span></td>
+                    <td width="100"><span class="top-level-step">007ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection1" class="step-table-nested" style="display:none;">
+                <tr class="test-ERROR">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-0"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a>
                                 </span>
                     </td>
 
                     <td class="step-description-column">
                         <div class="step-description">
-                                <span class="top-level-step">
-                                                When Como deploys Ace to Acme
+                                <span class="nested-group-step">
+                                                Como ensures that data in table for Acme in column Ace Version does equal &quot;latest&quot;
                                         </span>
                             <span class="evidence">
                                 </span>
                         </div>
                     </td>
 
-                    <td width="130"><span class="top-level-step">PENDING</span></td>
-                    <td width="100"><span class="top-level-step">001ms</span></td>
+                    <td width="130"><span class="nested-group-step">ERROR</span></td>
+                    <td width="100"><span class="nested-group-step">044ms</span></td>
                 </tr>
-                <tr class="test-PENDING">
+                    <tr class="test-ERROR">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="3" class="error-message-cell">
 
-                    <td width="50" class="step-icon">
-                        <a name="2"></a>
-                            <span style="margin-left: 20px;"
-                                  class="top-level-icon"><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
-                                </span>
-                    </td>
 
-                    <td class="step-description-column">
-                        <div class="step-description">
-                                <span class="top-level-step">
-                                                Then Acme has the latest version of Ace installed
-                                        </span>
-                            <span class="evidence">
-                                </span>
-                        </div>
-                    </td>
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">TargetClosedError: browserContext.newPage: Target page, context or browser has been closed</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-4"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
 
-                    <td width="130"><span class="top-level-step">PENDING</span></td>
-                    <td width="100"><span class="top-level-step">001ms</span></td>
-                </tr>
-            <tr class="test-PENDING">
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>TargetClosedError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>.PlaywrightBrowsingSessionWithBrowser.registerCurrentPage()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/playwright/src/screenplay/models/PlaywrightBrowsingSessionWithBrowser.ts:29)<br />.async PlaywrightBrowsingSessionWithBrowser.currentPage()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/models/BrowsingSession.ts:44)<br />.async QuestionStatement.body()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/models/PageElementsLocator.ts:20)<br />.async QuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async PageElementsLocator.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/web/src/screenplay/models/PageElementsLocator.ts:43)<br />.async MetaEachMappedTo.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/questions/List.ts:347)<br />.async MetaList.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/questions/List.ts:58)<br />.async QuestionStatement.body()(/home/runner/work/OPtest/OPtest/test/ace-ui/Table.ts:19)<br />.async QuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async Expectation.predicate()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/questions/Expectation.ts:134)<br />.async QuestionStatement.answeredBy()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/Question.ts:601)<br />.async Ensure.performAs()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/assertions/src/Ensure.ts:128)<br />.async PerformActivities.perform()(/home/runner/work/OPtest/OPtest/node_modules/@serenity-js/core/src/screenplay/abilities/PerformActivities.ts:60)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                        </td>
+                    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            <tr class="test-SUCCESS">
                     <td colspan="2"></td>
-                <td width="130"><span class="top-level-step"><em>PENDING</em></span></td>
-                <td width="100"><span class="top-level-step"><em>0.03s</em></span></td>
+                <td width="130"><span class="top-level-step"><em>SUCCESS</em></span></td>
+                <td width="100"><span class="top-level-step"><em>0.07s</em></span></td>
             </tr>
 
         </table>

@@ -154,7 +154,7 @@
             $("#requirements-tabs").tabs();
             $("#test-tabs").tabs();
 
-            var requirementsTree = [{"text":"Deployment","type":"feature","href":"87ae980f8cc27ce15211ec5f2df21b8ac37f5ea8b91500785b761c3f99acc8a9.html","nodes":[],"selectable":false,"tags":["\u003ca href\u003d\u0027##beforetable\u0027\u003e\u003ci class\u003d\u0027bi bi-hourglass-top pending-icon \u0027 title\u003d\u0027PENDING\u0027\u003e\u003c/i\u003e\u003c/a\u003e","\u003cspan class\u003d\u0027feature-count\u0027\u003e3 scenarios\u003c/span\u003e, \u003cspan class\u003d\u0027feature-count\u0027\u003e3 test cases\u003c/span\u003e"]}];
+            var requirementsTree = [{"text":"Deployment","type":"feature","href":"87ae980f8cc27ce15211ec5f2df21b8ac37f5ea8b91500785b761c3f99acc8a9.html","nodes":[],"selectable":false,"tags":["\u003ca href\u003d\u0027##beforetable\u0027\u003e\u003ci class\u003d\u0027bi bi-exclamation-triangle-fill error-icon \u0027 title\u003d\u0027ERROR\u0027\u003e\u003c/i\u003e\u003c/a\u003e","\u003cspan class\u003d\u0027feature-count\u0027\u003e3 scenarios\u003c/span\u003e, \u003cspan class\u003d\u0027feature-count\u0027\u003e3 test cases\u003c/span\u003e"]}];
 
             $('#tree').treeview({
                 data: requirementsTree,
@@ -229,7 +229,7 @@
             <a href="#"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 10:28</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 12:28</span>
     <br style="clear:left"/>
 </div>
 
@@ -324,7 +324,7 @@ commercial team to manage deployments on customer sites.
                                                                                         <a style="margin-left:0.5em;padding-right: 1.5em;"
                                                                                            href="48bc6130afad575dbb3a474517fc1cd106877a5d8fc440965b2ed8b447a1dc71.html"
                                                                                            title="View test results">
-                                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                                            <a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
                                                                                             </a>
 
 
@@ -357,7 +357,7 @@ commercial team to manage deployments on customer sites.
                                                                                         <a style="margin-left:0.5em;padding-right: 1.5em;"
                                                                                            href="d0c6dcfafe494270c4eec3366267ffaa6846f6882a286a033bc6cb50f70a41fa.html"
                                                                                            title="View test results">
-                                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                                            <a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a>
                                                                                             </a>
 
 
@@ -390,7 +390,7 @@ commercial team to manage deployments on customer sites.
                                                                                         <a style="margin-left:0.5em;padding-right: 1.5em;"
                                                                                            href="f95f338ec4fa7397a0605d08f21b84a0dd6fa5827450de6de31cd3e0dade7133.html"
                                                                                            title="View test results">
-                                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                                            <a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
                                                                                             </a>
 
 
@@ -413,13 +413,13 @@ commercial team to manage deployments on customer sites.
                                             <div class="col-sm-12">
                                                 <h3>Scenarios</h3>
 
-                                                    <a name="e4fd5278-78ca-4a5a-af13-7fea78673966"></a>
+                                                    <a name="937079de-2618-499f-832a-f09f021694fe"></a>
                                                     <p class="rule-tags inline-tag">
                                                     </p>
 
 
                                                         <div class="scenario-docs card" id="d72b0c0ed6f808fdfa4ed3416ce040355a94aab6fb7a50c0853299d3df0cc21e">
-                                                            <div class="scenario-docs card-header pending"
+                                                            <div class="scenario-docs card-header success"
                                                                  style="min-height:1.5em;">
                                                                 <div>
                                                                         <span class="scenario-heading">
@@ -433,22 +433,21 @@ commercial team to manage deployments on customer sites.
                                                                     <span class="scenario-result-icon">
                                                                     
 
-                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                            <a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
                                                                         </span>
                                                                 </div>
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given Acme has obtained a licence</p>
-                                                                    <p>When Como deploys Ace to Acme</p>
-                                                                    <p>Then Acme has the latest version of Ace installed</p>
+                                                                    <p>Given Como sees that &quot;Acme&quot; has a &quot;valid&quot; licence</p>
+                                                                    <p>Then Como sees that &quot;Acme&quot; has the &quot;latest&quot; version of Ace installed</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="scenario-docs card" id="e864ce055f68ccb320368f0efcfe2e1ca7dd75a83ce185cc947b2f399b4d0199">
-                                                            <div class="scenario-docs card-header pending"
+                                                            <div class="scenario-docs card-header error"
                                                                  style="min-height:1.5em;">
                                                                 <div>
                                                                         <span class="scenario-heading">
@@ -462,22 +461,21 @@ commercial team to manage deployments on customer sites.
                                                                     <span class="scenario-result-icon">
                                                                     
 
-                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                            <a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a>
                                                                         </span>
                                                                 </div>
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given DC has a valid licence</p>
-                                                                    <p>When Como deploys Ace to DC</p>
-                                                                    <p>Then DC has the latest version of Ace installed</p>
+                                                                    <p>Given Como sees that &quot;DC&quot; has a &quot;valid&quot; licence</p>
+                                                                    <p>Then Como sees that &quot;DC&quot; has the &quot;latest&quot; version of Ace installed</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="scenario-docs card" id="7b87ea74add04fe1956db0d4636ce9aa6e097a0c45ed213c0cafa30db163547e">
-                                                            <div class="scenario-docs card-header pending"
+                                                            <div class="scenario-docs card-header success"
                                                                  style="min-height:1.5em;">
                                                                 <div>
                                                                         <span class="scenario-heading">
@@ -491,15 +489,14 @@ commercial team to manage deployments on customer sites.
                                                                     <span class="scenario-result-icon">
                                                                     
 
-                                                                            <a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a>
+                                                                            <a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
                                                                         </span>
                                                                 </div>
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given OL has an expired licence</p>
-                                                                    <p>When Como checks the status of Ace at OL</p>
-                                                                    <p>Then He can see that Ace is deactivated</p>
+                                                                    <p>Given Como sees that &quot;OL&quot; has an &quot;expired&quot; licence</p>
+                                                                    <p>Then Como can see that Ace is &quot;deactivated&quot; for &quot;OL&quot;</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
@@ -564,7 +561,7 @@ commercial team to manage deployments on customer sites.
                     <td>
                         <i class="bi bi-trophy"></i> Fastest Test
                     </td>
-                    <td>15ms</td>
+                    <td>19ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
@@ -575,18 +572,18 @@ commercial team to manage deployments on customer sites.
                         <i class="bi bi-skip-start"></i> Slowest
                         Test
                     </td>
-                    <td>25ms</td>
+                    <td>73ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-flag-fill"></i> Tests Started
                     </td>
-                    <td>Jul 26, 2025 10:28:12</td>
+                    <td>Jul 26, 2025 12:28:41</td>
                     <td>
                         <i class="bi bi-stopwatch"></i> Average
                         Execution Time
                     </td>
-                    <td>18ms</td>
+                    <td>55ms</td>
                 </tr>
                 <tr scope="row">
                     <td>
@@ -598,7 +595,7 @@ commercial team to manage deployments on customer sites.
                         <i class="bi bi-stopwatch-fill"></i> Total
                         Execution Time
                     </td>
-                    <td>55ms</td>
+                    <td>165ms</td>
                 </tr>
                 </tbody>
             </table>
@@ -620,7 +617,7 @@ commercial team to manage deployments on customer sites.
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                                <tr class="scenario-result PENDING">
+                                                                <tr class="scenario-result SUCCESS">
                                                                     <td>
                                                                             <a href="#">Deployment</a>
                                                                     </td>
@@ -629,13 +626,13 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>3</td>
-                                                                    <td>10:28:12</td>
-                                                                    <td>025ms</td>
-                                                                    <td><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a> <span style="display:none">PENDING</span>
+                                                                    <td>2</td>
+                                                                    <td>12:28:41</td>
+                                                                    <td>073ms</td>
+                                                                    <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="scenario-result PENDING">
+                                                                <tr class="scenario-result ERROR">
                                                                     <td>
                                                                             <a href="#">Deployment</a>
                                                                     </td>
@@ -644,13 +641,13 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>3</td>
-                                                                    <td>10:28:12</td>
-                                                                    <td>015ms</td>
-                                                                    <td><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a> <span style="display:none">PENDING</span>
+                                                                    <td>2</td>
+                                                                    <td>12:28:41</td>
+                                                                    <td>019ms</td>
+                                                                    <td><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a> <span style="display:none">ERROR</span>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="scenario-result PENDING">
+                                                                <tr class="scenario-result SUCCESS">
                                                                     <td>
                                                                             <a href="#">Deployment</a>
                                                                     </td>
@@ -659,10 +656,10 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>3</td>
-                                                                    <td>10:28:12</td>
-                                                                    <td>015ms</td>
-                                                                    <td><a href='##beforetable'><i class='bi bi-hourglass-top pending-icon ' title='PENDING'></i></a> <span style="display:none">PENDING</span>
+                                                                    <td>2</td>
+                                                                    <td>12:28:41</td>
+                                                                    <td>073ms</td>
+                                                                    <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
                                                                     </td>
                                                                 </tr>
                                                         </tbody>
@@ -688,7 +685,7 @@ commercial team to manage deployments on customer sites.
                                 <h5 class="card-title">Capability</h5>
                             <div>
                                     <a href="97987ad19ca181ab3dc1a943f42760533d6b726ad5718f5ba65868bcbd3c76f3.html">
-                                    <span class="tag-badge badge" style="background-color:#a5c7ed; margin:1em;padding:4px;">
+                                    <span class="tag-badge badge" style="background-color:#fe6c2d; margin:1em;padding:4px;">
                                         <i class="bi bi-tag-fill"></i> Commercial&nbsp;&nbsp;&nbsp;3
                                     </span>
                                     </a>
@@ -700,7 +697,7 @@ commercial team to manage deployments on customer sites.
                                 <h5 class="card-title">Feature</h5>
                             <div>
                                     <a href="87ae980f8cc27ce15211ec5f2df21b8ac37f5ea8b91500785b761c3f99acc8a9.html">
-                                    <span class="tag-badge badge" style="background-color:#a5c7ed; margin:1em;padding:4px;">
+                                    <span class="tag-badge badge" style="background-color:#fe6c2d; margin:1em;padding:4px;">
                                         <i class="bi bi-tag-fill"></i> Commercial/Deployment&nbsp;&nbsp;&nbsp;3
                                     </span>
                                     </a>
@@ -749,7 +746,7 @@ commercial team to manage deployments on customer sites.
             datasets: [{
                 label: 'Test Results',
                 fill: false,
-                data: [{meta: 'Passing tests', value: 0}, {meta: 'Pending tests', value: 3}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 0}, {meta: 'Compromised tests', value: 0}],
+                data: [{meta: 'Passing tests', value: 2}, {meta: 'Pending tests', value: 0}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 1}, {meta: 'Compromised tests', value: 0}],
                 backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
                 borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
                 borderWidth: 1,
@@ -800,7 +797,7 @@ commercial team to manage deployments on customer sites.
                         ctx.font = fontSize + "em sans-serif";
                         ctx.textBaseline = "middle";
 
-                        var text = " "
+                        var text = "67%"
                         textX = 10 + Math.round((width - ctx.measureText(text).width) / 2);
                         textY = (height / 2) - 40;
 
@@ -844,7 +841,7 @@ commercial team to manage deployments on customer sites.
             datasets: [{
                 label: 'Feature Coverage',
                 fill: false,
-                data: [{meta: 'Passing tests', value: 0}, {meta: 'Pending tests', value: 3}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 0}, {meta: 'Compromised tests', value: 0}],
+                data: [{meta: 'Passing tests', value: 2}, {meta: 'Pending tests', value: 0}, {meta: 'Ignored tests', value: 0}, {meta: 'Skipped tests', value: 0}, {meta: 'Aborted tests', value: 0}, {meta: 'Failing tests', value: 0}, {meta: 'Broken tests', value: 1}, {meta: 'Compromised tests', value: 0}],
                 backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
                 borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
                 borderWidth: 1,
@@ -895,7 +892,7 @@ commercial team to manage deployments on customer sites.
                         ctx.font = fontSize + "em sans-serif";
                         ctx.textBaseline = "middle";
 
-                        var text = " "
+                        var text = "67%"
                         textX = 10 + Math.round((width - ctx.measureText(text).width) / 2);
                         textY = (height / 2) - 40;
 
@@ -940,7 +937,7 @@ commercial team to manage deployments on customer sites.
             datasets: [
                 {
                     label: 'Automated',
-                    data: [0,3,0,0,0,0,0,0],
+                    data: [2,0,0,0,0,0,1,0],
                     backgroundColor: ['rgba(153,204,51,0.5)','rgba(165, 199, 238, 0.5)','rgba(168, 168, 168, 0.5)','rgba(238, 224, 152, 0.75)','rgba(255, 153, 102, 0.5)','rgba(255, 22, 49, 0.5)','rgba(255, 97, 8, 0.5)','rgba(255, 104, 255, 0.5)','rgba(83, 50, 168, 0.5)'],
                     borderColor: ['rgba(153,204,51,1)','rgba(165, 199, 238, 1)','rgba(168, 168, 168, 1)','rgba(238, 224, 152, 1)','rgba(255, 153, 102, 1)','rgba(255, 22, 49, 1)','rgba(255, 97, 8, 1)','rgba(255, 104, 255, 1)','rgba(83, 50, 168, 1)'],
                     borderWidth: 1
