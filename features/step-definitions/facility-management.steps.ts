@@ -54,9 +54,9 @@ When('{actor} accepts the advice about {string}', async (actor: Actor, setPoint:
 );
 
 Then(
-  "{actor} sees that the {string} is set to {string}",
-  async (actor: Actor, setPoint: string, recommendedValue: string) =>
+  "{actor} sees that the {string} is set to the Recommended Value",
+  async (actor: Actor, setPoint: string) =>
     actor.attemptsTo(
-      Explainer.checkSetPointWasUpdated(setPoint, recommendedValue)
+      Explainer.checkSetPointWasUpdated(setPoint)
     )
 )

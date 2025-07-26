@@ -45,8 +45,8 @@ The FM can accept the advice or view more detailed analysis
 
   Scenario Outline: Facility Manager accepts advice
     When Felicity accepts the advice about "<Set Point>"
-    Then Felicity sees that the "<Set Point>" is set to "<Recommended Value>"
+    Then Felicity sees that the "<Set Point>" is set to the Recommended Value
 
     Examples:
-      | Set Point | Recommended Value |
-      | SAT       |            23.0°C |
+      | Set Point | 
+      | SAT       |

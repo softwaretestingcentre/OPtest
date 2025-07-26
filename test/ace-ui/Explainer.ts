@@ -37,12 +37,12 @@ export const Explainer = {
       Click.on(agentRecommendation.acceptButton())
     ),
     
-  checkSetPointWasUpdated: (setPoint: string, recommendedValue: string) =>
+  checkSetPointWasUpdated: (setPoint: string) =>
     Task.where(
-      `#actor checks that the ${setPoint} was updated to ${recommendedValue}`,
+      `#actor checks that the ${setPoint} was updated to the Recommended Value`,
       Ensure.that(
         Text.of(agentRecommendation.setPointValue(setPoint, "Current")),
-        equals(recommendedValue)
+        equals(Text.of(agentRecommendation.setPointValue(setPoint, "Recommended")))
       )
     ),
 
