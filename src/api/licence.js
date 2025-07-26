@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const licences = {
-  Acme: { customer: "Acme", status: "valid", aceVersion: "latest", aceActive: true },
-  DC: { customer: "DC", status: "valid", aceVersion: "latest", aceActive: true },
-  OL: { customer: "OL", status: "expired", aceVersion: "latest", aceActive: false },
+  Acme: { customer: "Acme", status: "valid", aceVersion: "none", aceActive: false },
+  DC: { customer: "DC", status: "valid", aceVersion: "previous", aceActive: true },
+  OL: { customer: "OL", status: "expired", aceVersion: "latest", aceActive: true },
 };
 
 router.get("/:customer", (req, res) => {
@@ -28,8 +28,10 @@ router.post("/:customer/deploy", (req, res) => {
 
 router.post("/:customer/deactivate", (req, res) => {
   const customer = req.params.customer;
+  const status = req.body.status || "expired";
   if (!licences[customer]) return res.status(404).json({ error: "Customer not found" });
-  licences[customer].status = "expired";
+  licences[customer].status = status;
+  licences[customer].aceVersion = "none";
   licences[customer].aceActive = false;
   res.json({ message: "ACE deactivated", licence: licences[customer] });
 });
