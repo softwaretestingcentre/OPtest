@@ -31,6 +31,22 @@ export const Explainer = {
       )
     ),
 
+  acceptAdvice: () =>
+    Task.where(
+      `#actor accepts advice`,
+      Click.on(agentRecommendation.acceptButton())
+    ),
+    
+  checkSetPointWasUpdated: (setPoint: string, recommendedValue: string) =>
+    Task.where(
+      `#actor checks that the ${setPoint} was updated to ${recommendedValue}`,
+      Ensure.that(
+        Text.of(agentRecommendation.setPointValue(setPoint, "Current")),
+        equals(recommendedValue)
+      )
+    ),
+
+
   checkAdviceContainsAllSalientPoints: (dataPoints: DataTable) =>
     // TODO: enhance by measuring semantic similarity - complete, incomplete, contradictory
     Task.where(
@@ -56,5 +72,18 @@ export const Explainer = {
           )
         )
       )
+    ),
+};
+
+const agentRecommendation = {
+  acceptButton: () =>
+    PageElement.located(By.css(`#acceptAdviceBtn`)).describedAs(
+      `Accept button for agent recommendation`
+    ),
+
+  setPointValue: (setPoint: string, status: string) =>
+    PageElement.located(By.css(`#${setPoint.toLocaleLowerCase()}${status}`)).
+    describedAs(
+      `${status} set point value for ${setPoint}`
     ),
 };

@@ -1,328 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advice Explainers</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; }
-    .tab-btn { background: #ecf0f1; border: none; padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 6px 6px 0 0; font-weight: bold; }
-    .tab-btn.active { background: #2c3e50; color: #fff; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .advice-text { font-family: 'Georgia', 'Times New Roman', Times, serif; font-size: 1.08rem; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Advice Explainers</h1>
-  </header>
-  <main>
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="TimeMachine">Time Machine</button>
-      <button class="tab-btn" data-tab="AgentRecommendation">Agent Recommendation</button>
-      <button class="tab-btn" data-tab="EnvironmentSLA">Environment SLA</button>
-    </div>
-    <section id="TimeMachine" class="tab-content active">
-      <h2>Time Machine Advice</h2>
-      <div style="display:flex; gap:2rem; align-items:flex-start; flex-wrap:wrap;">
-        <div style="flex:2; min-width:340px;">
-          <canvas id="timeChart" width="420" height="220" style="background:#fff; border:1px solid #eee; border-radius:8px;"></canvas>
-        </div>
-        <div style="flex:1; min-width:260px;">
-          <div style="background:rgba(255,255,255,0.95); box-shadow:0 2px 16px rgba(44,62,80,0.12); border-radius:12px; padding:1.2rem 1.3rem; position:relative; top:-20px;">
-            <div class="advice-text">
-              <p>
-                Hi Chris.<br>
-                Zone 1 temperatures are well below SLA.<br>
-                IT Load for this zone is predicted to decline.<br>
-                Adjusting the SAT set point is recommended to achieve savings.<br>
-                Click to Accept.<br>
-                For more detailed analysis, see below.
-              </p>
-            </div>
-          </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advice Explainers</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .tab-btn {
+        background: #ecf0f1;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        border-radius: 6px 6px 0 0;
+        font-weight: bold;
+      }
+      .tab-btn.active {
+        background: #2c3e50;
+        color: #fff;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .advice-text {
+        font-family: "Georgia", "Times New Roman", Times, serif;
+        font-size: 1.08rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Advice Explainers</h1>
+    </header>
+    <main>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="TimeMachine">
+          Time Machine
+        </button>
+        <button class="tab-btn" data-tab="AgentRecommendation">
+          Agent Recommendation
+        </button>
+        <button class="tab-btn" data-tab="EnvironmentSLA">
+          Environment SLA
+        </button>
       </div>
-    </section>
-    <section id="AgentRecommendation" class="tab-content">
-      <h2>Agent Recommendation</h2>
-      <div style="max-width:520px; margin:auto; background:#fff; border-radius:14px; box-shadow:0 2px 16px rgba(44,62,80,0.10); padding:2rem 2.2rem;">
-        <div style="font-weight:bold; font-size:1.08rem; margin-bottom:1.2rem;">Set point changes</div>
-        <div style="display:grid; grid-template-columns:1.2fr 0.3fr 1.2fr 0.7fr 1.2fr; gap:0.7rem; align-items:center; margin-bottom:1.2rem;">
-          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:1;">Supply air temperature</div>
-          <div style="grid-column:2; grid-row:1;"></div>
-          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:1; justify-self:end;">22.0°C</div>
-          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:1;">&#8594;</div>
-          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:1; justify-self:end;">23.0°C</div>
-
-          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:2;">Air flow rate</div>
-          <div style="grid-column:2; grid-row:2;"></div>
-          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:2; justify-self:end;">45 m³/min</div>
-          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:2;">&#8594;</div>
-          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:2; justify-self:end;">45 m³/min</div>
-
-          <div style="font-size:0.98rem; color:#222; grid-column:1; grid-row:3;">Cooled water temperature</div>
-          <div style="grid-column:2; grid-row:3;"></div>
-          <div style="background:#f7f9fa; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:3; grid-row:3; justify-self:end;">11.0°C</div>
-          <div style="font-size:1.3rem; color:#222; text-align:center; grid-column:4; grid-row:3;">&#8594;</div>
-          <div style="background:#222; color:#fff; border-radius:7px; padding:0.2rem 2.5rem; font-weight:bold; text-align:center; grid-column:5; grid-row:3; justify-self:end;">11.0°C</div>
-        </div>
-        </div>
-        <div style="margin-bottom:1.3rem; font-size:1.04rem; color:#222;">
-          <span style="font-weight:bold; color:#222;">A modest increase</span> in supply air temperature, from <b>22°C</b> to <b>23°C</b>, is recommended. Historical data for this site suggests each <b>0.5°C</b> rise in supply air setpoint can cut chiller energy by <b>2 to 3%</b>, given moderate IT load levels. This change provides approximately <b>2°C</b> of safe margin if the setpoint is raised to 23°C. Raising the supply air temperature aligns with <b>ISO50001</b> aims for monthly energy reductions and adheres to the <b>EU Code of Conduct</b> principle of avoiding unnecessarily low supply temperatures.
-        </div>
-        <div style="font-weight:bold; font-size:1.08rem; margin-bottom:0.7rem;">Impact Summary</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; align-items:center; margin-bottom:1.1rem;">
-          <div style="color:#222; font-size:0.97rem;">ENERGY SAVINGS</div>
-          <div style="color:#27ae60; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">5% NEXT WEEK</div>
-          <div style="color:#222; font-size:0.97rem;">SAVINGS POTENTIAL</div>
-          <div style="color:#e67e22; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">HIGH</div>
-          <div style="color:#222; font-size:0.97rem;">SLA RISK</div>
-          <div style="color:#f1c40f; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">MEDIUM</div>
-          <div style="color:#222; font-size:0.97rem;">CONFIDENCE</div>
-          <div style="color:#27ae60; font-weight:bold; font-size:0.97rem; background:#f7f9fa; border-radius:6px; padding:0.3rem 0.8rem; text-align:right;">HIGH</div>
-        </div>
-        <div style="margin-bottom:1.2rem;">
-          <button style="width:100%; background:#f7f9fa; color:#222; border:none; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer; margin-bottom:0.7rem;">SEE OUR LOGIC</button>
-        </div>
-        <div style="display:flex; gap:1.2rem;">
-          <button style="flex:1; background:#fff; color:#222; border:1.5px solid #222; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer;">REJECT</button>
-          <button style="flex:1; background:#222; color:#fff; border:none; border-radius:7px; padding:0.7rem 0; font-size:1.05rem; font-weight:bold; cursor:pointer;">ACCEPT</button>
-        </div>
-      </div>
-    </section>
-    <section id="EnvironmentSLA" class="tab-content">
-      <h2>Environment SLA</h2>
-      <div style="display:flex; flex-wrap:wrap; gap:2rem;">
-        <div style="flex:1; min-width:340px;">
-          <div style="margin-bottom:1rem; font-weight:bold;">SLA Boundaries</div>
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem;">
-            <div><span>◯</span> CURRENT</div>
-            <div><span>⬤</span> PROJECTED</div>
+      <section id="TimeMachine" class="tab-content active">
+        <h2>Time Machine Advice</h2>
+        <div
+          style="
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
+          <div style="flex: 2; min-width: 340px">
+            <canvas
+              id="timeChart"
+              width="420"
+              height="220"
+              style="
+                background: #fff;
+                border: 1px solid #eee;
+                border-radius: 8px;
+              "
+            ></canvas>
           </div>
-          <canvas id="envSLAChart" width="320" height="260" style="background:#fff; border:1px solid #eee;"></canvas>
-          <div style="margin-top:1rem;">
-            <div style="font-weight:bold; margin-bottom:0.5rem;">Proximity to SLA</div>
-            <div style="display:flex; gap:1.5rem; font-size:0.95rem;">
-              <span style="color:#27ae60;"><b>&#9679;</b> Comfortable</span>
-              <span style="color:#f1c40f;"><b>&#9679;</b> Allowable</span>
-              <span style="color:#e67e22;"><b>&#9679;</b> Close</span>
-              <span style="color:#e74c3c;"><b>&#9679;</b> Alarm</span>
-            </div>
-          </div>
-        </div>
-        <div style="flex:1; min-width:340px;">
-          <div style="font-weight:bold; margin-bottom:1rem;">Savings potential</div>
-          <div style="margin-bottom:1.5rem;">
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <span style="font-size:0.95rem;">LOW</span>
-              <div style="flex:1; height:6px; background:#f1c40f; position:relative; border-radius:3px;">
-                <div id="savingsPointer" style="position:absolute; left:70%; top:-6px; width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-bottom:10px solid #e67e22;"></div>
+          <div style="flex: 1; min-width: 260px">
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 16px rgba(44, 62, 80, 0.12);
+                border-radius: 12px;
+                padding: 1.2rem 1.3rem;
+                position: relative;
+                top: -20px;
+              "
+            >
+              <div class="advice-text">
+                <p>
+                  Hi Chris.<br />
+                  Zone 1 temperatures are well below SLA.<br />
+                  IT Load for this zone is predicted to decline.<br />
+                  Adjusting the SAT set point is recommended to achieve
+                  savings.<br />
+                  Click to Accept.<br />
+                  For more detailed analysis, see below.
+                </p>
               </div>
-              <span style="font-size:0.95rem;">HIGH</span>
             </div>
           </div>
-          <div style="font-weight:bold; margin-bottom:0.5rem;">Current and projected states</div>
-          <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
-            <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">ZONE AIR SUPPLY</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>DRY BULB TEMP</td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
-              <tr><td>WET BULB TEMP</td><td style="text-align:right;">11.0°C</td><td style="font-weight:bold; text-align:right;">11.8°C</td></tr>
-              <tr><td>DEW POINT TEMP</td><td style="text-align:right;">14.1°C</td><td style="font-weight:bold; text-align:right;">14.4°C</td></tr>
-              <tr><td>RELATIVE HUMIDITY</td><td style="text-align:right;">50%</td><td style="font-weight:bold; text-align:right;">52%</td></tr>
-            </tbody>
-          </table>
-          <table style="width:100%; border-collapse:collapse; font-size:0.97rem; margin-bottom:1rem;">
-            <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">RETURN AIR TEMP</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
-            </thead>
-            <tbody>
-              <tr><td></td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
-            </tbody>
-          </table>
-          <table style="width:100%; border-collapse:collapse; font-size:0.97rem;">
-            <thead>
-              <tr style="background:#f7f9fa;"><th style="text-align:left;">OUTDOOR TEMP</th><th style="text-align:right;">CURRENT</th><th style="text-align:right;">PROJECTED</th></tr>
-            </thead>
-            <tbody>
-              <tr><td></td><td style="text-align:right;">22.3°C</td><td style="font-weight:bold; text-align:right;">23.1°C</td></tr>
-            </tbody>
-          </table>
         </div>
-      </div>
-    </section>
-    <p style="margin-top:2rem;"><a href="landing.html">&larr; Back to Portal</a></p>
-  </main>
-  <script>
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    function showTab(btn) {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      if (btn.dataset.tab === 'TimeMachine') {
-        setTimeout(drawTimeChart, 0);
-      }
-      if (btn.dataset.tab === 'EnvironmentSLA') {
-        setTimeout(drawEnvSLAChart, 0);
-      }
-    }
-    // Draw the Time Machine energy consumption chart
-    function drawTimeChart() {
-      const canvas = document.getElementById('timeChart');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Axes
-      ctx.strokeStyle = '#222'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(40,180); ctx.lineTo(40,40); ctx.lineTo(400,40); ctx.stroke();
-      // Y axis labels
-      ctx.font = 'bold 13px Arial'; ctx.fillStyle = '#222';
-      ctx.fillText('kWh', 10, 30);
-      ctx.font = '12px Arial';
-      ctx.fillText('120', 10, 60);
-      ctx.fillText('80', 15, 120);
-      ctx.fillText('40', 15, 170);
-      // X axis labels (last 8 months, more granular line)
-      const months = [];
-      const now = new Date();
-      for (let i = 7; i >= 0; i--) {
-        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-        months.push(d.toLocaleString('default', { month: 'short' }));
-      }
-      const xStart = 40, xEnd = 370;
-      const xPositions = [];
-      for (let i = 0; i < months.length; i++) {
-        xPositions.push(xStart + (xEnd - xStart) * i / (months.length - 1));
-        ctx.fillText(months[i], xPositions[i], 200);
-      }
-      // More granular and random values, smooth decline to 120 until April, then sudden drop to 100
-      // Assume months: [Aug, Sep, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May]
-      // 40 points, 5 per month
-      const values = [];
-      for (let i = 0; i < 32; i++) { // Aug-Mar
-        // Smooth decline with more random noise
-        const base = 135 - (15 * i / 31); // 135 to 120
-        const noise = Math.random() * 8 - 4; // -4 to +4
-        values.push(Math.round(base + noise));
-      }
-      // April to July (16 points, 4 per month)
-      for (let i = 0; i < 16; i++) {
-        // Random value between 95 and 105
-        const val = 95 + Math.random() * 10;
-        values.push(Math.round(val));
-      }
-      // Y mapping: 135 -> 50, 95 -> 180
-      function mapY(val) {
-        return 50 + (180 - 50) * (135 - val) / (135 - 95);
-      }
-      // Interpolate x positions for 40 points
-      const xGranular = [];
-      for (let i = 0; i < values.length; i++) {
-        xGranular.push(xStart + (xEnd - xStart) * i / (values.length - 1));
-      }
-      // Draw smooth line
-      ctx.beginPath();
-      ctx.moveTo(xGranular[0], mapY(values[0]));
-      for (let i = 1; i < values.length; i++) {
-        ctx.lineTo(xGranular[i], mapY(values[i]));
-      }
-      ctx.strokeStyle = '#e67e22'; ctx.lineWidth = 3; ctx.stroke();
-      // Area under curve
-      ctx.save();
-      ctx.globalAlpha = 0.18;
-      ctx.beginPath();
-      ctx.moveTo(xGranular[0], mapY(values[0]));
-      for (let i = 1; i < values.length; i++) {
-        ctx.lineTo(xGranular[i], mapY(values[i]));
-      }
-      ctx.lineTo(xGranular[xGranular.length - 1], 180); ctx.lineTo(xGranular[0], 180); ctx.closePath();
-      ctx.fillStyle = '#e67e22'; ctx.fill();
-      ctx.restore();
-      // Title
-      ctx.font = 'bold 15px Arial'; ctx.fillStyle = '#222';
-      ctx.fillText('Energy Consumption', 120, 28);
-    }
-    // Draw the Environment SLA chart (static placeholder)
-    async function drawEnvSLAChart() {
-      const canvas = document.getElementById('envSLAChart');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Fetch polygon and point data from API
-      let polygons, points;
-      try {
-        const res = await fetch('http://localhost:3000/api/sla-vertices');
-        const data = await res.json();
-        polygons = data.polygons;
-        points = data.points;
-      } catch (e) {
-        // fallback to hardcoded if fetch fails
-        polygons = [
-          { name: 'Close', vertices: [ {x:40,y:220}, {x:60,y:60}, {x:280,y:40}, {x:300,y:180}, {x:200,y:240} ] },
-          { name: 'Allowable', vertices: [ {x:60,y:200}, {x:80,y:80}, {x:260,y:60}, {x:280,y:160}, {x:180,y:220} ] },
-          { name: 'Comfortable', vertices: [ {x:80,y:180}, {x:100,y:100}, {x:240,y:80}, {x:260,y:140}, {x:160,y:200} ] }
-        ];
-        points = {
-          current: { x: 170, y: 120 },
-          projected: { x: 190, y: 70 }
-        };
-      }
-      // Fill colors for each polygon
-      const fillColors = ['#ffe5e5', '#fff7e5', '#f7ffe5'];
-      const strokeColors = ['#e74c3c', '#e67e22', '#27ae60'];
-      const strokeWidths = [3, 2, 2];
-      polygons.forEach((poly, idx) => {
-        ctx.save();
-        ctx.beginPath();
-        poly.vertices.forEach((v, i) => {
-          if (i === 0) ctx.moveTo(v.x, v.y);
-          else ctx.lineTo(v.x, v.y);
-        });
-        ctx.closePath();
-        ctx.fillStyle = fillColors[idx] || '#fff';
-        ctx.fill();
-        ctx.strokeStyle = strokeColors[idx] || '#222';
-        ctx.lineWidth = strokeWidths[idx] || 1;
-        ctx.stroke();
-        ctx.restore();
-      });
-      // Draw current/projected points from API or fallback
-      if (points && points.Current) {
-        ctx.beginPath(); ctx.arc(points.Current.x, points.Current.y, 8, 0, 2 * Math.PI); ctx.fillStyle = '#fff'; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.stroke();
-      }
-      if (points && points.Projected) {
-        ctx.beginPath(); ctx.arc(points.Projected.x, points.Projected.y, 8, 0, 2 * Math.PI); ctx.fillStyle = '#222'; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.stroke();
-      }
-      // Axis labels
-      ctx.font = 'bold 13px Arial'; ctx.fillStyle = '#222';
-      ctx.fillText('HUMIDITY', 140, 30);
-      ctx.fillText('DRY BULB', 140, 250);
-      ctx.save(); ctx.translate(20,140); ctx.rotate(-Math.PI/2); ctx.fillText('WET BULB', 0, 0); ctx.restore();
-      ctx.save(); ctx.translate(320,140); ctx.rotate(-Math.PI/2); ctx.fillText('DEW POINT', 0, 0); ctx.restore();
-    }
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => showTab(btn));
-    });
+      </section>
+      <section id="AgentRecommendation" class="tab-content">
+        <h2>Agent Recommendation</h2>
+        <div
+          style="
+            max-width: 520px;
+            margin: auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(44, 62, 80, 0.1);
+            padding: 2rem 2.2rem;
+          "
+        >
+          <div
+            style="font-weight: bold; font-size: 1.08rem; margin-bottom: 1.2rem"
+          >
+            Set point changes
+          </div>
+          <div
+            id="setpointGrid"
+            style="
+              display: grid;
+              grid-template-columns: 1.2fr 0.3fr 1.2fr 0.7fr 1.2fr;
+              gap: 0.7rem;
+              align-items: center;
+              margin-bottom: 1.2rem;
+            "
+          >
+            <div
+              style="
+                font-size: 0.98rem;
+                color: #222;
+                grid-column: 1;
+                grid-row: 1;
+              "
+            >
+              Supply air temperature
+            </div>
+            <div style="grid-column: 2; grid-row: 1"></div>
+            <div
+              id="satCurrent"
+              style="
+                background: #f7f9fa;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 3;
+                grid-row: 1;
+                justify-self: end;
+              "
+            >
+              22.0°C
+            </div>
+            <div
+              style="
+                font-size: 1.3rem;
+                color: #222;
+                text-align: center;
+                grid-column: 4;
+                grid-row: 1;
+              "
+            >
+              &#8594;
+            </div>
+            <div
+              id="satRecommended"
+              style="
+                background: #222;
+                color: #fff;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 5;
+                grid-row: 1;
+                justify-self: end;
+              "
+            >
+              23.0°C
+            </div>
 
-    // Draw chart on initial load if SLA tab is active
-    window.addEventListener('DOMContentLoaded', () => {
-      const activeBtn = document.querySelector('.tab-btn.active');
-      if (activeBtn && activeBtn.dataset.tab === 'TimeMachine') {
-        setTimeout(drawTimeChart, 0);
+            <div
+              style="
+                font-size: 0.98rem;
+                color: #222;
+                grid-column: 1;
+                grid-row: 2;
+              "
+            >
+              Air flow rate
+            </div>
+            <div style="grid-column: 2; grid-row: 2"></div>
+            <div
+              style="
+                background: #f7f9fa;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 3;
+                grid-row: 2;
+                justify-self: end;
+              "
+            >
+              45 m³/min
+            </div>
+            <div
+              style="
+                font-size: 1.3rem;
+                color: #222;
+                text-align: center;
+                grid-column: 4;
+                grid-row: 2;
+              "
+            >
+              &#8594;
+            </div>
+            <div
+              style="
+                background: #222;
+                color: #fff;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 5;
+                grid-row: 2;
+                justify-self: end;
+              "
+            >
+              45 m³/min
+            </div>
+
+            <div
+              style="
+                font-size: 0.98rem;
+                color: #222;
+                grid-column: 1;
+                grid-row: 3;
+              "
+            >
+              Cooled water temperature
+            </div>
+            <div style="grid-column: 2; grid-row: 3"></div>
+            <div
+              style="
+                background: #f7f9fa;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 3;
+                grid-row: 3;
+                justify-self: end;
+              "
+            >
+              11.0°C
+            </div>
+            <div
+              style="
+                font-size: 1.3rem;
+                color: #222;
+                text-align: center;
+                grid-column: 4;
+                grid-row: 3;
+              "
+            >
+              &#8594;
+            </div>
+            <div
+              style="
+                background: #222;
+                color: #fff;
+                border-radius: 7px;
+                padding: 0.2rem 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                grid-column: 5;
+                grid-row: 3;
+                justify-self: end;
+              "
+            >
+              11.0°C
+            </div>
+          </div>
+          <div style="margin-bottom: 1.3rem; font-size: 1.04rem; color: #222">
+            <span style="font-weight: bold; color: #222"
+              >A modest increase</span
+            >
+            in supply air temperature, from <b>22°C</b> to <b>23°C</b>, is
+            recommended. Historical data for this site suggests each
+            <b>0.5°C</b> rise in supply air setpoint can cut chiller energy by
+            <b>2 to 3%</b>, given moderate IT load levels. This change provides
+            approximately <b>2°C</b> of safe margin if the setpoint is raised to
+            23°C. Raising the supply air temperature aligns with
+            <b>ISO50001</b> aims for monthly energy reductions and adheres to
+            the <b>EU Code of Conduct</b> principle of avoiding unnecessarily
+            low supply temperatures.
+          </div>
+          <div
+            style="font-weight: bold; font-size: 1.08rem; margin-bottom: 0.7rem"
+          >
+            Impact Summary
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 0.7rem;
+              align-items: center;
+              margin-bottom: 1.1rem;
+            "
+          >
+            <div style="color: #222; font-size: 0.97rem">ENERGY SAVINGS</div>
+            <div
+              style="
+                color: #27ae60;
+                font-weight: bold;
+                font-size: 0.97rem;
+                background: #f7f9fa;
+                border-radius: 6px;
+                padding: 0.3rem 0.8rem;
+                text-align: right;
+              "
+            >
+              5% NEXT WEEK
+            </div>
+            <div style="color: #222; font-size: 0.97rem">SAVINGS POTENTIAL</div>
+            <div
+              style="
+                color: #e67e22;
+                font-weight: bold;
+                font-size: 0.97rem;
+                background: #f7f9fa;
+                border-radius: 6px;
+                padding: 0.3rem 0.8rem;
+                text-align: right;
+              "
+            >
+              HIGH
+            </div>
+            <div style="color: #222; font-size: 0.97rem">SLA RISK</div>
+            <div
+              style="
+                color: #f1c40f;
+                font-weight: bold;
+                font-size: 0.97rem;
+                background: #f7f9fa;
+                border-radius: 6px;
+                padding: 0.3rem 0.8rem;
+                text-align: right;
+              "
+            >
+              MEDIUM
+            </div>
+            <div style="color: #222; font-size: 0.97rem">CONFIDENCE</div>
+            <div
+              style="
+                color: #27ae60;
+                font-weight: bold;
+                font-size: 0.97rem;
+                background: #f7f9fa;
+                border-radius: 6px;
+                padding: 0.3rem 0.8rem;
+                text-align: right;
+              "
+            >
+              HIGH
+            </div>
+          </div>
+          <div style="margin-bottom: 1.2rem">
+            <button
+              style="
+                width: 100%;
+                background: #f7f9fa;
+                color: #222;
+                border: none;
+                border-radius: 7px;
+                padding: 0.7rem 0;
+                font-size: 1.05rem;
+                font-weight: bold;
+                cursor: pointer;
+                margin-bottom: 0.7rem;
+              "
+            >
+              SEE OUR LOGIC
+            </button>
+          </div>
+          <div style="display: flex; gap: 1.2rem">
+            <button
+              id="rejectAdviceBtn"
+              style="
+                flex: 1;
+                background: #fff;
+                color: #222;
+                border: 1.5px solid #222;
+                border-radius: 7px;
+                padding: 0.7rem 0;
+                font-size: 1.05rem;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              REJECT
+            </button>
+            <button
+              id="acceptAdviceBtn"
+              style="
+                flex: 1;
+                background: #222;
+                color: #fff;
+                border: none;
+                border-radius: 7px;
+                padding: 0.7rem 0;
+                font-size: 1.05rem;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              ACCEPT
+            </button>
+          </div>
+          <div
+            id="adviceStatus"
+            style="
+              margin-top: 1.2rem;
+              font-size: 1.07rem;
+              font-family: Georgia, serif;
+              color: #27ae60;
+              display: none;
+            "
+          ></div>
+        </div>
+      </section>
+      <section id="EnvironmentSLA" class="tab-content">
+        <h2>Environment SLA</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem">
+          <div style="flex: 1; min-width: 340px">
+            <div style="margin-bottom: 1rem; font-weight: bold">
+              SLA Boundaries
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 0.5rem;
+              "
+            >
+              <div><span>◯</span> CURRENT</div>
+              <div><span>⬤</span> PROJECTED</div>
+            </div>
+            <canvas
+              id="envSLAChart"
+              width="320"
+              height="260"
+              style="background: #fff; border: 1px solid #eee"
+            ></canvas>
+            <div style="margin-top: 1rem">
+              <div style="font-weight: bold; margin-bottom: 0.5rem">
+                Proximity to SLA
+              </div>
+              <div style="display: flex; gap: 1.5rem; font-size: 0.95rem">
+                <span style="color: #27ae60"><b>&#9679;</b> Comfortable</span>
+                <span style="color: #f1c40f"><b>&#9679;</b> Allowable</span>
+                <span style="color: #e67e22"><b>&#9679;</b> Close</span>
+                <span style="color: #e74c3c"><b>&#9679;</b> Alarm</span>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 340px">
+            <div style="font-weight: bold; margin-bottom: 1rem">
+              Savings potential
+            </div>
+            <div style="margin-bottom: 1.5rem">
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <span style="font-size: 0.95rem">LOW</span>
+                <div
+                  style="
+                    flex: 1;
+                    height: 6px;
+                    background: #f1c40f;
+                    position: relative;
+                    border-radius: 3px;
+                  "
+                >
+                  <div
+                    id="savingsPointer"
+                    style="
+                      position: absolute;
+                      left: 70%;
+                      top: -6px;
+                      width: 0;
+                      height: 0;
+                      border-left: 8px solid transparent;
+                      border-right: 8px solid transparent;
+                      border-bottom: 10px solid #e67e22;
+                    "
+                  ></div>
+                </div>
+                <span style="font-size: 0.95rem">HIGH</span>
+              </div>
+            </div>
+            <div style="font-weight: bold; margin-bottom: 0.5rem">
+              Current and projected states
+            </div>
+            <table
+              style="
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.97rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <thead>
+                <tr style="background: #f7f9fa">
+                  <th style="text-align: left">ZONE AIR SUPPLY</th>
+                  <th style="text-align: right">CURRENT</th>
+                  <th style="text-align: right">PROJECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DRY BULB TEMP</td>
+                  <td style="text-align: right">22.3°C</td>
+                  <td style="font-weight: bold; text-align: right">23.1°C</td>
+                </tr>
+                <tr>
+                  <td>WET BULB TEMP</td>
+                  <td style="text-align: right">11.0°C</td>
+                  <td style="font-weight: bold; text-align: right">11.8°C</td>
+                </tr>
+                <tr>
+                  <td>DEW POINT TEMP</td>
+                  <td style="text-align: right">14.1°C</td>
+                  <td style="font-weight: bold; text-align: right">14.4°C</td>
+                </tr>
+                <tr>
+                  <td>RELATIVE HUMIDITY</td>
+                  <td style="text-align: right">50%</td>
+                  <td style="font-weight: bold; text-align: right">52%</td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              style="
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.97rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <thead>
+                <tr style="background: #f7f9fa">
+                  <th style="text-align: left">RETURN AIR TEMP</th>
+                  <th style="text-align: right">CURRENT</th>
+                  <th style="text-align: right">PROJECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td style="text-align: right">22.3°C</td>
+                  <td style="font-weight: bold; text-align: right">23.1°C</td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              style="width: 100%; border-collapse: collapse; font-size: 0.97rem"
+            >
+              <thead>
+                <tr style="background: #f7f9fa">
+                  <th style="text-align: left">OUTDOOR TEMP</th>
+                  <th style="text-align: right">CURRENT</th>
+                  <th style="text-align: right">PROJECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td style="text-align: right">22.3°C</td>
+                  <td style="font-weight: bold; text-align: right">23.1°C</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <p style="margin-top: 2rem">
+        <a href="landing.html">&larr; Back to Portal</a>
+      </p>
+    </main>
+    <script>
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+      function showTab(btn) {
+        tabBtns.forEach((b) => b.classList.remove("active"));
+        tabContents.forEach((c) => c.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+        if (btn.dataset.tab === "TimeMachine") {
+          setTimeout(drawTimeChart, 0);
+        }
+        if (btn.dataset.tab === "EnvironmentSLA") {
+          setTimeout(drawEnvSLAChart, 0);
+        }
       }
-      if (activeBtn && activeBtn.dataset.tab === 'EnvironmentSLA') {
-        setTimeout(drawEnvSLAChart, 0);
+      // Draw the Time Machine energy consumption chart
+      function drawTimeChart() {
+        const canvas = document.getElementById("timeChart");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Axes
+        ctx.strokeStyle = "#222";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(40, 180);
+        ctx.lineTo(40, 40);
+        ctx.lineTo(400, 40);
+        ctx.stroke();
+        // Y axis labels
+        ctx.font = "bold 13px Arial";
+        ctx.fillStyle = "#222";
+        ctx.fillText("kWh", 10, 30);
+        ctx.font = "12px Arial";
+        ctx.fillText("120", 10, 60);
+        ctx.fillText("80", 15, 120);
+        ctx.fillText("40", 15, 170);
+        // X axis labels (last 8 months, more granular line)
+        const months = [];
+        const now = new Date();
+        for (let i = 7; i >= 0; i--) {
+          const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+          months.push(d.toLocaleString("default", { month: "short" }));
+        }
+        const xStart = 40,
+          xEnd = 370;
+        const xPositions = [];
+        for (let i = 0; i < months.length; i++) {
+          xPositions.push(xStart + ((xEnd - xStart) * i) / (months.length - 1));
+          ctx.fillText(months[i], xPositions[i], 200);
+        }
+        // More granular and random values, smooth decline to 120 until April, then sudden drop to 100
+        // Assume months: [Aug, Sep, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May]
+        // 40 points, 5 per month
+        const values = [];
+        for (let i = 0; i < 32; i++) {
+          // Aug-Mar
+          // Smooth decline with more random noise
+          const base = 135 - (15 * i) / 31; // 135 to 120
+          const noise = Math.random() * 8 - 4; // -4 to +4
+          values.push(Math.round(base + noise));
+        }
+        // April to July (16 points, 4 per month)
+        for (let i = 0; i < 16; i++) {
+          // Random value between 95 and 105
+          const val = 95 + Math.random() * 10;
+          values.push(Math.round(val));
+        }
+        // Y mapping: 135 -> 50, 95 -> 180
+        function mapY(val) {
+          return 50 + ((180 - 50) * (135 - val)) / (135 - 95);
+        }
+        // Interpolate x positions for 40 points
+        const xGranular = [];
+        for (let i = 0; i < values.length; i++) {
+          xGranular.push(xStart + ((xEnd - xStart) * i) / (values.length - 1));
+        }
+        // Draw smooth line
+        ctx.beginPath();
+        ctx.moveTo(xGranular[0], mapY(values[0]));
+        for (let i = 1; i < values.length; i++) {
+          ctx.lineTo(xGranular[i], mapY(values[i]));
+        }
+        ctx.strokeStyle = "#e67e22";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        // Area under curve
+        ctx.save();
+        ctx.globalAlpha = 0.18;
+        ctx.beginPath();
+        ctx.moveTo(xGranular[0], mapY(values[0]));
+        for (let i = 1; i < values.length; i++) {
+          ctx.lineTo(xGranular[i], mapY(values[i]));
+        }
+        ctx.lineTo(xGranular[xGranular.length - 1], 180);
+        ctx.lineTo(xGranular[0], 180);
+        ctx.closePath();
+        ctx.fillStyle = "#e67e22";
+        ctx.fill();
+        ctx.restore();
+        // Title
+        ctx.font = "bold 15px Arial";
+        ctx.fillStyle = "#222";
+        ctx.fillText("Energy Consumption", 120, 28);
       }
-    });
-  </script>
-</body>
+      // Draw the Environment SLA chart (static placeholder)
+      async function drawEnvSLAChart() {
+        const canvas = document.getElementById("envSLAChart");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Fetch polygon and point data from API
+        let polygons, points;
+        try {
+          const res = await fetch("http://localhost:3000/api/sla-vertices");
+          const data = await res.json();
+          polygons = data.polygons;
+          points = data.points;
+        } catch (e) {
+          // fallback to hardcoded if fetch fails
+          polygons = [
+            {
+              name: "Close",
+              vertices: [
+                { x: 40, y: 220 },
+                { x: 60, y: 60 },
+                { x: 280, y: 40 },
+                { x: 300, y: 180 },
+                { x: 200, y: 240 },
+              ],
+            },
+            {
+              name: "Allowable",
+              vertices: [
+                { x: 60, y: 200 },
+                { x: 80, y: 80 },
+                { x: 260, y: 60 },
+                { x: 280, y: 160 },
+                { x: 180, y: 220 },
+              ],
+            },
+            {
+              name: "Comfortable",
+              vertices: [
+                { x: 80, y: 180 },
+                { x: 100, y: 100 },
+                { x: 240, y: 80 },
+                { x: 260, y: 140 },
+                { x: 160, y: 200 },
+              ],
+            },
+          ];
+          points = {
+            current: { x: 170, y: 120 },
+            projected: { x: 190, y: 70 },
+          };
+        }
+        // Fill colors for each polygon
+        const fillColors = ["#ffe5e5", "#fff7e5", "#f7ffe5"];
+        const strokeColors = ["#e74c3c", "#e67e22", "#27ae60"];
+        const strokeWidths = [3, 2, 2];
+        polygons.forEach((poly, idx) => {
+          ctx.save();
+          ctx.beginPath();
+          poly.vertices.forEach((v, i) => {
+            if (i === 0) ctx.moveTo(v.x, v.y);
+            else ctx.lineTo(v.x, v.y);
+          });
+          ctx.closePath();
+          ctx.fillStyle = fillColors[idx] || "#fff";
+          ctx.fill();
+          ctx.strokeStyle = strokeColors[idx] || "#222";
+          ctx.lineWidth = strokeWidths[idx] || 1;
+          ctx.stroke();
+          ctx.restore();
+        });
+        // Draw current/projected points from API or fallback
+        if (points && points.Current) {
+          ctx.beginPath();
+          ctx.arc(points.Current.x, points.Current.y, 8, 0, 2 * Math.PI);
+          ctx.fillStyle = "#fff";
+          ctx.fill();
+          ctx.strokeStyle = "#222";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        if (points && points.Projected) {
+          ctx.beginPath();
+          ctx.arc(points.Projected.x, points.Projected.y, 8, 0, 2 * Math.PI);
+          ctx.fillStyle = "#222";
+          ctx.fill();
+          ctx.strokeStyle = "#222";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        // Axis labels
+        ctx.font = "bold 13px Arial";
+        ctx.fillStyle = "#222";
+        ctx.fillText("HUMIDITY", 140, 30);
+        ctx.fillText("DRY BULB", 140, 250);
+        ctx.save();
+        ctx.translate(20, 140);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText("WET BULB", 0, 0);
+        ctx.restore();
+        ctx.save();
+        ctx.translate(320, 140);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText("DEW POINT", 0, 0);
+        ctx.restore();
+      }
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => showTab(btn));
+      });
+
+      // Draw chart on initial load if SLA tab is active
+      window.addEventListener("DOMContentLoaded", () => {
+        const activeBtn = document.querySelector(".tab-btn.active");
+        if (activeBtn && activeBtn.dataset.tab === "TimeMachine") {
+          setTimeout(drawTimeChart, 0);
+        }
+        if (activeBtn && activeBtn.dataset.tab === "EnvironmentSLA") {
+          setTimeout(drawEnvSLAChart, 0);
+        }
+      });
+
+      // Facility Manager accepts advice scenario
+      document
+        .getElementById("acceptAdviceBtn")
+        .addEventListener("click", function () {
+          // Change the first supply air temperature value to the recommended value
+          document.getElementById("satCurrent").textContent =
+            document.getElementById("satRecommended").textContent;
+          document.getElementById("satCurrent").style.backgroundColor =
+            "#27ae60";
+          document.getElementById("satCurrent").style.color = "#fff";
+          // Show status message
+          const statusDiv = document.getElementById("adviceStatus");
+          statusDiv.style.display = "block";
+          statusDiv.style.color = "#27ae60";
+          statusDiv.textContent =
+            "Advice accepted. The recommended set point changes will be applied.";
+          // Optionally, disable buttons after acceptance
+          document.getElementById("acceptAdviceBtn").disabled = true;
+          document.getElementById("rejectAdviceBtn").disabled = true;
+        });
+
+      document
+        .getElementById("rejectAdviceBtn")
+        .addEventListener("click", function () {
+          const statusDiv = document.getElementById("adviceStatus");
+          statusDiv.style.display = "block";
+          statusDiv.style.color = "#e74c3c";
+          statusDiv.textContent = "Advice rejected. No changes will be made.";
+          document.getElementById("acceptAdviceBtn").disabled = true;
+          document.getElementById("rejectAdviceBtn").disabled = true;
+        });
+    </script>
+  </body>
 </html>
 <!-- 
 Create pages to implement the UI for the "Review advice" feature
