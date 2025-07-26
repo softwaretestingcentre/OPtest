@@ -1,4 +1,4 @@
-Serenity report generated 26-07-2025 12:28:48
+Serenity report generated 26-07-2025 13:19:09
 
 Number of scenarios:  10
 Number of test cases: 13
