@@ -43,11 +43,10 @@ The FM can accept the advice or view more detailed analysis
       | Current   | Comfortable |
       | Projected | Allowable   |
 
-  Scenario Outline: Facility Manager accepts advice for various zones
-    When Felicity accepts the advice about "<Zone>"
-    Then She sees that "<Set Point>" is set to <Recommended Value>
+  Scenario Outline: Facility Manager accepts advice
+    When Felicity accepts the advice about "<Set Point>"
+    Then Felicity sees that the "<Set Point>" is set to <Recommended Value>
 
     Examples:
-      | Zone | Set Point | Recommended Value |
-      |    1 | SAT       |              0.85 |
-      |    2 | PAT       |              1.75 |
+      | Set Point              | Recommended Value |
+      | Supply Air Temperature |                23 |

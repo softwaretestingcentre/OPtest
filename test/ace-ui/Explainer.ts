@@ -2,18 +2,24 @@ import { DataTable } from "@cucumber/cucumber";
 import { Ensure, equals, includes } from "@serenity-js/assertions";
 import { List, notes, Task } from "@serenity-js/core";
 import { By, Text, Navigate, PageElement, Click } from "@serenity-js/web";
-import { Data } from "./Data";
+import { SLA } from "../ace-api/SLA";
 
 export const Explainer = {
-
   chooseAdvice: (sectionName: string) =>
-    Task.where(`#actor chooses advice section ${sectionName}`,
+    Task.where(
+      `#actor chooses advice section ${sectionName}`,
       Navigate.to("/explainer.html"),
-      Click.on(PageElement.located(By.css(`[data-tab="${sectionName}"]`)).describedAs(`${sectionName} tab`))
+      Click.on(
+        PageElement.located(By.css(`[data-tab="${sectionName}"]`)).describedAs(
+          `${sectionName} tab`
+        )
+      )
     ),
 
   adviceSection: (sectionName: string) =>
-    PageElement.located(By.css(`section[id="${sectionName}"]`)).describedAs(`${sectionName} advice section`),
+    PageElement.located(By.css(`section[id="${sectionName}"]`)).describedAs(
+      `${sectionName} advice section`
+    ),
 
   getAdvice: (sectionName: string) =>
     Task.where(
@@ -39,17 +45,16 @@ export const Explainer = {
       )
     ),
 
-
   checkSLAZonesMatch: (zoneData: DataTable) =>
     Task.where(
       `#actor checks all zones match expectations`,
       List.of(zoneData.hashes()).forEach(async ({ actor, item }) =>
         actor.attemptsTo(
           Ensure.that(
-              Data.whichZoneIsMetricIn(item["Metric"]),
-              equals(item["Zone"])
+            SLA.whichZoneIsMetricIn(item["Metric"]),
+            equals(item["Zone"])
           )
         )
       )
-    )
+    ),
 };
