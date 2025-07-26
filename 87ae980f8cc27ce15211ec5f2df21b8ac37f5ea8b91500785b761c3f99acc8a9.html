@@ -229,7 +229,7 @@
             <a href="#"><i class="bi bi-chat-text"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 18:49</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 26-07-2025 19:41</span>
     <br style="clear:left"/>
 </div>
 
@@ -264,8 +264,7 @@
                             </div>
                         </div>
                             <div class="requirementNarrativeTitle">
-                                The OctaiPipe platform (http://app.ace.octaipipe.ai) is used by the<br />
-commercial team to manage deployments on customer sites.
+                                The endpoint /api/licence is used by the commercial team to manage deployments on customer sites.
                             </div>
 
                     </div>
@@ -413,7 +412,7 @@ commercial team to manage deployments on customer sites.
                                             <div class="col-sm-12">
                                                 <h3>Scenarios</h3>
 
-                                                    <a name="43119a17-d5b2-414c-ae89-ab9692ef708e"></a>
+                                                    <a name="cdcf9118-3856-401a-a3c3-f89cb0297226"></a>
                                                     <p class="rule-tags inline-tag">
                                                     </p>
 
@@ -439,8 +438,10 @@ commercial team to manage deployments on customer sites.
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given Como sees that &quot;Acme&quot; has a &quot;valid&quot; licence</p>
+                                                                    <p>Given Como sees that &quot;Acme&quot; has a &quot;valid&quot; licence and version &quot;none&quot;</p>
+                                                                    <p>When Como deploys Ace to &quot;Acme&quot;</p>
                                                                     <p>Then Como sees that &quot;Acme&quot; has the &quot;latest&quot; version of Ace installed</p>
+                                                                    <p>And Como can see that Ace is &quot;Active&quot; for &quot;Acme&quot;</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
@@ -467,8 +468,10 @@ commercial team to manage deployments on customer sites.
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given Como sees that &quot;DC&quot; has a &quot;valid&quot; licence</p>
+                                                                    <p>Given Como sees that &quot;DC&quot; has a &quot;valid&quot; licence and version &quot;previous&quot;</p>
+                                                                    <p>When Como deploys Ace to &quot;DC&quot;</p>
                                                                     <p>Then Como sees that &quot;DC&quot; has the &quot;latest&quot; version of Ace installed</p>
+                                                                    <p>And Como can see that Ace is &quot;Active&quot; for &quot;DC&quot;</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
@@ -495,8 +498,10 @@ commercial team to manage deployments on customer sites.
 
                                                             </div>
                                                             <div class="scenario-docs card-body">
-                                                                    <p>Given Como sees that &quot;OL&quot; has an &quot;expired&quot; licence</p>
+                                                                    <p>Given Como sees that &quot;OL&quot; has an &quot;expired&quot; licence and version &quot;latest&quot;</p>
+                                                                    <p>When Como deactivates Ace for &quot;OL&quot;</p>
                                                                     <p>Then Como can see that Ace is &quot;Deactivated&quot; for &quot;OL&quot;</p>
+                                                                    <p>And Como sees that &quot;OL&quot; has &quot;none&quot; version of Ace installed</p>
                                                                 <div class="examples">
                                                                 </div>
                                                             </div>
@@ -561,7 +566,7 @@ commercial team to manage deployments on customer sites.
                     <td>
                         <i class="bi bi-trophy"></i> Fastest Test
                     </td>
-                    <td>468ms</td>
+                    <td>1s</td>
                 </tr>
                 <tr scope="row">
                     <td>
@@ -572,18 +577,18 @@ commercial team to manage deployments on customer sites.
                         <i class="bi bi-skip-start"></i> Slowest
                         Test
                     </td>
-                    <td>673ms</td>
+                    <td>1s</td>
                 </tr>
                 <tr scope="row">
                     <td>
                         <i class="bi bi-flag-fill"></i> Tests Started
                     </td>
-                    <td>Jul 26, 2025 18:49:00</td>
+                    <td>Jul 26, 2025 19:41:59</td>
                     <td>
                         <i class="bi bi-stopwatch"></i> Average
                         Execution Time
                     </td>
-                    <td>539ms</td>
+                    <td>1s</td>
                 </tr>
                 <tr scope="row">
                     <td>
@@ -595,7 +600,7 @@ commercial team to manage deployments on customer sites.
                         <i class="bi bi-stopwatch-fill"></i> Total
                         Execution Time
                     </td>
-                    <td>1s</td>
+                    <td>3s</td>
                 </tr>
                 </tbody>
             </table>
@@ -626,9 +631,9 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>2</td>
-                                                                    <td>18:49:00</td>
-                                                                    <td>673ms</td>
+                                                                    <td>4</td>
+                                                                    <td>19:41:59</td>
+                                                                    <td>1s 255ms</td>
                                                                     <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
                                                                     </td>
                                                                 </tr>
@@ -641,9 +646,9 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>2</td>
-                                                                    <td>18:49:01</td>
-                                                                    <td>478ms</td>
+                                                                    <td>4</td>
+                                                                    <td>19:42:00</td>
+                                                                    <td>1s 026ms</td>
                                                                     <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
                                                                     </td>
                                                                 </tr>
@@ -656,9 +661,9 @@ commercial team to manage deployments on customer sites.
                                                                     </td>
                                                                     <td><span style="display:none"></span>
                                                                     </td>
-                                                                    <td>2</td>
-                                                                    <td>18:49:01</td>
-                                                                    <td>468ms</td>
+                                                                    <td>4</td>
+                                                                    <td>19:42:01</td>
+                                                                    <td>1s 045ms</td>
                                                                     <td><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a> <span style="display:none">SUCCESS</span>
                                                                     </td>
                                                                 </tr>
@@ -1020,7 +1025,7 @@ commercial team to manage deployments on customer sites.
             datasets: [{
                 label: 'Number of tests per duration',
                 fill: false,
-                data: ['3','0','0','0','0','0','0','0'],
+                data: ['0','3','0','0','0','0','0','0'],
                 backgroundColor: 'rgba(83, 146, 255,0.5)',
                 borderColor: 'rgba(83, 146, 255, 1)',
             }]
