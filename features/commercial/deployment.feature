@@ -15,4 +15,4 @@ commercial team to manage deployments on customer sites.
   Scenario: Octaipipe ACE is deactivated for an existing customer
     Given Como sees that "OL" has an "expired" licence
     # When Como checks the status of Ace at OL
-    Then Como can see that Ace is "deactivated" for "OL"
+    Then Como can see that Ace is "Deactivated" for "OL"
