@@ -6,25 +6,21 @@ import { By, Text, PageElements } from "@serenity-js/web";
 export const Table = {
   valuesFromRow: (metric: string) =>
     Question.about(`data in table for ${metric}`, async (actor) => {
-      let rowIndex = (await actor.answer(RenderedTable.rowNames())).indexOf(
-        metric
-      );
-      return (await actor.answer(RenderedTable.values()))[rowIndex * 2 + 1];
+      let rowIndex = (await actor.answer(RenderedTable.rowNames()))
+      .indexOf(metric);
+      return (await actor.answer(RenderedTable.values()))
+      [rowIndex * await actor.answer(RenderedTable.columnCount()) + 1];
     }),
 
-  valueFromRow: (metric: string, column: string) =>
-    Question.about(
-      `data in table for ${metric} in column ${column}`,
-      async (actor) => {
-        let rowIndex = (await actor.answer(RenderedTable.rowNames())).indexOf(
-          metric
-        );
-        let columnIndex = (
-          await actor.answer(RenderedTable.columnNames())
-        ).indexOf(column);
-        return (await actor.answer(RenderedTable.values()))[
-          rowIndex * 2 + columnIndex + 1
-        ];
+  valueFromRow: (row: string, column: string) =>
+    Question.about(`data in table for ${row} in column ${column}`, async (actor) => {
+        let rowIndex = (await actor.answer(RenderedTable.rowNames()))
+        .indexOf(row);
+        let columnIndex = (await actor.answer(RenderedTable.columnNames()))
+        .indexOf(column);
+        let columnCount = await actor.answer(RenderedTable.columnCount());
+        let values = await actor.answer(RenderedTable.values());
+        return await actor.answer(values[rowIndex * columnCount + columnIndex]);
       }
     ),
 
@@ -66,15 +62,17 @@ const RenderedTable = {
 
   columnNames: () => RenderedTable.columnHeaders().eachMappedTo(Text),
 
-  rows: () =>
-    PageElements.located(By.css(`table tr td:nth-child(1)`)).describedAs(
-      "table rows"
+  columnCount: () => RenderedTable.columnHeaders().count(),
+
+  rowHeaders: () =>
+    PageElements.located(By.css(`table tbody tr td:nth-child(1)`)).describedAs(
+      "row headers"
     ),
 
-  rowNames: () => RenderedTable.rows().eachMappedTo(Text),
+  rowNames: () => RenderedTable.rowHeaders().eachMappedTo(Text),
 
   cells: () =>
-    PageElements.located(By.css(`table td`)).describedAs("table cells"),
+    PageElements.located(By.css(`table tbody td`)).describedAs("table cells"),
 
   values: () => RenderedTable.cells().eachMappedTo(Text),
 };
