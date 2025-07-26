@@ -19,7 +19,7 @@ When("{pronoun} check their KPIs", async (actor: Actor) =>
 Then(
   "{pronoun} see(s) that the KPI data is current",
   async (actor: Actor, data: DataTable) =>
-    actor.attemptsTo(Table.compareToTable(data, "KPI"))
+    actor.attemptsTo(Table.compareToMetric(data, "KPI"))
 );
 
 When(

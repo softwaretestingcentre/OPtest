@@ -23,19 +23,53 @@
     </section>
     <section>
       <h2>Recent Deployment Scenarios</h2>
-      <table>
+      <table id="deploymentTable">
         <thead>
-          <tr><th>Scenario</th><th>Status</th></tr>
+          <tr><th>Customer</th><th>Licence Status</th><th>ACE Version</th><th>ACE Active</th></tr>
         </thead>
         <tbody>
-          <tr><td>Acme has obtained a licence and ACE is deployed</td><td>Deployed</td></tr>
-          <tr><td>DC has a valid licence and ACE is updated</td><td>Updated</td></tr>
-          <tr><td>OL has an expired licence and ACE is deactivated</td><td>Deactivated</td></tr>
+          <!-- Rows will be populated by JS -->
         </tbody>
       </table>
     </section>
     <p style="margin-top:2rem;"><a href="landing.html">&larr; Back to Landing Page</a></p>
   </main>
+  <script>
+    const customers = ["Acme", "DC", "OL"];
+    const tbody = document.querySelector("#deploymentTable tbody");
+
+    function statusText(licence) {
+      if (!licence) return "Unknown";
+      if (!licence.aceActive) return "Deactivated";
+      if (licence.status === "valid" && licence.aceVersion === "latest") return "Deployed/Updated";
+      if (licence.status === "expired") return "Deactivated";
+      return licence.status;
+    }
+
+    async function loadDeploymentData() {
+      tbody.innerHTML = "";
+      for (const customer of customers) {
+        try {
+          const res = await fetch(`/api/licence/${customer}`);
+          const licence = await res.json();
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${licence.customer}</td>
+            <td>${licence.status}</td>
+            <td>${licence.aceVersion || "-"}</td>
+            <td>${licence.aceActive ? "Active" : "Deactivated"}</td>
+          `;
+          tbody.appendChild(row);
+        } catch (e) {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${customer}</td><td colspan="3">Error loading data</td>`;
+          tbody.appendChild(row);
+        }
+      }
+    }
+
+    loadDeploymentData();
+  </script>
 </body>
 </html>
 <!-- 

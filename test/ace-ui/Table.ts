@@ -4,13 +4,29 @@ import { List, Question, Task } from "@serenity-js/core";
 import { By, Text, PageElements } from "@serenity-js/web";
 
 export const Table = {
-  fromTable: (metric: string) =>
+  valuesFromRow: (metric: string) =>
     Question.about(`data in table for ${metric}`, async (actor) => {
       let rowIndex = (await actor.answer(RenderedTable.rowNames())).indexOf(
         metric
       );
       return (await actor.answer(RenderedTable.values()))[rowIndex * 2 + 1];
     }),
+
+  valueFromRow: (metric: string, column: string) =>
+    Question.about(
+      `data in table for ${metric} in column ${column}`,
+      async (actor) => {
+        let rowIndex = (await actor.answer(RenderedTable.rowNames())).indexOf(
+          metric
+        );
+        let columnIndex = (
+          await actor.answer(RenderedTable.columnNames())
+        ).indexOf(column);
+        return (await actor.answer(RenderedTable.values()))[
+          rowIndex * 2 + columnIndex + 1
+        ];
+      }
+    ),
 
   filter: (filterValue: string) =>
     Task.where(
@@ -30,14 +46,14 @@ export const Table = {
       // TODO
     ),
 
-  compareToTable: (expectedData: DataTable, metric: string) =>
+  compareToMetric: (expectedData: DataTable, metric: string) =>
     Task.where(
       `#actor compares data to expectations`,
       List.of(expectedData.hashes()).forEach(({ actor, item }) =>
         actor.attemptsTo(
           Ensure.that(
             item["Expected Value"],
-            equals(Table.fromTable(item[metric]))
+            equals(Table.valuesFromRow(item[metric]))
           )
         )
       )
