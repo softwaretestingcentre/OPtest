@@ -9,16 +9,7 @@ export const Explainer = {
     Task.where(
       `#actor chooses advice section ${sectionName}`,
       Navigate.to("/explainer.html"),
-      Click.on(
-        PageElement.located(By.css(`[data-tab="${sectionName}"]`)).describedAs(
-          `${sectionName} tab`
-        )
-      )
-    ),
-
-  adviceSection: (sectionName: string) =>
-    PageElement.located(By.css(`section[id="${sectionName}"]`)).describedAs(
-      `${sectionName} advice section`
+      Click.on(advice.tab(sectionName))
     ),
 
   getAdvice: (sectionName: string) =>
@@ -27,7 +18,7 @@ export const Explainer = {
       Explainer.chooseAdvice(sectionName),
       notes().set(
         "current_advice",
-        Text.of(Explainer.adviceSection(sectionName)).toLocaleUpperCase()
+        Text.of(advice.section(sectionName)).toLocaleUpperCase()
       )
     ),
 
@@ -73,6 +64,18 @@ export const Explainer = {
         )
       )
     ),
+};
+
+const advice = {
+  tab: (sectionName: string) =>
+    PageElement.located(By.css(`[data-tab="${sectionName}"]`)).describedAs(
+      `${sectionName} tab`
+    ),
+
+  section: (sectionName: string) =>
+    PageElement.located(By.css(`section[id="${sectionName}"]`)).describedAs(
+      `${sectionName} advice section`
+    ),  
 };
 
 const agentRecommendation = {
